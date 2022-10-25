@@ -1,4 +1,8 @@
 #+TITLE: .emacs.d
 This is my emacs configuration folder.
 * Reason of Using Emacs
+It support *Org Mode*! I've been struggling with Microsoft ToDo, iOS reminder, etc.
+Those are slow at syncing and have no cross-platform support (between win, ios, linux).
+So I choose Org Mode, which provides high levels of customization.
 * What Did I Configured
+Evil... and other keymapping stuffs.
