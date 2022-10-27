@@ -150,6 +150,10 @@
 (key-seq-define evil-motion-state-map ";j" 'org-metadown) ; 将项目下移
 (key-seq-define evil-normal-state-map ";k" 'org-metaup) ; 将项目上移
 (key-seq-define evil-motion-state-map ";k" 'org-metaup) ; 将项目上移
+(key-seq-define evil-normal-state-map ";h" 'org-shiftmetaleft) ; 将项目左移
+(key-seq-define evil-motion-state-map ";h" 'org-shiftmetaleft) ; 将项目左移
+(key-seq-define evil-normal-state-map ";l" 'org-shiftmetaright) ; 将项目右移
+(key-seq-define evil-motion-state-map ";l" 'org-shiftmetaright) ; 将项目右移
 (key-seq-define evil-normal-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-motion-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-visual-state-map "z/" 'comment-line) ; 注释
