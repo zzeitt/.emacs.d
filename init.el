@@ -99,12 +99,13 @@
 (define-key evil-visual-state-map (kbd "J") 'previous-buffer) 
 (define-key evil-motion-state-map (kbd "J") 'previous-buffer) 
 (define-key evil-insert-state-map (kbd "<tab>") 'tab-to-tab-stop) ; 插入模式下恢复tab
+(define-key evil-normal-state-map (kbd "M-S-<return>") (kbd "$ a M-S-<return> <escape>")) ; normal模式org-insert-todo-heading
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
 (setq key-chord-two-keys-delay 0.1)
 (key-chord-mode 1) 
-(define-key evil-normal-state-map (kbd "z5") (kbd "C-u C-c #")) ; 全局更新完成度
+;; (define-key evil-normal-state-map (kbd "z5") (kbd "C-u C-c #")) ; 全局更新完成度
 (key-seq-define evil-insert-state-map "z;" 'evil-normal-state) ; 退出编辑模式
 (key-seq-define evil-visual-state-map "z;" 'evil-normal-state) ; 退出可视模式
 (key-seq-define evil-normal-state-map "vc" 'evil-visual-block) ; 块可视模式
@@ -143,7 +144,6 @@
 (key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c) ; 替换C-c C-c
 (key-seq-define evil-normal-state-map ";v" 'org-archive-subtree-default) ; 归档
 (key-seq-define evil-normal-state-map ";x" 'org-toggle-archive-tag) ; 添加归档标签
-(define-key evil-normal-state-map (kbd "M-S-<return>") (kbd "$ a M-S-<return> <escape>")) ; normal模式org-insert-todo-heading
 (key-seq-define evil-normal-state-map "[[" (kbd "o <escape> P")) ; 在下一行粘贴
 (key-seq-define evil-motion-state-map "[[" (kbd "o <escape> P")) ; 在下一行粘贴
 (key-seq-define evil-normal-state-map ";j" 'org-metadown) ; 将项目下移
