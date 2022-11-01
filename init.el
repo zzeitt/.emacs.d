@@ -68,6 +68,8 @@
 (global-set-key (kbd "C-x r") 'counsel-recentf) ; 打开最近文件
 (global-set-key (kbd "<f5>") 'revert-buffer) ; 刷新文件
 (global-set-key (kbd "C-c 5") (kbd "C-u C-c #")) ; 全局更新完成度
+(global-set-key (kbd "C--") 'text-scale-adjust) ; 调整字体
+(global-set-key (kbd "C-=") 'text-scale-adjust) ; 调整字体
 (define-key evil-normal-state-map (kbd "gx") 'org-open-at-point) ; 链接跳转
 (evil-define-key 'normal org-agenda-mode-map
 	(kbd "gx") 'org-agenda-switch-to
