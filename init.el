@@ -173,8 +173,10 @@
   (interactive)
   (org-update-statistics-cookies "ALL"))
 (key-seq-define evil-normal-state-map ";5" 'zeit/update-percentage)
-(key-seq-define evil-normal-state-map ";q" (kbd "C-u C-c C-q"))
-
+(key-seq-define evil-normal-state-map ";q" (kbd "C-u C-c C-q"))  ; 全局对齐tags
+(key-seq-define evil-normal-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
+(key-seq-define evil-motion-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
+(key-seq-define evil-visual-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
 
 
 ;;; ----------------------- 系统设置 ----------------------------
