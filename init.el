@@ -46,6 +46,10 @@
 ;; 开启自动换行
 (global-visual-line-mode 1)
 
+;; 开启行内图片
+(setq org-startup-with-inline-images t)
+(setq org-image-actual-width nil)
+
 
 ;;; ------------------------- 个人习惯 ---------------------------
 ;; 开启Evil模式
@@ -168,11 +172,12 @@
 (key-seq-define evil-motion-state-map ";w" 'org-refile) ; 移动树项目
 (key-seq-define evil-visual-state-map ";w" 'org-refile) ; 移动树项目
 
-(defun zeit/update-percentage ()
-  "Update the percentage of checkbox/TODOs"
+(defun zeit/refresh ()
+  "Refresh the percentage of checkbox/TODOs & redisplay inline images."
   (interactive)
-  (org-update-statistics-cookies "ALL"))
-(key-seq-define evil-normal-state-map ";5" 'zeit/update-percentage)
+  (org-update-statistics-cookies "ALL")
+  (org-redisplay-inline-images))
+(key-seq-define evil-normal-state-map ";5" 'zeit/refresh)
 (key-seq-define evil-normal-state-map ";q" (kbd "C-u C-c C-q"))  ; 全局对齐tags
 (key-seq-define evil-normal-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
 (key-seq-define evil-motion-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
