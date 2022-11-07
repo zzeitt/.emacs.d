@@ -10,6 +10,7 @@
  '(inhibit-startup-screen t)
  '(org-agenda-tags-column -60)
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
+ '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
    '(key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
