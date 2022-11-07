@@ -153,6 +153,7 @@
 (key-seq-define evil-normal-state-map ";b" 'list-buffers) ; 展示buffers
 (key-seq-define evil-motion-state-map ";b" 'list-buffers) ; 展示buffers
 (key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c) ; 替换C-c C-c
+(key-seq-define evil-normal-state-map "zz" 'org-kill-note-or-show-branches) ; note页取消
 (key-seq-define evil-normal-state-map ";v" 'org-archive-subtree-default) ; 归档
 (key-seq-define evil-normal-state-map ";x" 'org-toggle-archive-tag) ; 添加归档标签
 (key-seq-define evil-normal-state-map "[[" (kbd "o <escape> P")) ; 在下一行粘贴
