@@ -116,7 +116,6 @@
 (require 'key-chord)
 (setq key-chord-two-keys-delay 0.1)
 (key-chord-mode 1) 
-;; (define-key evil-normal-state-map (kbd "z5") (kbd "C-u C-c #")) ; 全局更新完成度
 (key-seq-define evil-insert-state-map "z;" 'evil-normal-state) ; 退出编辑模式
 (key-seq-define evil-visual-state-map "z;" 'evil-normal-state) ; 退出可视模式
 (key-seq-define evil-normal-state-map "vc" 'evil-visual-block) ; 块可视模式
@@ -174,17 +173,19 @@
 (key-seq-define evil-normal-state-map ";w" 'org-refile) ; 移动树项目
 (key-seq-define evil-motion-state-map ";w" 'org-refile) ; 移动树项目
 (key-seq-define evil-visual-state-map ";w" 'org-refile) ; 移动树项目
-
-(defun zeit/refresh ()
-  "Refresh the percentage of checkbox/TODOs & redisplay inline images."
-  (interactive)
-  (org-update-statistics-cookies "ALL")
-  (org-redisplay-inline-images))
-(key-seq-define evil-normal-state-map ";5" 'zeit/refresh)
-(key-seq-define evil-normal-state-map ";q" (kbd "C-u C-c C-q"))  ; 全局对齐tags
 (key-seq-define evil-normal-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
 (key-seq-define evil-motion-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
 (key-seq-define evil-visual-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
+
+(defun zeit/refresh ()
+  "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
+  (interactive)
+  (org-update-statistics-cookies "ALL")
+  (org-redisplay-inline-images)
+  (fset 'zeit-align-tags (kbd "C-u C-c C-q"))
+  (execute-kbd-macro 'zeit-align-tags)
+  )
+(key-seq-define evil-normal-state-map ";5" 'zeit/refresh)
 
 
 ;;; ----------------------- 系统设置 ----------------------------
