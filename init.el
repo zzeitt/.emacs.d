@@ -97,9 +97,15 @@
 (define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-insert-state-map (kbd "M-u") 'evil-scroll-up)
+(define-key evil-normal-state-map (kbd "M-U") (kbd "C-u 3 C-y")) ;; 向上滚屏
+(define-key evil-normal-state-map (kbd "M-U") (kbd "C-u 3 C-y")) ;; 向上滚屏
+(define-key evil-normal-state-map (kbd "M-U") (kbd "C-u 3 C-y")) ;; 向上滚屏
 (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-visual-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-insert-state-map (kbd "M-d") 'evil-scroll-down)
+(define-key evil-normal-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 大写D其实包含Shift+d
+(define-key evil-visual-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 大写D其实包含Shift+d
+(define-key evil-insert-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 大写D其实包含Shift+d
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
@@ -111,6 +117,7 @@
 (define-key evil-insert-state-map (kbd "<tab>") 'tab-to-tab-stop) ; 插入模式下恢复tab
 (define-key evil-insert-state-map (kbd "C-v") 'org-yank) ; 插入模式下恢复C-v
 (define-key evil-normal-state-map (kbd "M-S-<return>") (kbd "$ a M-S-<return> <escape>")) ; normal模式org-insert-todo-heading
+
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
