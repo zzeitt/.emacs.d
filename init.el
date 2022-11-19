@@ -159,7 +159,7 @@
 (key-seq-define evil-normal-state-map ";b" 'list-buffers) ; 展示buffers
 (key-seq-define evil-motion-state-map ";b" 'list-buffers) ; 展示buffers
 (key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c) ; 替换C-c C-c
-(key-seq-define evil-normal-state-map "zz" 'org-kill-note-or-show-branches) ; note页取消
+(key-seq-define evil-normal-state-map "zz" 'org-kill-note-or-show-branches) ; note页取消，相当于替换C-c C-k
 (key-seq-define evil-normal-state-map ";v" 'org-archive-subtree-default) ; 归档
 (key-seq-define evil-normal-state-map ";x" 'org-toggle-archive-tag) ; 添加归档标签
 (key-seq-define evil-normal-state-map "[[" (kbd "o <escape> P")) ; 在下一行粘贴
@@ -170,8 +170,12 @@
 (key-seq-define evil-motion-state-map ";k" 'org-metaup) ; 将项目上移
 (key-seq-define evil-normal-state-map ";h" 'org-shiftmetaleft) ; 将项目左移
 (key-seq-define evil-motion-state-map ";h" 'org-shiftmetaleft) ; 将项目左移
+(key-seq-define evil-normal-state-map "z," 'org-metaleft) ; 将项目左移
+(key-seq-define evil-motion-state-map "z," 'org-metaleft) ; 将项目左移
 (key-seq-define evil-normal-state-map ";l" 'org-shiftmetaright) ; 将项目右移
 (key-seq-define evil-motion-state-map ";l" 'org-shiftmetaright) ; 将项目右移
+(key-seq-define evil-normal-state-map "z." 'org-metaright) ; 将项目右移
+(key-seq-define evil-motion-state-map "z." 'org-metaright) ; 将项目右移
 (key-seq-define evil-normal-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-motion-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-visual-state-map "z/" 'comment-line) ; 注释
