@@ -303,3 +303,7 @@
       '(("CANCELED" ("ARCHIVE" . t))
 	("FAILED"   ("ARCHIVE" . t)))
       ) ; 自动将CANCELED项目标记为archive
+
+;; Habit
+(require 'org-habit)
+
