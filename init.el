@@ -54,6 +54,12 @@
 (setq org-startup-with-inline-images t)
 (setq org-image-actual-width nil)
 
+;; 显示列号、文件大小、时间
+(setq column-number-mode t)
+(setq size-indication-mode t)
+(display-time-mode 1)
+(setq display-time-24hr-format t)
+
 
 ;;; ------------------------- 个人习惯 ---------------------------
 ;; 开启Evil模式
