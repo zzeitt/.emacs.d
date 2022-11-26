@@ -22,6 +22,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "更纱黑体 Mono SC Nerd" :foundry "outline" :slant normal :weight normal :height 120 :width normal))))
  '(org-agenda-done ((t (:foreground "dark green" :height 1.0))))
+ '(org-habit-alert-face ((t (:background "gold" :foreground "black"))))
+ '(org-habit-alert-future-face ((t (:background "darkgoldenrod" :foreground "black"))))
  '(org-scheduled-previously ((t (:foreground "MediumOrchid4" :slant italic))))
  '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold")))))
 
@@ -291,19 +293,23 @@
         "C:/Users/zeit/forOrgs/work.org"
         "C:/Users/zeit/forOrgs/yakusoku.org")
 	)
-(setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s%b")
-				 (todo   . " %i %-12:c%b")
-				 (tags   . " %i %-12:c")
-				 (search . " %i %-12:c"))
+(setq org-agenda-prefix-format '((agenda . " %i %-21:c%?-12t% s%b")
+				 (todo   . " %i %-21:c%b")
+				 (tags   . " %i %-21:c")
+				 (search . " %i %-21:c"))
       ) ; 显示父级项目
 
 ;; Archive
 (setq org-archive-location "archive.org::* From [[file:%s]]")
 (setq org-todo-state-tags-triggers
       '(("CANCELED" ("ARCHIVE" . t))
-	("FAILED"   ("ARCHIVE" . t)))
+	)
       ) ; 自动将CANCELED项目标记为archive
 
 ;; Habit
 (require 'org-habit)
-
+(setq org-habit-show-habits-only-for-today nil)
+(setq org-habit-show-done-always-green t)
+(setq org-habit-graph-column 1)
+(setq org-habit-preceding-days 14)
+(setq org-habit-following-days 7)
