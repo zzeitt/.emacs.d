@@ -87,8 +87,10 @@
 (global-set-key (kbd "C--") 'text-scale-adjust) ; 调整字体
 (global-set-key (kbd "C-=") 'text-scale-adjust) ; 调整字体
 (define-key evil-normal-state-map (kbd "gx") 'org-open-at-point) ; 链接跳转
+(define-key evil-normal-state-map (kbd "<return>") 'org-open-at-point) ; 链接跳转
 (evil-define-key 'normal org-agenda-mode-map
 	(kbd "gx") 'org-agenda-goto
+	(kbd "<return>") 'org-agenda-goto
 	(kbd "r") 'org-agenda-redo
 	(kbd "d") 'org-agenda-day-view
 	(kbd "w") 'org-agenda-week-view
