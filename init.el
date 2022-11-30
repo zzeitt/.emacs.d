@@ -197,9 +197,9 @@
 (key-seq-define evil-normal-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
 (key-seq-define evil-motion-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
 (key-seq-define evil-visual-state-map ";g" (kbd "A SPC [/] <escape>")) ; 添加进度条
-(key-seq-define evil-normal-state-map "z6" 'org-sort) ; 排序
-(key-seq-define evil-motion-state-map "z6" 'org-sort) ; 排序
-(key-seq-define evil-visual-state-map "z6" 'org-sort) ; 排序
+(key-seq-define evil-normal-state-map "zs" 'org-sort) ; 排序
+(key-seq-define evil-motion-state-map "zs" 'org-sort) ; 排序
+(key-seq-define evil-visual-state-map "zs" 'org-sort) ; 排序
 
 (defun zeit/refresh ()
   "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
