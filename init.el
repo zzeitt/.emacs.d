@@ -189,8 +189,6 @@
 (key-seq-define evil-normal-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-motion-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-visual-state-map "z/" 'comment-line) ; 注释
-(key-seq-define evil-normal-state-map ";;" 'org-toggle-link-display) ; 切换链接显示
-(key-seq-define evil-motion-state-map ";;" 'org-toggle-link-display) ; 切换链接显示
 (key-seq-define evil-normal-state-map ";w" 'org-refile) ; 移动树项目
 (key-seq-define evil-motion-state-map ";w" 'org-refile) ; 移动树项目
 (key-seq-define evil-visual-state-map ";w" 'org-refile) ; 移动树项目
@@ -210,6 +208,15 @@
   (execute-kbd-macro 'zeit-align-tags)
   )
 (key-seq-define evil-normal-state-map ";5" 'zeit/refresh)
+
+(defun zeit/toggle ()
+  "Toggle link and inline image."
+  (interactive)
+  (org-toggle-link-display)
+  (org-toggle-inline-images)
+  )
+(key-seq-define evil-normal-state-map ";;" 'zeit/toggle) ; 切换显示
+(key-seq-define evil-motion-state-map ";;" 'zeit/toggle) ; 切换显示
 
 
 ;;; ----------------------- 系统设置 ----------------------------
