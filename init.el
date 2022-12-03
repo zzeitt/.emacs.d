@@ -71,6 +71,9 @@
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
 
+;; 开启shift-selection
+(setq org-support-shift-select t)
+
 ;; 开启agenda
 (require 'org-agenda) ; 否则无法重映射agenda下的快捷键
 (evil-set-initial-state 'org-agenda-mode 'normal)
@@ -127,7 +130,6 @@
 (define-key evil-insert-state-map (kbd "<tab>") 'tab-to-tab-stop) ; 插入模式下恢复tab
 (define-key evil-insert-state-map (kbd "C-v") 'org-yank) ; 插入模式下恢复C-v
 (define-key evil-normal-state-map (kbd "M-S-<return>") (kbd "$ a M-S-<return> <escape>")) ; normal模式org-insert-todo-heading
-
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
