@@ -89,6 +89,7 @@
 (global-set-key (kbd "C-c 5") (kbd "C-u C-c #")) ; 全局更新完成度
 (global-set-key (kbd "C--") 'text-scale-adjust) ; 调整字体
 (global-set-key (kbd "C-=") 'text-scale-adjust) ; 调整字体
+(global-set-key (kbd "M-\\") 'indent-region) ; 自动缩进
 (define-key evil-normal-state-map (kbd "gx") 'org-open-at-point) ; 链接跳转
 (define-key evil-normal-state-map (kbd "<return>") 'org-open-at-point) ; 链接跳转
 (evil-define-key 'normal org-agenda-mode-map
