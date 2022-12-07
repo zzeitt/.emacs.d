@@ -209,8 +209,9 @@
   (org-redisplay-inline-images)
   (fset 'zeit-align-tags (kbd "C-u C-c C-q"))
   (execute-kbd-macro 'zeit-align-tags)
+  (message "Refresh done!")
   )
-(key-seq-define evil-normal-state-map ";5" 'zeit/refresh)
+(key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
 
 (defun zeit/toggle ()
   "Toggle link and inline image."
