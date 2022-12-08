@@ -67,6 +67,7 @@
 (require 'evil)
 (evil-mode 1)
 (evil-set-undo-system 'undo-redo) ; 启用redo
+(setq evil-want-fine-undo t) ; 启发式undo，避免一下全部撤销
 
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
