@@ -147,10 +147,15 @@
 (key-seq-define evil-normal-state-map "zo" 'other-window) ; 切换其他窗口
 (key-seq-define evil-motion-state-map "zo" 'other-window) ; 切换其他窗口
 (key-seq-define evil-normal-state-map ";2" 'split-window-below) ; 竖向分割
+(key-seq-define evil-motion-state-map ";2" 'split-window-below) ; 竖向分割
 (key-seq-define evil-normal-state-map ";3" 'split-window-right) ; 横向分割
+(key-seq-define evil-motion-state-map ";3" 'split-window-right) ; 横向分割
 (key-seq-define evil-normal-state-map ";4" 'switch-to-buffer-other-window) ; 在当前窗口打开buffer
 (key-seq-define evil-motion-state-map ";4" 'switch-to-buffer-other-window) ; 在当前窗口打开buffer
 (key-seq-define evil-normal-state-map ";1" 'delete-other-windows) ; 关闭其他窗口
+(key-seq-define evil-motion-state-map ";1" 'delete-other-windows) ; 关闭其他窗口
+(key-seq-define evil-normal-state-map "zi" 'delete-window) ; 关闭当前窗口
+(key-seq-define evil-motion-state-map "zi" 'delete-window) ; 关闭当前窗口
 (key-seq-define evil-normal-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 (key-seq-define evil-motion-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 (key-seq-define evil-normal-state-map "zk" 'enlarge-window) ; 升高窗口
