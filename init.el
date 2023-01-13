@@ -201,6 +201,8 @@
 (key-seq-define evil-normal-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-motion-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-visual-state-map "z/" 'comment-line) ; 注释
+(key-seq-define evil-normal-state-map ";q" 'dabbrev-expand) ; 自动扩展词
+(key-seq-define evil-motion-state-map ";q" 'dabbrev-expand) ; 自动扩展词
 (key-seq-define evil-normal-state-map ";w" 'org-refile) ; 移动树项目
 (key-seq-define evil-motion-state-map ";w" 'org-refile) ; 移动树项目
 (key-seq-define evil-visual-state-map ";w" 'org-refile) ; 移动树项目
