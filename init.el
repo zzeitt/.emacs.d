@@ -118,9 +118,9 @@
 (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-visual-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-insert-state-map (kbd "M-d") 'evil-scroll-down)
-(define-key evil-normal-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 大写D其实包含Shift+d
-(define-key evil-visual-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 大写D其实包含Shift+d
-(define-key evil-insert-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 大写D其实包含Shift+d
+(define-key evil-normal-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 向下滚屏，大写D其实包含Shift+d
+(define-key evil-visual-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 向下滚屏，大写D其实包含Shift+d
+(define-key evil-insert-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
@@ -134,6 +134,14 @@
 (define-key evil-insert-state-map (kbd "C-c") 'evil-yank) ; 插入模式下恢复C-c
 (define-key evil-insert-state-map (kbd "C-z") 'evil-undo) ; 插入模式下恢复C-z
 (define-key evil-normal-state-map (kbd "M-S-<return>") (kbd "$ a M-S-<return> <escape>")) ; normal模式org-insert-todo-heading
+(define-key evil-normal-state-map (kbd "M-[") 'enlarge-window) ; 竖向增大窗口
+(define-key evil-motion-state-map (kbd "M-[") 'enlarge-window) ; 竖向增大窗口
+(define-key evil-normal-state-map (kbd "M-]") 'shrink-window) ; 竖向压缩窗口
+(define-key evil-motion-state-map (kbd "M-]") 'shrink-window) ; 竖向压缩窗口
+(define-key evil-normal-state-map (kbd "M-{") 'enlarge-window-horizontally) ; 横向扩大窗口
+(define-key evil-motion-state-map (kbd "M-{") 'enlarge-window-horizontally) ; 横向扩大窗口
+(define-key evil-normal-state-map (kbd "M-}") 'shrink-window-horizontally) ; 横向压缩窗口
+(define-key evil-motion-state-map (kbd "M-}") 'shrink-window-horizontally) ; 横向压缩窗口
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
@@ -158,14 +166,6 @@
 (key-seq-define evil-motion-state-map "zi" 'delete-window) ; 关闭当前窗口
 (key-seq-define evil-normal-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 (key-seq-define evil-motion-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
-(key-seq-define evil-normal-state-map "zk" 'enlarge-window) ; 升高窗口
-(key-seq-define evil-motion-state-map "zk" 'enlarge-window) ; 升高窗口
-(key-seq-define evil-normal-state-map "zj" 'shrink-window-if-larger-than-buffer) ; 竖向压缩窗口
-(key-seq-define evil-motion-state-map "zj" 'shrink-window-if-larger-than-buffer) ; 竖向压缩窗口
-(key-seq-define evil-normal-state-map "zh" 'shrink-window-horizontally) ; 横向压缩窗口
-(key-seq-define evil-motion-state-map "zh" 'shrink-window-horizontally) ; 横向压缩窗口
-(key-seq-define evil-normal-state-map "zl" 'enlarge-window-horizontally) ; 横向扩大窗口
-(key-seq-define evil-motion-state-map "zl" 'enlarge-window-horizontally) ; 横向扩大窗口
 (key-seq-define evil-normal-state-map ";a" 'org-agenda) ; 打开Agenda
 (key-seq-define evil-normal-state-map ";r" 'counsel-recentf) ; 打开最近文件
 (key-seq-define evil-motion-state-map ";r" 'counsel-recentf) ; 打开最近文件
