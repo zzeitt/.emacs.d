@@ -147,6 +147,10 @@
 (define-key evil-motion-state-map (kbd "M-\\") 'split-window-right) ; 竖向分割
 (define-key evil-normal-state-map (kbd "M-F") 'indent-region) ; 自动缩进
 (define-key evil-motion-state-map (kbd "M-F") 'indent-region) ; 自动缩进
+(define-key evil-normal-state-map (kbd "M-/") 'comment-line) ; 注释
+(define-key evil-motion-state-map (kbd "M-/") 'comment-line) ; 注释
+(define-key evil-visual-state-map (kbd "M-/") 'comment-line) ; 注释
+(define-key evil-insert-state-map (kbd "M-/") 'comment-line) ; 注释
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
@@ -198,9 +202,6 @@
 (key-seq-define evil-motion-state-map ";l" 'org-shiftmetaright) ; 将项目右移
 (key-seq-define evil-normal-state-map "z." 'org-metaright) ; 将项目右移
 (key-seq-define evil-motion-state-map "z." 'org-metaright) ; 将项目右移
-(key-seq-define evil-normal-state-map "z/" 'comment-line) ; 注释
-(key-seq-define evil-motion-state-map "z/" 'comment-line) ; 注释
-(key-seq-define evil-visual-state-map "z/" 'comment-line) ; 注释
 (key-seq-define evil-normal-state-map ";q" 'dabbrev-expand) ; 自动扩展词
 (key-seq-define evil-motion-state-map ";q" 'dabbrev-expand) ; 自动扩展词
 (key-seq-define evil-normal-state-map ";w" 'org-refile) ; 移动树项目
