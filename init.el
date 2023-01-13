@@ -142,6 +142,10 @@
 (define-key evil-motion-state-map (kbd "M-{") 'enlarge-window-horizontally) ; 横向扩大窗口
 (define-key evil-normal-state-map (kbd "M-}") 'shrink-window-horizontally) ; 横向压缩窗口
 (define-key evil-motion-state-map (kbd "M-}") 'shrink-window-horizontally) ; 横向压缩窗口
+(define-key evil-normal-state-map (kbd "M-|") 'split-window-below) ; 横向分割
+(define-key evil-motion-state-map (kbd "M-|") 'split-window-below) ; 横向分割
+(define-key evil-normal-state-map (kbd "M-\\") 'split-window-right) ; 竖向分割
+(define-key evil-motion-state-map (kbd "M-\\") 'split-window-right) ; 竖向分割
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
@@ -154,10 +158,6 @@
 (key-seq-define evil-motion-state-map "vc" 'evil-visual-block) ; 块可视模式
 (key-seq-define evil-normal-state-map "zo" 'other-window) ; 切换其他窗口
 (key-seq-define evil-motion-state-map "zo" 'other-window) ; 切换其他窗口
-(key-seq-define evil-normal-state-map ";2" 'split-window-below) ; 竖向分割
-(key-seq-define evil-motion-state-map ";2" 'split-window-below) ; 竖向分割
-(key-seq-define evil-normal-state-map ";3" 'split-window-right) ; 横向分割
-(key-seq-define evil-motion-state-map ";3" 'split-window-right) ; 横向分割
 (key-seq-define evil-normal-state-map ";4" 'switch-to-buffer-other-window) ; 在当前窗口打开buffer
 (key-seq-define evil-motion-state-map ";4" 'switch-to-buffer-other-window) ; 在当前窗口打开buffer
 (key-seq-define evil-normal-state-map ";1" 'delete-other-windows) ; 关闭其他窗口
