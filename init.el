@@ -92,9 +92,16 @@
 (global-set-key (kbd "C-=") 'text-scale-adjust) ; 调整字体
 (global-set-key (kbd "M-:") 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 
+;; Vim的一些微调
+(define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
+(define-key evil-visual-state-map (kbd "M-u") 'evil-scroll-up)
+(define-key evil-insert-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-normal-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-visual-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-insert-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
+(define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-down)
+(define-key evil-visual-state-map (kbd "M-d") 'evil-scroll-down)
+(define-key evil-insert-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-normal-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-visual-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-insert-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
@@ -114,20 +121,6 @@
 	(kbd "v") 'org-agenda-view-mode-dispatch
 	(kbd "q") 'org-agenda-quit
 	) ; agenda模式下的跳转
-
-;; Vim的一些微调
-(define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
-(define-key evil-visual-state-map (kbd "M-u") 'evil-scroll-up)
-(define-key evil-insert-state-map (kbd "M-u") 'evil-scroll-up)
-(define-key evil-normal-state-map (kbd "M-U") (kbd "C-u 3 C-y")) ;; 向上滚屏
-(define-key evil-normal-state-map (kbd "M-U") (kbd "C-u 3 C-y")) ;; 向上滚屏
-(define-key evil-normal-state-map (kbd "M-U") (kbd "C-u 3 C-y")) ;; 向上滚屏
-(define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-down)
-(define-key evil-visual-state-map (kbd "M-d") 'evil-scroll-down)
-(define-key evil-insert-state-map (kbd "M-d") 'evil-scroll-down)
-(define-key evil-normal-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 向下滚屏，大写D其实包含Shift+d
-(define-key evil-visual-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 向下滚屏，大写D其实包含Shift+d
-(define-key evil-insert-state-map (kbd "M-D") (kbd "C-u 3 C-e")) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
