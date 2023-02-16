@@ -92,6 +92,12 @@
 (global-set-key (kbd "C-=") 'text-scale-adjust) ; 调整字体
 (global-set-key (kbd "M-:") 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 
+(define-key evil-normal-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
+(define-key evil-visual-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
+(define-key evil-insert-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
+(define-key evil-normal-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
+(define-key evil-visual-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
+(define-key evil-insert-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-normal-state-map (kbd "gx") 'org-open-at-point) ; 链接跳转
 (define-key evil-normal-state-map (kbd "<return>") 'org-open-at-point) ; 链接跳转
 (evil-define-key 'normal org-agenda-mode-map
