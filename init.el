@@ -278,22 +278,22 @@
 ;; 关键字（配置完计得输入`M-x org-mode-restart`）
 (setq org-todo-keywords
       '((sequence
-	 "TODO(t)"
+	 "TODO (t)"
 	 "DOING(i)"
 	 "STUCK(s)"
-	 "CANCELED(c@/!)"
-	 "FAILED(f@/!)"
+	 "CANC.(c@/!)"
+	 "FAIL.(f@/!)"
 	 "|"
-	 "DONE(d@/!)"
+	 "DONE (d@/!)"
 	 ))
       )
 (setq org-todo-keyword-faces
-      '(("TODO"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
+      '(("TODO "     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
 	("DOING"    . (:background "#4c4c4c" :foreground "#d5cb6d" :weight bold))
 	("STUCK"    . (:background "#4c4c4c" :foreground "#800000" :weight bold))
-	("DONE"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))
-	("CANCELED" . (:background "gray" :foreground "black" :weight bold))
-	("FAILED"   . (:background "gray" :foreground "#793e12" :weight bold))
+	("CANC." . (:background "gray" :foreground "black" :weight bold))
+	("FAIL."   . (:background "gray" :foreground "#793e12" :weight bold))
+	("DONE "     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))
 	)
       )
 
