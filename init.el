@@ -174,8 +174,8 @@
 (key-seq-define evil-motion-state-map ";1" 'delete-other-windows) ; 关闭其他窗口
 (key-seq-define evil-normal-state-map "zi" 'delete-window) ; 关闭当前窗口
 (key-seq-define evil-motion-state-map "zi" 'delete-window) ; 关闭当前窗口
-(key-seq-define evil-normal-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
-(key-seq-define evil-motion-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
+; (key-seq-define evil-normal-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
+; (key-seq-define evil-motion-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 (key-seq-define evil-normal-state-map ";a" 'org-agenda) ; 打开Agenda
 (key-seq-define evil-normal-state-map ";r" 'counsel-recentf) ; 打开最近文件
 (key-seq-define evil-motion-state-map ";r" 'counsel-recentf) ; 打开最近文件
