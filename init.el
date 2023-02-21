@@ -227,7 +227,7 @@
 (key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
 
 (defun zeit/toggle ()
-  "Toggle link and inline image."
+  "Toggle link/inline-image/force-cycle."
   (interactive)
   (org-toggle-link-display)
   (org-toggle-inline-images)
@@ -305,7 +305,7 @@
       '((daily today require-timed)
         (300 600 900 1200 1500 1800 2100 2400)
         "-....." "---------------------------------------"
-	)
+	      )
       )
 (setq org-agenda-current-time-string
       "--------------¯\\_(ツ)_/¯---------------"
