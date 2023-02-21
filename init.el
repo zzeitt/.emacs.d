@@ -152,6 +152,10 @@
 (define-key evil-motion-state-map (kbd "M-/") 'comment-line) ; 注释
 (define-key evil-visual-state-map (kbd "M-/") 'comment-line) ; 注释
 (define-key evil-insert-state-map (kbd "M-/") 'comment-line) ; 注释
+(define-key evil-normal-state-map (kbd "M-?") 'evil-toggle-fold) ; 折叠
+(define-key evil-motion-state-map (kbd "M-?") 'evil-toggle-fold) ; 折叠
+(define-key evil-visual-state-map (kbd "M-?") 'evil-toggle-fold) ; 折叠
+(define-key evil-insert-state-map (kbd "M-?") 'evil-toggle-fold) ; 折叠
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
