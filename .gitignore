@@ -1,7 +1,12 @@
+# Folders
 auto-save-list/
 tutorial/
-ido.last
-recentf
-timelog
 assets/
+server/
+
+# Files
 *~
+bookmarks
+recentf
+ido.last
+timelog
