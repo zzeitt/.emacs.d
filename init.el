@@ -107,7 +107,9 @@
 (define-key evil-insert-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-normal-state-map (kbd "gx") 'org-open-at-point) ; 链接跳转
 (define-key evil-normal-state-map (kbd "<return>") 'org-open-at-point) ; 链接跳转
-(define-key dired-mode-map (kbd "<return>") 'dired-find-file) ; 链接跳转
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "<return>") 'dired-find-file)
+  ) ; 链接跳转
 (evil-define-key 'normal org-agenda-mode-map
 	(kbd "gx") 'org-agenda-goto
 	(kbd "<return>") 'org-agenda-goto
