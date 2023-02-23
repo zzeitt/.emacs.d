@@ -14,7 +14,7 @@
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
+   '(magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -364,3 +364,9 @@
 (setq org-habit-graph-column 0)
 (setq org-habit-preceding-days 18)
 (setq org-habit-following-days 3)
+
+
+;;; ----------------------- git设置 ------------------------------
+;; 自动刷新
+(with-eval-after-load 'magit-mode
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
