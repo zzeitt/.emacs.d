@@ -194,7 +194,7 @@
 (key-seq-define evil-normal-state-map ";t" 'org-todo) ; 切换TODO
 (key-seq-define evil-normal-state-map ";s" 'org-schedule) ; 设定Schedule
 (key-seq-define evil-normal-state-map ";z" 'org-deadline) ; 设定Deadline
-(key-seq-define evil-normal-state-map "zp" 'org-priority) ; 设定Priority
+(key-seq-define evil-normal-state-map "zp" 'org-set-property) ; 设定Property
 (key-seq-define evil-normal-state-map ";b" 'list-buffers) ; 展示buffers
 (key-seq-define evil-motion-state-map ";b" 'list-buffers) ; 展示buffers
 (key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c) ; 替换C-c C-c
