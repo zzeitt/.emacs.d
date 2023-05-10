@@ -151,6 +151,7 @@
 (define-key evil-motion-state-map (kbd "M-\\") 'split-window-right) ; 竖向分割
 (define-key evil-normal-state-map (kbd "M-F") 'indent-region) ; 自动缩进
 (define-key evil-motion-state-map (kbd "M-F") 'indent-region) ; 自动缩进
+(define-key evil-visual-state-map (kbd "M-F") 'indent-region) ; 自动缩进
 (define-key evil-normal-state-map (kbd "M-/") 'comment-line) ; 注释
 (define-key evil-motion-state-map (kbd "M-/") 'comment-line) ; 注释
 (define-key evil-visual-state-map (kbd "M-/") 'comment-line) ; 注释
