@@ -159,6 +159,10 @@
 (define-key evil-motion-state-map (kbd "M-?") 'evil-toggle-fold) ; 折叠
 (define-key evil-visual-state-map (kbd "M-?") 'evil-toggle-fold) ; 折叠
 (define-key evil-insert-state-map (kbd "M-?") 'evil-toggle-fold) ; 折叠
+(define-key evil-insert-state-map (kbd "M-n") 'org-metadown) ; 将项目下移
+(define-key evil-insert-state-map (kbd "M-N") 'org-metaup) ; 将项目上移
+(define-key evil-insert-state-map (kbd "M-i") 'org-shiftmetaright) ; 将项目右移
+(define-key evil-insert-state-map (kbd "M-I") 'org-shiftmetaleft) ; 将项目左移
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
