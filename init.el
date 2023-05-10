@@ -254,9 +254,9 @@
 (require 'package)
 (setq package-archives
       '(
-            ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-            ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	      )
+        ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+        ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+	)
       )
 (package-initialize)
 
@@ -282,9 +282,9 @@
 ;; 移动项目树
 (setq org-refile-targets
       '(
-            (nil :maxlevel . 4)
-	      (org-agenda-files :maxlevel . 4)
-            )
+        (nil :maxlevel . 4)
+	(org-agenda-files :maxlevel . 4)
+        )
       ) ; 设置可以移动到其它文件 
 (setq org-outline-path-complete-in-steps nil) ; Refile in a single go
 (setq org-refile-use-outline-path 'file) ; 显示完整路径
@@ -305,23 +305,23 @@
       )
 (setq org-todo-keyword-faces
       '(
-            ("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
-            ("DOING"    . (:background "#4c4c4c" :foreground "#d5cb6d" :weight bold))
-            ("STUCK"    . (:background "#4c4c4c" :foreground "#800000" :weight bold))
-            ("CANC." . (:background "gray" :foreground "black" :weight bold))
-            ("FAIL."   . (:background "gray" :foreground "#793e12" :weight bold))
-            ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))
-	      )
+        ("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
+        ("DOING"    . (:background "#4c4c4c" :foreground "#d5cb6d" :weight bold))
+        ("STUCK"    . (:background "#4c4c4c" :foreground "#800000" :weight bold))
+        ("CANC." . (:background "gray" :foreground "black" :weight bold))
+        ("FAIL."   . (:background "gray" :foreground "#793e12" :weight bold))
+        ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))
+	)
       )
 
 ;; 时间线
 (setq org-agenda-use-time-grid t)
 (setq org-agenda-time-grid
       '(
-            (daily today require-timed)
-            (300 600 900 1200 1500 1800 2100 2400)
-            "-....." "---------------------------------------"
-	      )
+        (daily today require-timed)
+        (300 600 900 1200 1500 1800 2100 2400)
+        "-....." "---------------------------------------"
+	)
       )
 (setq org-agenda-current-time-string
       "--------------¯\\_(ツ)_/¯---------------"
@@ -330,39 +330,39 @@
 ;; Agenda
 (setq org-agenda-files 
       '(
-            "C:/Users/zeit/forOrgs/book.org"
-	      "C:/Users/zeit/forOrgs/cheatsheet.org"
-            "C:/Users/zeit/forOrgs/diary.org"
-            "C:/Users/zeit/forOrgs/film.org"
-            "C:/Users/zeit/forOrgs/game.org"
-            "C:/Users/zeit/forOrgs/geek.org"
-            "C:/Users/zeit/forOrgs/habbit.org"
-            "C:/Users/zeit/forOrgs/hello.org"
-            "C:/Users/zeit/forOrgs/init.org"
-            "C:/Users/zeit/forOrgs/learn.org"
-            "C:/Users/zeit/forOrgs/life.org"
-            "C:/Users/zeit/forOrgs/research.org"
-            "C:/Users/zeit/forOrgs/stuff.org"
-            "C:/Users/zeit/forOrgs/wish.org"
-            "C:/Users/zeit/forOrgs/work.org"
-            "C:/Users/zeit/forOrgs/yakusoku.org"
-            )
-	)
+        "C:/Users/zeit/forOrgs/book.org"
+	"C:/Users/zeit/forOrgs/cheatsheet.org"
+        "C:/Users/zeit/forOrgs/diary.org"
+        "C:/Users/zeit/forOrgs/film.org"
+        "C:/Users/zeit/forOrgs/game.org"
+        "C:/Users/zeit/forOrgs/geek.org"
+        "C:/Users/zeit/forOrgs/habbit.org"
+        "C:/Users/zeit/forOrgs/hello.org"
+        "C:/Users/zeit/forOrgs/init.org"
+        "C:/Users/zeit/forOrgs/learn.org"
+        "C:/Users/zeit/forOrgs/life.org"
+        "C:/Users/zeit/forOrgs/research.org"
+        "C:/Users/zeit/forOrgs/stuff.org"
+        "C:/Users/zeit/forOrgs/wish.org"
+        "C:/Users/zeit/forOrgs/work.org"
+        "C:/Users/zeit/forOrgs/yakusoku.org"
+        )
+      )
 (setq org-agenda-prefix-format
       '(
-            (agenda . " %i %-21:c%?-12t% s%b")
-		(todo   . " %i %-21:c%b")
-		(tags   . " %i %-21:c")
-	      (search . " %i %-21:c")
-            )
+        (agenda . " %i %-21:c%?-12t% s%b")
+	(todo   . " %i %-21:c%b")
+	(tags   . " %i %-21:c")
+	(search . " %i %-21:c")
+        )
       ) ; 显示父级项目
 
 ;; Archive
 (setq org-archive-location "archive.org::* From [[file:%s]]")
 (setq org-todo-state-tags-triggers
       '(
-            ("CANCELED" ("ARCHIVE" . t))
-	      )
+        ("CANCELED" ("ARCHIVE" . t))
+	)
       ) ; 自动将CANCELED项目标记为archive
 
 ;; Habit
