@@ -314,6 +314,22 @@
 	)
       )
 
+;; 自动DONE
+(defun org-summary-todo (n-done n-not-done)
+  "Switch entry to DONE when all subentries are done, to TODO otherwise."
+  (let (org-log-done org-log-states)	; turn off logging
+    (org-todo
+     (if (= n-not-done 0) "DONE√"	; all done
+       (if (= n-done 0) "TODO°"		; all not done
+	 "DOING"			; some done
+	 )
+       )
+     )
+    )
+  )
+
+(add-hook 'org-after-todo-statistics-hook #'org-summary-todo)
+
 ;; 时间线
 (setq org-agenda-use-time-grid t)
 (setq org-agenda-time-grid
