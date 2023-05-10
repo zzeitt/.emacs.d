@@ -294,14 +294,14 @@
 ;; 关键字（配置完计得输入`M-x org-mode-restart`）
 (setq org-todo-keywords
       '((sequence
-            "TODO°(t)"
-            "DOING(i)"
-            "STUCK(s)"
-            "CANC.(c@/!)"
-            "FAIL.(f@/!)"
-            "|"
-            "DONE√(d@/!)"
-            ))
+         "TODO°(t)"
+         "DOING(i)"
+         "STUCK(s)"
+         "|"
+         "DONE√(d@/!)"
+         "CANC.(c@/!)"
+         "FAIL.(f@/!)"
+         ))
       )
 (setq org-todo-keyword-faces
       '(
