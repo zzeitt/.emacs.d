@@ -136,6 +136,9 @@
 (define-key evil-insert-state-map (kbd "C-v") 'org-yank) ; 插入模式下恢复C-v
 (define-key evil-insert-state-map (kbd "C-c") 'evil-yank) ; 插入模式下恢复C-c
 (define-key evil-insert-state-map (kbd "C-z") 'evil-undo) ; 插入模式下恢复C-z
+(define-key minibuffer-local-map (kbd "C-v") 'org-yank) ; minibuffer中恢复C-v
+(define-key minibuffer-local-map (kbd "C-c") 'evil-yank) ; minibuffer中恢复C-c
+(define-key minibuffer-local-map (kbd "C-z") 'evil-undo) ; minibuffer中恢复C-z
 (define-key evil-normal-state-map (kbd "M-S-<return>") (kbd "$ a M-S-<return> <escape>")) ; normal模式org-insert-todo-heading
 (define-key evil-normal-state-map (kbd "M-[") 'enlarge-window) ; 竖向增大窗口
 (define-key evil-motion-state-map (kbd "M-[") 'enlarge-window) ; 竖向增大窗口
@@ -250,6 +253,19 @@
   )
 (key-seq-define evil-normal-state-map ";;" 'zeit/toggle) ; 切换显示
 (key-seq-define evil-motion-state-map ";;" 'zeit/toggle) ; 切换显示
+
+(defun zeit/addlink (link)
+  "Add link (mostly URL) to selected text."
+  (interactive "sEnter link:")
+  (setq st (region-beginning))
+  (setq ed (region-end))
+  (goto-char ed)
+  (insert "]]")
+  (goto-char st)
+  (insert (format "[[%s][" link))
+  (message "Added link: %s" link)
+  )
+(key-seq-define evil-visual-state-map "[i" 'zeit/addlink) ; 添加链接
 
 
 ;;; ----------------------- 系统设置 ----------------------------
