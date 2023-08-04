@@ -28,6 +28,9 @@
  '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold")))))
 
 
+;;; ------------------------ 必要配置 ---------------------------
+(set-language-environment "UTF-8")
+
 
 ;;; ------------------------ 美化相关 ---------------------------
 ;; 字体配置
