@@ -41,7 +41,7 @@
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; 显示行号
-(global-linum-mode 1)
+(display-line-numbers-mode 1)
 (setq linum-format 'dynamic)
 
 ;; 开启文本缩进
