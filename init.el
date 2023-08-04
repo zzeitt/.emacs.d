@@ -365,22 +365,22 @@
 ;; Agenda
 (setq org-agenda-files 
       '(
-        "C:/Users/zeit/forOrgs/book.org"
-	"C:/Users/zeit/forOrgs/cheatsheet.org"
-        "C:/Users/zeit/forOrgs/diary.org"
-        "C:/Users/zeit/forOrgs/film.org"
-        "C:/Users/zeit/forOrgs/game.org"
-        "C:/Users/zeit/forOrgs/geek.org"
-        "C:/Users/zeit/forOrgs/habbit.org"
-        "C:/Users/zeit/forOrgs/hello.org"
-        "C:/Users/zeit/forOrgs/init.org"
-        "C:/Users/zeit/forOrgs/learn.org"
-        "C:/Users/zeit/forOrgs/life.org"
-        "C:/Users/zeit/forOrgs/research.org"
-        "C:/Users/zeit/forOrgs/stuff.org"
-        "C:/Users/zeit/forOrgs/wish.org"
-        "C:/Users/zeit/forOrgs/work.org"
-        "C:/Users/zeit/forOrgs/yakusoku.org"
+        "~/.emacs.d/forOrgs/book.org"
+	      "~/.emacs.d/forOrgs/cheatsheet.org"
+        "~/.emacs.d/forOrgs/diary.org"
+        "~/.emacs.d/forOrgs/film.org"
+        "~/.emacs.d/forOrgs/game.org"
+        "~/.emacs.d/forOrgs/geek.org"
+        "~/.emacs.d/forOrgs/habbit.org"
+        "~/.emacs.d/forOrgs/hello.org"
+        "~/.emacs.d/forOrgs/init.org"
+        "~/.emacs.d/forOrgs/learn.org"
+        "~/.emacs.d/forOrgs/life.org"
+        "~/.emacs.d/forOrgs/research.org"
+        "~/.emacs.d/forOrgs/stuff.org"
+        "~/.emacs.d/forOrgs/wish.org"
+        "~/.emacs.d/forOrgs/work.org"
+        "~/.emacs.d/forOrgs/yakusoku.org"
         )
       )
 (setq org-agenda-prefix-format
