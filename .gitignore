@@ -4,6 +4,8 @@ tutorial/
 assets/
 server/
 transient/
+forOrgs/
+org-persist/
 
 # Files
 *~
