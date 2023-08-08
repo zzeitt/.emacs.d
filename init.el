@@ -49,6 +49,9 @@
 ;; 开启文本缩进
 (setq org-startup-indented t)
 
+;; Prevent Extraneous Tabs
+(setq-default indent-tabs-mode nil)
+
 ;; 开启自动换行
 (global-visual-line-mode 1)
 
@@ -122,19 +125,19 @@
   (define-key dired-mode-map (kbd "<return>") 'dired-find-file)
   ) ; 链接跳转
 (evil-define-key 'normal org-agenda-mode-map
-	(kbd "gx") 'org-agenda-goto
-	(kbd "<return>") 'org-agenda-goto
-	(kbd "r") 'org-agenda-redo
-	(kbd "d") 'org-agenda-day-view
-	(kbd "w") 'org-agenda-week-view
-	(kbd "m") 'org-agenda-month-view
-	(kbd "y") 'org-agenda-year-view
-	(kbd "H") 'org-agenda-earlier
-	(kbd "L") 'org-agenda-later
-	(kbd ".") 'org-agenda-goto-today
-	(kbd "v") 'org-agenda-view-mode-dispatch
-	(kbd "q") 'org-agenda-quit
-	) ; agenda模式下的跳转
+  (kbd "gx") 'org-agenda-goto
+  (kbd "<return>") 'org-agenda-goto
+  (kbd "r") 'org-agenda-redo
+  (kbd "d") 'org-agenda-day-view
+  (kbd "w") 'org-agenda-week-view
+  (kbd "m") 'org-agenda-month-view
+  (kbd "y") 'org-agenda-year-view
+  (kbd "H") 'org-agenda-earlier
+  (kbd "L") 'org-agenda-later
+  (kbd ".") 'org-agenda-goto-today
+  (kbd "v") 'org-agenda-view-mode-dispatch
+  (kbd "q") 'org-agenda-quit
+  ) ; agenda模式下的跳转
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
@@ -196,8 +199,6 @@
 (key-seq-define evil-motion-state-map ";1" 'delete-other-windows) ; 关闭其他窗口
 (key-seq-define evil-normal-state-map "zi" 'delete-window) ; 关闭当前窗口
 (key-seq-define evil-motion-state-map "zi" 'delete-window) ; 关闭当前窗口
-; (key-seq-define evil-normal-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
-; (key-seq-define evil-motion-state-map "z0" 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 (key-seq-define evil-normal-state-map ";a" 'org-agenda) ; 打开Agenda
 (key-seq-define evil-normal-state-map ";r" 'counsel-recentf) ; 打开最近文件
 (key-seq-define evil-motion-state-map ";r" 'counsel-recentf) ; 打开最近文件
@@ -286,7 +287,7 @@
       '(
         ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	)
+        )
       )
 (package-initialize)
 
@@ -313,7 +314,7 @@
 (setq org-refile-targets
       '(
         (nil :maxlevel . 4)
-	(org-agenda-files :maxlevel . 4)
+        (org-agenda-files :maxlevel . 4)
         )
       ) ; 设置可以移动到其它文件 
 (setq org-outline-path-complete-in-steps nil) ; Refile in a single go
@@ -341,18 +342,18 @@
         ("CANC." . (:background "gray" :foreground "black" :weight bold))
         ("FAIL."   . (:background "gray" :foreground "#793e12" :weight bold))
         ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))
-	)
+        )
       )
 
 ;; 自动DONE
 (defun org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
-  (let (org-log-done org-log-states)	; turn off logging
+  (let (org-log-done org-log-states)    ; turn off logging
     (org-todo
-     (if (= n-not-done 0) "DONE√"	; all done
-       (if (= n-done 0) "TODO°"		; all not done
-	 "DOING"			; some done
-	 )
+     (if (= n-not-done 0) "DONE√"       ; all done
+       (if (= n-done 0) "TODO°"         ; all not done
+         "DOING"                        ; some done
+         )
        )
      )
     )
@@ -367,7 +368,7 @@
         (daily today require-timed)
         (300 600 900 1200 1500 1800 2100 2400)
         "-....." "---------------------------------------"
-	)
+        )
       )
 (setq org-agenda-current-time-string
       "--------------¯\\_(ツ)_/¯---------------"
@@ -377,7 +378,7 @@
 (setq org-agenda-files 
       '(
         "~/.emacs.d/forOrgs/book.org"
-	      "~/.emacs.d/forOrgs/cheatsheet.org"
+        "~/.emacs.d/forOrgs/cheatsheet.org"
         "~/.emacs.d/forOrgs/diary.org"
         "~/.emacs.d/forOrgs/film.org"
         "~/.emacs.d/forOrgs/game.org"
@@ -397,9 +398,9 @@
 (setq org-agenda-prefix-format
       '(
         (agenda . " %i %-21:c%?-12t% s%b")
-	(todo   . " %i %-21:c%b")
-	(tags   . " %i %-21:c")
-	(search . " %i %-21:c")
+        (todo   . " %i %-21:c%b")
+        (tags   . " %i %-21:c")
+        (search . " %i %-21:c")
         )
       ) ; 显示父级项目
 
@@ -408,7 +409,7 @@
 (setq org-todo-state-tags-triggers
       '(
         ("CANCELED" ("ARCHIVE" . t))
-	)
+        )
       ) ; 自动将CANCELED项目标记为archive
 
 ;; Habit
