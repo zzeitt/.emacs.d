@@ -407,6 +407,15 @@
         )
       ) ; 显示父级项目
 
+(setq org-agenda-custom-commands 
+      '(("w" "Work" agenda "" ;; (1) (2) (3) (4)
+         ((org-agenda-span 7)
+          (org-agenda-files '("~/.emacs.d/forOrgs/work.org")) ;; (5)
+          (org-agenda-sorting-strategy '(priority-up effort-down))) ;; (5) cont.
+         ("~/.emacs.d/forOrgs/work.html")) ;; (6)
+        ;; ...other commands here
+        ))
+
 ;; Archive
 (setq org-archive-location "archive.org::* From [[file:%s]]")
 (setq org-todo-state-tags-triggers
