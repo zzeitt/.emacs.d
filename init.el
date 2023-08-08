@@ -71,6 +71,15 @@
 (evil-set-undo-system 'undo-redo) ; 启用redo
 (setq evil-want-fine-undo t) ; 启发式undo，避免一下全部撤销
 
+;; 自动半最大化
+(setq default-frame-alist
+      '(
+        (fullscreen . fullheight)
+        (left . 0)
+        (top . 0)
+        )
+      )
+
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
 
