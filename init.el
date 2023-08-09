@@ -105,6 +105,7 @@
 (global-set-key (kbd "C--") 'text-scale-adjust) ; 调整字体
 (global-set-key (kbd "C-=") 'text-scale-adjust) ; 调整字体
 (global-set-key (kbd "M-:") 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
+(global-set-key (kbd "M-f") 'evil-find-char) ; vim的f功能
 
 ;; Vim的一些微调
 (define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
