@@ -249,6 +249,8 @@
 (key-seq-define evil-normal-state-map "zt" 'org-time-stamp) ; 插入时间戳
 (key-seq-define evil-motion-state-map "zt" 'org-time-stamp) ; 插入时间戳
 (key-seq-define evil-visual-state-map "zt" 'org-time-stamp) ; 插入时间戳
+(key-seq-define evil-normal-state-map "zu" 'org-export-dispatch) ; org导出
+
 
 (defun zeit/refresh ()
   "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
