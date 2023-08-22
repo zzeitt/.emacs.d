@@ -108,6 +108,17 @@
 (global-set-key (kbd "M-f") 'evil-find-char) ; vim的f功能
 (global-set-key (kbd "M-r") 'evil-redo) ; 重做
 
+
+(defun backward-kill-char-or-word ()
+  (interactive)
+  (cond 
+   ((looking-back (rx (char word)) 1)
+    (backward-kill-word 1))
+   ((looking-back (rx (char blank)) 1)
+    (delete-horizontal-space t))
+   (t
+    (backward-delete-char 1))))
+
 ;; Vim的一些微调
 (define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "M-u") 'evil-scroll-up)
