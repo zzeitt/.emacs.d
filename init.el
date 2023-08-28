@@ -92,7 +92,6 @@
 
 ;; 开启agenda
 (require 'org-agenda) ; 否则无法重映射agenda下的快捷键
-(evil-set-initial-state 'org-agenda-mode 'normal)
 
 ;; 快捷键重映射
 (global-set-key (kbd "C-<tab>") 'next-buffer) ; Buffer切换
@@ -343,6 +342,9 @@
 
 
 ;;; ----------------------- 待办设置 ------------------------------
+;; 在agenda中开启evil
+(evil-set-initial-state 'org-agenda-mode 'normal)
+
 ;; 关键字（配置完计得输入`M-x org-mode-restart`）
 (setq org-todo-keywords
       '((sequence
