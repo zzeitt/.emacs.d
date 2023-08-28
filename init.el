@@ -108,6 +108,7 @@
 (global-set-key (kbd "M-f") 'evil-find-char) ; vim的f功能
 (global-set-key (kbd "M-r") 'evil-redo) ; 重做
 (global-set-key (kbd "M-o") 'org-mark-ring-goto) ; 回到上次操作的地方
+(global-set-key (kbd "M-s") 'save-buffer) ; 保存
 
 
 (defun backward-kill-char-or-word ()
