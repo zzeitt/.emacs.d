@@ -156,6 +156,21 @@
   (kbd "q") 'org-agenda-quit
   ) ; agenda模式下的快捷键
 (evil-define-key 'normal magit-mode-map
+  (kbd "u") 'magit-unstage
+  (kbd "U") 'magit-unstage-all
+  (kbd "s") 'magit-stage-file
+  (kbd "S") 'magit-stage-modified
+  (kbd "r") 'magit-refresh
+  (kbd "R") 'magit-refresh-all
+  (kbd "i") 'magit-gitignore
+  (kbd "I") 'magit-init
+  (kbd "c") 'magit-commit
+  (kbd "P") 'magit-push
+  (kbd "L") 'magit-log
+  (kbd "<return>") 'magit-visit-thing
+  (kbd "M-d") 'magit-section-forward
+  (kbd "M-u") 'magit-section-backward
+  ) ; magit status下的快捷键
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
@@ -467,6 +482,12 @@
 
 
 ;;; ----------------------- git设置 ------------------------------
+;; 在magit中开启evil
+(evil-set-initial-state 'magit-status-mode 'normal)
+(evil-set-initial-state 'magit-log-mode 'normal)
+(evil-set-initial-state 'magit-revision-mode 'normal)
+
 ;; 自动刷新
 (with-eval-after-load 'magit-mode
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
+
