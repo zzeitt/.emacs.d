@@ -11,6 +11,8 @@
  '(org-agenda-breadcrumbs-separator " > ")
  '(org-agenda-tags-column -60)
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
+ '(org-safe-remote-resources
+   '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
@@ -217,6 +219,12 @@
 (define-key evil-normal-state-map (kbd "M-S") 'save-some-buffers) ; 保存全部文件
 (define-key evil-motion-state-map (kbd "M-S") 'save-some-buffers) ; 保存全部文件
 (define-key evil-visual-state-map (kbd "M-S") 'save-some-buffers) ; 保存全部文件
+(define-key evil-normal-state-map (kbd "M-,") 'org-metaleft) ; 将项目左移
+(define-key evil-motion-state-map (kbd "M-,") 'org-metaleft) ; 将项目左移
+(define-key evil-visual-state-map (kbd "M-,") 'org-metaleft) ; 将项目左移
+(define-key evil-normal-state-map (kbd "M-.") 'org-metaright) ; 将项目右移
+(define-key evil-motion-state-map (kbd "M-.") 'org-metaright) ; 将项目右移
+(define-key evil-visual-state-map (kbd "M-.") 'org-metaright) ; 将项目右移
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
@@ -261,12 +269,8 @@
 (key-seq-define evil-motion-state-map ";k" 'org-metaup) ; 将项目上移
 (key-seq-define evil-normal-state-map ";h" 'org-shiftmetaleft) ; 将项目左移
 (key-seq-define evil-motion-state-map ";h" 'org-shiftmetaleft) ; 将项目左移
-(key-seq-define evil-normal-state-map "z," 'org-metaleft) ; 将项目左移
-(key-seq-define evil-motion-state-map "z," 'org-metaleft) ; 将项目左移
 (key-seq-define evil-normal-state-map ";l" 'org-shiftmetaright) ; 将项目右移
 (key-seq-define evil-motion-state-map ";l" 'org-shiftmetaright) ; 将项目右移
-(key-seq-define evil-normal-state-map "z." 'org-metaright) ; 将项目右移
-(key-seq-define evil-motion-state-map "z." 'org-metaright) ; 将项目右移
 (key-seq-define evil-normal-state-map ";q" 'dabbrev-expand) ; 自动扩展词
 (key-seq-define evil-motion-state-map ";q" 'dabbrev-expand) ; 自动扩展词
 (key-seq-define evil-normal-state-map ";w" 'org-refile) ; 移动树项目
