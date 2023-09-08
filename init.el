@@ -114,7 +114,7 @@
 (global-set-key (kbd "M-s") 'save-buffer) ; 保存
 (global-set-key (kbd "M-I") 'magit-status) ; 打开magit
 (global-set-key (kbd "M-q") 'keyboard-escape-quit) ; ESC ESC ESC
-
+(global-set-key (kbd "M-<") 'org-insert-structure-template) ; 插入template
 
 (defun backward-kill-char-or-word ()
   (interactive)
@@ -287,6 +287,7 @@
 (key-seq-define evil-motion-state-map "zt" 'org-time-stamp) ; 插入时间戳
 (key-seq-define evil-visual-state-map "zt" 'org-time-stamp) ; 插入时间戳
 (key-seq-define evil-normal-state-map "zu" 'org-export-dispatch) ; org导出
+(key-seq-define evil-normal-state-map "z," 'org-insert-structure-template) ; 插入template
 
 
 (defun zeit/refresh ()
