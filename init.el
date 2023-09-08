@@ -115,8 +115,10 @@
 (global-set-key (kbd "M-I") 'magit-status) ; 打开magit
 (global-set-key (kbd "M-q") 'keyboard-escape-quit) ; ESC ESC ESC
 (global-set-key (kbd "M-<") 'org-insert-structure-template) ; 插入template
+(global-set-key (kbd "C-<backspace>") 'backward-kill-char-or-word) ; 前向删除
 
 (defun backward-kill-char-or-word ()
+  "Adopted from https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent"
   (interactive)
   (cond 
    ((looking-back (rx (char word)) 1)
