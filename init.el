@@ -33,6 +33,7 @@
 ;;; ------------------------ 必要配置 ---------------------------
 (set-language-environment "UTF-8")
 (pixel-scroll-mode t)
+(setq file-name-coding-system 'gbk) ; (Maybe...?)解决中文路径乱码
 
 
 ;;; ------------------------ 美化相关 ---------------------------
