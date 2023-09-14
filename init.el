@@ -16,7 +16,7 @@
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
+   '(zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,7 +34,7 @@
 (set-language-environment "UTF-8")
 (pixel-scroll-mode t)
 (setq file-name-coding-system 'gbk) ; (Maybe...?)解决中文路径乱码
-
+(add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1))) ; 开启zotxt-mode
 
 ;;; ------------------------ 美化相关 ---------------------------
 ;; 字体配置
@@ -115,7 +115,6 @@
 (global-set-key (kbd "M-I") 'magit-status) ; 打开magit
 (global-set-key (kbd "M-q") 'keyboard-escape-quit) ; ESC ESC ESC
 (global-set-key (kbd "M-<") 'org-insert-structure-template) ; 插入template
-(global-set-key (kbd "C-<backspace>") 'backward-kill-char-or-word) ; 前向删除
 
 (defun backward-kill-char-or-word ()
   "Adopted from https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent"
@@ -126,7 +125,10 @@
    ((looking-back (rx (char blank)) 1)
     (delete-horizontal-space t))
    (t
-    (backward-delete-char 1))))
+    (backward-delete-char 1)))
+)
+(global-set-key (kbd "C-<backspace>") 'backward-kill-char-or-word) ; 前向删除
+
 
 ;; Vim的一些微调
 (define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
@@ -233,8 +235,6 @@
 (require 'key-chord)
 (setq key-chord-two-keys-delay 0.1)
 (key-chord-mode 1) 
-(key-seq-define evil-insert-state-map "z;" 'evil-normal-state) ; 退出编辑模式
-(key-seq-define evil-visual-state-map "z;" 'evil-normal-state) ; 退出可视模式
 (key-seq-define evil-normal-state-map "vc" 'evil-visual-block) ; 块可视模式
 (key-seq-define evil-visual-state-map "vc" 'evil-visual-block) ; 块可视模式
 (key-seq-define evil-motion-state-map "vc" 'evil-visual-block) ; 块可视模式
@@ -290,7 +290,8 @@
 (key-seq-define evil-visual-state-map "zt" 'org-time-stamp) ; 插入时间戳
 (key-seq-define evil-normal-state-map "zu" 'org-export-dispatch) ; org导出
 (key-seq-define evil-normal-state-map "z," 'org-insert-structure-template) ; 插入template
-
+(key-seq-define evil-normal-state-map "z;" 'org-zotxt-insert-reference-link) ; 插入zotero引用
+(key-seq-define evil-normal-state-map "z'" 'org-zotxt-open-attachment) ; 打开zotero pdf
 
 (defun zeit/refresh ()
   "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
