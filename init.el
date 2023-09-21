@@ -96,6 +96,9 @@
 ;; 开启agenda
 (require 'org-agenda) ; 否则无法重映射agenda下的快捷键
 
+;; 跳转支持补全
+(setq org-goto-interface 'outline-path-completion)
+
 ;; 快捷键重映射
 (global-set-key (kbd "C-<tab>") 'next-buffer) ; Buffer切换
 (global-set-key (kbd "C-S-<tab>") 'previous-buffer)
@@ -103,6 +106,7 @@
 (global-set-key (kbd "C-c e") 'org-encrypt-entry) ; 加密
 (global-set-key (kbd "C-c d") 'org-decrypt-entry) ; 解密
 (global-set-key (kbd "C-x r") 'counsel-recentf) ; 打开最近文件
+(global-set-key (kbd "C-c j") 'org-goto) ; 跳转
 (global-set-key (kbd "<f5>") 'revert-buffer) ; 刷新文件
 (global-set-key (kbd "C-c 5") (kbd "C-u C-c #")) ; 全局更新完成度
 (global-set-key (kbd "C--") 'text-scale-adjust) ; 调整字体
