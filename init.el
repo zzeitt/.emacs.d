@@ -114,7 +114,6 @@
 (global-set-key (kbd "M-:") 'kill-buffer-and-window) ; 关闭当前窗口及其buffer
 (global-set-key (kbd "M-f") 'evil-find-char) ; vim的f功能
 (global-set-key (kbd "M-r") 'evil-redo) ; 重做
-(global-set-key (kbd "M-o") 'org-mark-ring-goto) ; 回到上次操作的地方
 (global-set-key (kbd "M-s") 'save-buffer) ; 保存
 (global-set-key (kbd "M-I") 'magit-status) ; 打开magit
 (global-set-key (kbd "M-q") 'keyboard-escape-quit) ; ESC ESC ESC
@@ -239,6 +238,9 @@
 (define-key evil-normal-state-map (kbd "M-.") 'org-metaright) ; 将项目右移
 (define-key evil-motion-state-map (kbd "M-.") 'org-metaright) ; 将项目右移
 (define-key evil-visual-state-map (kbd "M-.") 'org-metaright) ; 将项目右移
+(define-key evil-normal-state-map (kbd "M-o") 'org-mark-ring-goto) ; 回到上次操作的地方
+(define-key evil-insert-state-map (kbd "M-o") 'evil-open-below) ; 添加新行在下方
+(define-key evil-insert-state-map (kbd "M-O") 'evil-open-above) ; 添加新行在上方
 
 ;; 使用key-chord快捷键
 (require 'key-chord)
