@@ -16,7 +16,7 @@
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
+   '(tabspaces zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
