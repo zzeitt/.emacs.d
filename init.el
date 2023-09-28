@@ -100,6 +100,7 @@
 (setq org-goto-interface 'outline-path-completion)
 
 ;; 快捷键重映射
+; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
 (global-set-key (kbd "C-<tab>") 'next-buffer) ; Buffer切换
 (global-set-key (kbd "C-S-<tab>") 'previous-buffer)
 (global-set-key (kbd "C-c a") 'org-agenda) ; 打开Agenda
@@ -134,6 +135,7 @@
 
 
 ;; Vim的一些微调
+; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 (define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-insert-state-map (kbd "M-u") 'evil-scroll-up)
@@ -243,6 +245,7 @@
 (define-key evil-insert-state-map (kbd "M-O") 'evil-open-above) ; 添加新行在上方
 
 ;; 使用key-chord快捷键
+; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
 (require 'key-chord)
 (setq key-chord-two-keys-delay 0.1)
 (key-chord-mode 1) 
