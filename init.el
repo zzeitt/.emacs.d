@@ -196,7 +196,15 @@
 (define-key evil-normal-state-map (kbd "J") 'previous-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "J") 'previous-buffer) 
 (define-key evil-motion-state-map (kbd "J") 'previous-buffer) 
-(define-key evil-insert-state-map (kbd "<tab>") 'tab-to-tab-stop) ; 插入模式下恢复tab
+(defun zeit/tab ()
+  "Disable tab indent in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (tab-to-tab-stop)
+    (org-cycle)
+    )
+  )
+(define-key evil-insert-state-map (kbd "<tab>") 'zeit/tab) ; 插入模式下恢复tab
 (define-key evil-insert-state-map (kbd "C-v") 'org-yank) ; 插入模式下恢复C-v
 (define-key evil-insert-state-map (kbd "C-c") 'evil-yank) ; 插入模式下恢复C-c
 (define-key evil-insert-state-map (kbd "C-z") 'evil-undo) ; 插入模式下恢复C-z
