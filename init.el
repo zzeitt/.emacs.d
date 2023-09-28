@@ -358,7 +358,8 @@
 
 ;; 打开最近文件
 (recentf-mode t)
-(setq recentf-max-menu-items 10)
+(setq recentf-max-menu-items 50)
+(setq recentf-max-menu-items 100)
 
 ;; 自动更新buffer
 (global-auto-revert-mode t)
@@ -423,7 +424,6 @@
      )
     )
   )
-
 (add-hook 'org-after-todo-statistics-hook #'org-summary-todo)
 
 ;; 时间线
