@@ -332,6 +332,7 @@
   (org-toggle-link-display)
   (org-toggle-inline-images)
   (org-force-cycle-archived)
+  (org-latex-preview)
   )
 (key-seq-define evil-normal-state-map ";;" 'zeit/toggle) ; 切换显示
 (key-seq-define evil-motion-state-map ";;" 'zeit/toggle) ; 切换显示
