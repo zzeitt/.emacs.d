@@ -168,6 +168,7 @@
   (kbd "q") 'org-agenda-quit
   ) ; agenda模式下的快捷键
 (evil-define-key 'normal magit-mode-map
+  (kbd "d") 'magit-discard
   (kbd "u") 'magit-unstage
   (kbd "U") 'magit-unstage-all
   (kbd "s") 'magit-stage-file
