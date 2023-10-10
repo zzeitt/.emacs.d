@@ -252,6 +252,7 @@
 (define-key evil-normal-state-map (kbd "M-o") 'org-mark-ring-goto) ; 回到上次操作的地方
 (define-key evil-insert-state-map (kbd "M-o") 'evil-open-below) ; 添加新行在下方
 (define-key evil-insert-state-map (kbd "M-O") 'evil-open-above) ; 添加新行在上方
+(define-key evil-insert-state-map (kbd "M-E") 'org-emphasize) ; markup
 
 ;; 使用key-chord快捷键
 ; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
