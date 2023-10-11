@@ -16,7 +16,11 @@
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(tabspaces zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme)))
+   '(tabspaces zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+ '(recentf-auto-cleanup 'mode)
+ '(recentf-max-saved-items 100)
+ '(recentf-menu-filter 'recentf-arrange-by-dir)
+ '(recentf-save-file "~/.emacs.d/forOrgs/recentf"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -369,8 +373,6 @@
 
 ;; 打开最近文件
 (recentf-mode t)
-(setq recentf-max-menu-items 50)
-(setq recentf-max-menu-items 100)
 
 ;; 自动更新buffer
 (global-auto-revert-mode t)
