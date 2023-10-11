@@ -4,6 +4,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bookmark-default-file "~/.emacs.d/forOrgs/bookmarks")
  '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
    '("ab2cbf30ab758c5e936b527377d543ce4927001742f79519b62c45ba9dd9f55e" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "3263bd17a7299449e6ffe118f0a14b92373763c4ccb140f4a30c182a85516d7f" default))
@@ -103,6 +104,11 @@
 ;; 跳转支持补全
 (setq org-goto-interface 'outline-path-completion)
 
+;; bookmark设置
+(evil-set-initial-state 'bookmark-bmenu-mode 'normal)
+(setq bookmark-menu-confirm-deletion t) ; 删除书签前确认
+(setq bookmark-save-flag 1) ; everytime bookmark is changed, automatically save it
+
 ;; 快捷键重映射
 ; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
 (global-set-key (kbd "C-<tab>") 'next-buffer) ; Buffer切换
@@ -193,6 +199,13 @@
   (kbd "<up>") 'org-backward-heading-same-level
   (kbd "<left>") 'outline-up-heading
   ) ; heading间移动
+(evil-define-key 'normal bookmark-bmenu-mode-map
+  (kbd "r") 'bookmark-bmenu-rename
+  (kbd "w") 'bookmark-bmenu-locate
+  (kbd "<return>") 'bookmark-bmenu-this-window
+  (kbd "o") 'bookmark-bmenu-other-window
+  (kbd "d") (lambda () (interactive) (bookmark-bmenu-delete) (bookmark-bmenu-execute-deletions))
+  ) ; bookmark bmenu下的快捷键
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
@@ -258,6 +271,12 @@
 (define-key evil-insert-state-map (kbd "M-O") 'evil-open-above) ; 添加新行在上方
 (define-key evil-insert-state-map (kbd "M-E") 'org-emphasize) ; markup
 (define-key evil-insert-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
+(define-key evil-normal-state-map (kbd "m") 'bookmark-set) ; 添加书签
+(define-key evil-motion-state-map (kbd "m") 'bookmark-set) ; 添加书签
+(define-key evil-normal-state-map (kbd "'") 'bookmark-jump) ; 跳转书签
+(define-key evil-motion-state-map (kbd "'") 'bookmark-jump) ; 跳转书签
+(define-key evil-normal-state-map (kbd "M") 'bookmark-bmenu-list) ; 显示所有书签
+(define-key evil-motion-state-map (kbd "M") 'bookmark-bmenu-list) ; 显示所有书签
 
 ;; 使用key-chord快捷键
 ; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
