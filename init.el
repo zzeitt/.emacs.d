@@ -109,6 +109,9 @@
 (setq bookmark-menu-confirm-deletion t) ; 删除书签前确认
 (setq bookmark-save-flag 1) ; everytime bookmark is changed, automatically save it
 
+;; Buffer menu设置
+(evil-set-initial-state 'Buffer-menu-mode 'normal)
+
 ;; 快捷键重映射
 ; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
 (global-set-key (kbd "C-<tab>") 'next-buffer) ; Buffer切换
@@ -206,6 +209,10 @@
   (kbd "o") 'bookmark-bmenu-other-window
   (kbd "d") (lambda () (interactive) (bookmark-bmenu-delete) (bookmark-bmenu-execute-deletions))
   ) ; bookmark bmenu下的快捷键
+(evil-define-key 'normal Buffer-menu-mode-map
+  (kbd "<return>") 'Buffer-menu-1-window
+  (kbd "M-<return>") 'Buffer-menu-this-window
+  ) ; Buffer menu下的快捷键
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
@@ -304,8 +311,8 @@
 (key-seq-define evil-normal-state-map ";s" 'org-schedule) ; 设定Schedule
 (key-seq-define evil-normal-state-map ";z" 'org-deadline) ; 设定Deadline
 (key-seq-define evil-normal-state-map "zp" 'org-set-property) ; 设定Property
-(key-seq-define evil-normal-state-map ";b" 'list-buffers) ; 展示buffers
-(key-seq-define evil-motion-state-map ";b" 'list-buffers) ; 展示buffers
+(key-seq-define evil-normal-state-map ";b" (lambda () (interactive) (select-window (list-buffers)))) ; 展示buffers
+(key-seq-define evil-motion-state-map ";b" (lambda () (interactive) (select-window (list-buffers)))) ; 展示buffers
 (key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c) ; 替换C-c C-c
 (key-seq-define evil-normal-state-map "zz" 'org-kill-note-or-show-branches) ; note页取消，相当于替换C-c C-k
 (key-seq-define evil-normal-state-map "zz"  'org-edit-src-abort) ; 替换C-c C-k
