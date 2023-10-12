@@ -193,6 +193,7 @@
   (kbd "c") 'magit-commit
   (kbd "P") 'magit-push
   (kbd "L") 'magit-log
+  (kbd "q") 'magit-mode-bury-buffer
   (kbd "<return>") 'magit-visit-thing
   (kbd "M-d") 'magit-section-forward
   (kbd "M-u") 'magit-section-backward
