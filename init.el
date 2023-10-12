@@ -211,8 +211,11 @@
   (kbd "d") (lambda () (interactive) (bookmark-bmenu-delete) (bookmark-bmenu-execute-deletions))
   ) ; bookmark bmenu下的快捷键
 (evil-define-key 'normal Buffer-menu-mode-map
+  (kbd "r") 'revert-buffer
   (kbd "<return>") 'Buffer-menu-1-window
   (kbd "M-<return>") 'Buffer-menu-this-window
+  (kbd "o") 'Buffer-menu-other-window
+  (kbd "d") (lambda () (interactive) (Buffer-menu-delete) (Buffer-menu-execute))
   ) ; Buffer menu下的快捷键
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
