@@ -173,6 +173,9 @@
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "<return>") 'dired-find-file)
   ) ; 链接跳转
+(evil-define-key 'normal emacs-lisp-mode-map
+  (kbd "<return>") 'find-function-at-point
+  ) ; 函数跳转
 (evil-define-key 'normal org-agenda-mode-map
   (kbd "gx") 'org-agenda-goto
   (kbd "<return>") 'org-agenda-goto
