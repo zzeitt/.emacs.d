@@ -83,14 +83,21 @@
 (evil-set-undo-system 'undo-redo) ; 启用redo
 (setq evil-want-fine-undo t) ; 启发式undo，避免一下全部撤销
 
+;; 重定义evil中的'q'
+(defun zeit/evil-record-macro ()
+  "Borrowed from https://emacs.stackexchange.com/a/38364/38412"
+  (interactive)
+  (if buffer-read-only
+      (quit-window)
+    (call-interactively 'evil-record-macro)))
+(with-eval-after-load 'evil-maps
+  (define-key evil-normal-state-map (kbd "q") 'zeit/evil-record-macro))
+
 ;; 自动半最大化
 (setq default-frame-alist
-      '(
-        (fullscreen . fullheight)
-        (left . 0)
-        (top . 0)
-        )
-      )
+  '((fullscreen . fullheight)
+    (left . 0)
+    (top . 0)))
 
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
@@ -217,6 +224,9 @@
   (kbd "o") 'Buffer-menu-other-window
   (kbd "d") (lambda () (interactive) (Buffer-menu-delete) (Buffer-menu-execute))
   ) ; Buffer menu下的快捷键
+(evil-define-key 'normal lisp-interaction-mode-map
+  (kbd "q") 'quit-window
+  ) ; scratch buffer下的快捷键
 (define-key evil-motion-state-map (kbd "K") nil) ; 取消大写k
 (define-key evil-normal-state-map (kbd "K") 'next-buffer) ; Buffer切换
 (define-key evil-visual-state-map (kbd "K") 'next-buffer) 
