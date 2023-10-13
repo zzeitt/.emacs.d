@@ -38,7 +38,7 @@
 
 ;;; ------------------------ 必要配置 ---------------------------
 (set-language-environment "UTF-8")
-(pixel-scroll-precision-mode t)
+(pixel-scroll-mode t)
 (setq file-name-coding-system 'gbk) ; (Maybe...?)解决中文路径乱码
 (add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1))) ; 开启zotxt-mode
 
