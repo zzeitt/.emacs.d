@@ -27,7 +27,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "更纱黑体 Mono SC Nerd" :foundry "outline" :slant normal :weight normal :height 120 :width normal))))
+ '(default ((t (:family "Sarasa Fixed SC" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))
  '(org-agenda-done ((t (:foreground "dark green" :height 1.0))))
  '(org-habit-alert-face ((t (:background "gold" :foreground "black"))))
  '(org-habit-alert-future-face ((t (:background "darkgoldenrod" :foreground "black"))))
