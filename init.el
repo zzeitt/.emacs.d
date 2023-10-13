@@ -21,7 +21,8 @@
  '(recentf-auto-cleanup 'mode)
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
- '(recentf-save-file "~/.emacs.d/forOrgs/recentf"))
+ '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
+ '(size-indication-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
