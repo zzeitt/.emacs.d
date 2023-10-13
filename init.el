@@ -303,6 +303,8 @@
 (define-key evil-insert-state-map (kbd "M-O") 'evil-open-above) ; 添加新行在上方
 (define-key evil-insert-state-map (kbd "M-E") 'org-emphasize) ; markup
 (define-key evil-insert-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
+(define-key evil-normal-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
+(define-key evil-motion-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-normal-state-map (kbd "m") 'bookmark-set) ; 添加书签
 (define-key evil-motion-state-map (kbd "m") 'bookmark-set) ; 添加书签
 (define-key evil-normal-state-map (kbd "'") 'bookmark-jump) ; 跳转书签
