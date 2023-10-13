@@ -82,6 +82,13 @@
 (evil-mode 1)
 (evil-set-undo-system 'undo-redo) ; 启用redo
 (setq evil-want-fine-undo t) ; 启发式undo，避免一下全部撤销
+(evil-set-initial-state 'bookmark-bmenu-mode 'normal) ; 在bookmark menu中开启evil
+(evil-set-initial-state 'Buffer-menu-mode 'normal) ; 在Buffer中开启evil
+(evil-set-initial-state 'org-agenda-mode 'normal) ; 在agenda中开启evil
+(evil-set-initial-state 'magit-status-mode 'normal) ; 在magit中开启evil
+(evil-set-initial-state 'magit-log-mode 'normal) ; 在magit中开启evil
+(evil-set-initial-state 'magit-revision-mode 'normal) ; 在magit中开启evil
+(evil-set-initial-state 'completion-list-mode 'normal) ; 在Completion中开启evil
 
 ;; 重定义evil中的'q'
 (defun zeit/evil-record-macro ()
@@ -112,12 +119,9 @@
 (setq org-goto-interface 'outline-path-completion)
 
 ;; bookmark设置
-(evil-set-initial-state 'bookmark-bmenu-mode 'normal)
 (setq bookmark-menu-confirm-deletion t) ; 删除书签前确认
 (setq bookmark-save-flag 1) ; everytime bookmark is changed, automatically save it
 
-;; Buffer menu设置
-(evil-set-initial-state 'Buffer-menu-mode 'normal)
 
 ;; 快捷键重映射
 ; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
@@ -441,8 +445,6 @@
 
 
 ;;; ----------------------- 待办设置 ------------------------------
-;; 在agenda中开启evil
-(evil-set-initial-state 'org-agenda-mode 'normal)
 
 ;; 关键字（配置完计得输入`M-x org-mode-restart`）
 (setq org-todo-keywords
@@ -562,10 +564,6 @@
 
 
 ;;; ----------------------- git设置 ------------------------------
-;; 在magit中开启evil
-(evil-set-initial-state 'magit-status-mode 'normal)
-(evil-set-initial-state 'magit-log-mode 'normal)
-(evil-set-initial-state 'magit-revision-mode 'normal)
 
 ;; 自动刷新
 (with-eval-after-load 'magit-mode
