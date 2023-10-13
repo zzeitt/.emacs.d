@@ -17,7 +17,7 @@
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(tabspaces zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(org-appear tabspaces zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-auto-cleanup 'mode)
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
@@ -75,6 +75,9 @@
 (display-time-mode 1)
 (setq display-time-24hr-format t)
 
+;; markup相关
+(setq org-hide-emphasis-markers t)
+(add-hook 'org-mode-hook 'org-appear-mode) ; 开启org-appear
 
 ;;; ------------------------- 个人习惯 ---------------------------
 ;; 开启Evil模式
