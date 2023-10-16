@@ -300,7 +300,7 @@
 (define-key evil-normal-state-map (kbd "M-o") 'org-mark-ring-goto) ; 回到上次操作的地方
 (define-key evil-insert-state-map (kbd "M-o") 'evil-open-below) ; 添加新行在下方
 (define-key evil-insert-state-map (kbd "M-O") 'evil-open-above) ; 添加新行在上方
-(define-key evil-insert-state-map (kbd "M-E") 'org-emphasize) ; markup
+(define-key evil-insert-state-map (kbd "M-~") 'org-emphasize) ; markup
 (define-key evil-insert-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-normal-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-motion-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
@@ -330,7 +330,6 @@
 (key-seq-define evil-normal-state-map ";a" 'org-agenda) ; 打开Agenda
 (key-seq-define evil-normal-state-map ";r" 'counsel-recentf) ; 打开最近文件
 (key-seq-define evil-motion-state-map ";r" 'counsel-recentf) ; 打开最近文件
-(key-seq-define evil-normal-state-map ";e" 'org-emphasize) ; markup
 (key-seq-define evil-normal-state-map ";f" 'find-file) ; 查找文件
 (key-seq-define evil-motion-state-map ";f" 'find-file) ; 查找文件
 (key-seq-define evil-normal-state-map ";t" 'org-todo) ; 切换TODO
