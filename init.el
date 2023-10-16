@@ -92,6 +92,7 @@
 (evil-set-initial-state 'magit-log-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'magit-revision-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'magit-diff-mode 'normal) ; 在magit中开启evil
+(evil-set-initial-state 'magit-process-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'completion-list-mode 'normal) ; 在Completion中开启evil
 
 ;; 重定义evil中的'q'
