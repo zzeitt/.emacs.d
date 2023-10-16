@@ -18,7 +18,6 @@
  '(org-tags-column -60)
  '(package-selected-packages
    '(org-appear tabspaces zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
- '(recentf-auto-cleanup 'mode)
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
@@ -426,6 +425,11 @@
 
 ;; 打开最近文件
 (recentf-mode t)
+
+;; 保存最近浏览位置
+(require 'saveplace)
+(setq save-place-file "~/.emacs.d/forOrgs/saveplace")
+(save-place-mode 1)
 
 ;; 自动更新buffer
 (global-auto-revert-mode t)
