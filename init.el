@@ -28,6 +28,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Sarasa Fixed SC" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))
+ '(bold ((t (:weight bold :foundry "outline" :family "Sarasa Fixed SC"))))
+ '(italic ((t (:slant italic :weight light :foundry "outline" :family "Sarasa Fixed SC"))))
  '(org-agenda-done ((t (:foreground "dark green" :height 1.0))))
  '(org-habit-alert-face ((t (:background "gold" :foreground "black"))))
  '(org-habit-alert-future-face ((t (:background "darkgoldenrod" :foreground "black"))))
