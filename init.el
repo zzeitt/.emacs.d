@@ -115,6 +115,10 @@
     (left . 0)
     (top . 0)))
 
+;; 表格自动对齐和折叠
+(setq org-startup-align-all-tables t)
+(setq org-startup-shrink-all-tables t)
+
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
 
