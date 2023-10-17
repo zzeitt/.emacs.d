@@ -31,10 +31,12 @@
  '(bold ((t (:weight bold :foundry "outline" :family "Sarasa Fixed SC"))))
  '(italic ((t (:slant italic :weight light :foundry "outline" :family "Sarasa Fixed SC"))))
  '(org-agenda-done ((t (:foreground "dark green" :height 1.0))))
+ '(org-code ((t (:foreground "#28def0" :box (:line-width (1 . 1) :color "grey75" :style released-button)))))
  '(org-habit-alert-face ((t (:background "gold" :foreground "black"))))
  '(org-habit-alert-future-face ((t (:background "darkgoldenrod" :foreground "black"))))
  '(org-scheduled-previously ((t (:foreground "MediumOrchid4" :slant italic))))
- '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold")))))
+ '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold"))))
+ '(org-verbatim ((t (:foreground "#4f97d7" :box (:line-width (1 . 1) :color "grey75" :style released-button))))))
 
 
 ;;; ------------------------ 必要配置 ---------------------------
