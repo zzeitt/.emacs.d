@@ -314,12 +314,19 @@
 (define-key evil-insert-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-normal-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-motion-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
-(define-key evil-normal-state-map (kbd "m") 'bookmark-set) ; 添加书签
-(define-key evil-motion-state-map (kbd "m") 'bookmark-set) ; 添加书签
-(define-key evil-normal-state-map (kbd "'") 'bookmark-jump) ; 跳转书签
-(define-key evil-motion-state-map (kbd "'") 'bookmark-jump) ; 跳转书签
-(define-key evil-normal-state-map (kbd "M") 'bookmark-bmenu-list) ; 显示所有书签
-(define-key evil-motion-state-map (kbd "M") 'bookmark-bmenu-list) ; 显示所有书签
+(define-key evil-normal-state-map (kbd "M") 'bookmark-set) ; 添加书签
+(define-key evil-motion-state-map (kbd "M") 'bookmark-set) ; 添加书签
+(define-key evil-normal-state-map (kbd "M-m") 'bookmark-bmenu-list) ; 显示所有书签
+(define-key evil-motion-state-map (kbd "M-m") 'bookmark-bmenu-list) ; 显示所有书签
+(defun zeit/set-mark(CHAR &optional POS ADVANCE)
+  "Set mark in both evil and bookmark."
+  (interactive (list (read-char)))
+  (let ((schar (single-key-description CHAR)))
+    (bookmark-set schar)
+    (evil-set-marker CHAR POS ADVANCE)
+    (message "Mark set and saved as \"%s\"" schar)))
+(define-key evil-normal-state-map (kbd "m") 'zeit/set-mark) ; 添加书签
+(define-key evil-motion-state-map (kbd "m") 'zeit/set-mark) ; 添加书签
 
 ;; 使用key-chord快捷键
 ; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
