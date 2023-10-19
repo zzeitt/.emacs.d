@@ -99,6 +99,7 @@
 (evil-set-initial-state 'magit-diff-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'magit-process-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'completion-list-mode 'normal) ; 在Completion中开启evil
+(evil-set-initial-state 'help-mode 'normal) ; 在Help中开启evil
 
 ;; 重定义evil中的'q'
 (defun zeit/evil-record-macro ()
@@ -195,6 +196,19 @@
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "<return>") 'dired-find-file)
   ) ; 链接跳转
+(with-eval-after-load 'help
+  (evil-make-overriding-map help-mode-map 'normal t)
+  (evil-define-key 'normal help-mode-map
+    (kbd "H") 'help-go-back
+    (kbd "L") 'help-go-forward
+    (kbd "h") 'evil-backward-char
+    (kbd "l") 'evil-forward-char
+    (kbd "j") 'evil-next-line
+    (kbd "k") 'evil-previous-line
+    (kbd "gg") 'evil-goto-first-line
+    (kbd "G") 'evil-goto-line
+    )
+  ) ; Help buffer下的快捷键 ref: https://github.com/syl20bnr/spacemacs/issues/2490#issuecomment-131660583
 (evil-define-key 'normal emacs-lisp-mode-map
   (kbd "<return>") 'find-function-at-point
   ) ; 函数跳转
