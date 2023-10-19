@@ -77,6 +77,7 @@
 (setq size-indication-mode t)
 (display-time-mode 1)
 (setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
 
 ;; markup相关
 (setq org-hide-emphasis-markers t)
