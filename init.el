@@ -502,18 +502,14 @@
          "DONE√(d@/!)"
          "CANC.(c@/!)"
          "FAIL.(f@/!)"
-         ))
-      )
+         )))
 (setq org-todo-keyword-faces
-      '(
-        ("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
+      '(("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
         ("DOING"    . (:background "#4c4c4c" :foreground "#d5cb6d" :weight bold))
         ("STUCK"    . (:background "#4c4c4c" :foreground "#800000" :weight bold))
         ("CANC." . (:background "gray" :foreground "black" :weight bold))
         ("FAIL."   . (:background "gray" :foreground "#793e12" :weight bold))
-        ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))
-        )
-      )
+        ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))))
 
 ;; 自动DONE
 (defun org-summary-todo (n-done n-not-done)
@@ -523,11 +519,7 @@
      (if (= n-not-done 0) "DONE√"       ; all done
        (if (= n-done 0) "TODO°"         ; all not done
          "DOING"                        ; some done
-         )
-       )
-     )
-    )
-  )
+         )))))
 (add-hook 'org-after-todo-statistics-hook #'org-summary-todo)
 
 ;; 时间线
@@ -537,8 +529,7 @@
         (daily today require-timed)
         (300 600 900 1200 1500 1800 2100 2400)
         "-....." "---------------------------------------"
-        )
-      )
+        ))
 (setq org-agenda-current-time-string
       "--------------¯\\_(ツ)_/¯---------------"
       )
