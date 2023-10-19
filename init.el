@@ -511,6 +511,12 @@
         ("FAIL."   . (:background "gray" :foreground "#793e12" :weight bold))
         ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))))
 
+;; 添加创建日期
+(defun zeit/insert-created-date(&rest ignore)
+  "Borrowed from https://emacs.stackexchange.com/a/45369/38412"
+  (org-set-property "CREATED" (format-time-string "%Y-%m-%d %T")))
+(advice-add 'org-insert-todo-heading :after #'zeit/insert-created-date)
+
 ;; 自动DONE
 (defun org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
