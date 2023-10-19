@@ -513,7 +513,7 @@
 
 ;; 添加创建日期
 (defun zeit/insert-created-date(&rest ignore)
-  "Borrowed from https://emacs.stackexchange.com/a/45369/38412"
+  "Borrowed from https://emacs.stackexchange.com/a/72148/38412"
   (org-set-property "CREATED" (format-time-string "%Y-%m-%d %T")))
 (advice-add 'org-insert-todo-heading :after #'zeit/insert-created-date)
 
