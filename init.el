@@ -174,17 +174,19 @@
 (global-set-key (kbd "C-<backspace>") 'backward-kill-char-or-word) ; 前向删除
 
 
-;; Vim的一些微调
 ; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
+;; Vim的一些微调
 (define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-insert-state-map (kbd "M-u") 'evil-scroll-up)
+(define-key evil-motion-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-normal-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-visual-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-insert-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-visual-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-insert-state-map (kbd "M-d") 'evil-scroll-down)
+(define-key evil-motion-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-normal-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-visual-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-insert-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
