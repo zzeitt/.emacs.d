@@ -135,6 +135,9 @@
 (setq bookmark-menu-confirm-deletion t) ; 删除书签前确认
 (setq bookmark-save-flag 1) ; everytime bookmark is changed, automatically save it
 
+;; 鼠标相关
+(setq org-cycle-emulate-tab nil) ; 取消单击缩进
+
 
 ;; 快捷键重映射
 ; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
@@ -156,7 +159,6 @@
 (global-set-key (kbd "M-I") 'magit-status) ; 打开magit
 (global-set-key (kbd "M-q") 'keyboard-escape-quit) ; ESC ESC ESC
 (global-set-key (kbd "M-<") 'org-insert-structure-template) ; 插入template
-
 (defun backward-kill-char-or-word ()
   "Adopted from https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent"
   (interactive)
@@ -260,9 +262,7 @@
   (interactive)
   (if (not (org-at-table-p))
       (tab-to-tab-stop)
-    (org-cycle)
-    )
-  )
+    (org-cycle)))
 (define-key evil-insert-state-map (kbd "<tab>") 'zeit/tab) ; 插入模式下恢复tab
 (define-key evil-insert-state-map (kbd "C-v") 'org-yank) ; 插入模式下恢复C-v
 (define-key evil-insert-state-map (kbd "C-c") 'evil-yank) ; 插入模式下恢复C-c
