@@ -229,9 +229,9 @@
   ) ; magit status下的快捷键
 (evil-define-key 'normal outline-mode-map
   (kbd "<down>") 'org-next-visible-heading
-  (kbd "S-<down>") 'org-forward-heading-same-level
+  ;; (kbd "<down>") 'org-forward-heading-same-level
   (kbd "<up>") 'org-previous-visible-heading
-  (kbd "S-<up>") 'org-backward-heading-same-level
+  ;; (kbd "<up>") 'org-backward-heading-same-level
   (kbd "<left>") 'outline-up-heading
   (kbd "<right>") 'org-next-visible-heading
   ) ; heading间移动
