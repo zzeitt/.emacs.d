@@ -18,7 +18,6 @@
  '(org-tags-column -60)
  '(package-selected-packages
    '(org-appear tabspaces zotxt htmlize magit key-seq key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
- '(recentf-auto-cleanup 'mode)
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
@@ -29,11 +28,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Sarasa Fixed SC" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))
+ '(bold ((t (:weight bold :foundry "outline" :family "Sarasa Fixed SC"))))
+ '(italic ((t (:slant italic :weight light :foundry "outline" :family "Sarasa Fixed SC"))))
  '(org-agenda-done ((t (:foreground "dark green" :height 1.0))))
+ '(org-code ((t (:foreground "#28def0" :box (:line-width (1 . 1) :color "grey75" :style released-button)))))
  '(org-habit-alert-face ((t (:background "gold" :foreground "black"))))
  '(org-habit-alert-future-face ((t (:background "darkgoldenrod" :foreground "black"))))
  '(org-scheduled-previously ((t (:foreground "MediumOrchid4" :slant italic))))
- '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold")))))
+ '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold"))))
+ '(org-verbatim ((t (:foreground "#4f97d7" :box (:line-width (1 . 1) :color "grey75" :style released-button))))))
 
 
 ;;; ------------------------ 必要配置 ---------------------------
@@ -74,6 +77,7 @@
 (setq size-indication-mode t)
 (display-time-mode 1)
 (setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
 
 ;; markup相关
 (setq org-hide-emphasis-markers t)
@@ -92,7 +96,10 @@
 (evil-set-initial-state 'magit-status-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'magit-log-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'magit-revision-mode 'normal) ; 在magit中开启evil
+(evil-set-initial-state 'magit-diff-mode 'normal) ; 在magit中开启evil
+(evil-set-initial-state 'magit-process-mode 'normal) ; 在magit中开启evil
 (evil-set-initial-state 'completion-list-mode 'normal) ; 在Completion中开启evil
+(evil-set-initial-state 'help-mode 'normal) ; 在Help中开启evil
 
 ;; 重定义evil中的'q'
 (defun zeit/evil-record-macro ()
@@ -110,6 +117,10 @@
     (left . 0)
     (top . 0)))
 
+;; 表格自动对齐和折叠
+(setq org-startup-align-all-tables t)
+(setq org-startup-shrink-all-tables t)
+
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
 
@@ -125,6 +136,9 @@
 ;; bookmark设置
 (setq bookmark-menu-confirm-deletion t) ; 删除书签前确认
 (setq bookmark-save-flag 1) ; everytime bookmark is changed, automatically save it
+
+;; 鼠标相关
+(setq org-cycle-emulate-tab nil) ; 取消单击缩进
 
 
 ;; 快捷键重映射
@@ -147,7 +161,6 @@
 (global-set-key (kbd "M-I") 'magit-status) ; 打开magit
 (global-set-key (kbd "M-q") 'keyboard-escape-quit) ; ESC ESC ESC
 (global-set-key (kbd "M-<") 'org-insert-structure-template) ; 插入template
-
 (defun backward-kill-char-or-word ()
   "Adopted from https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent"
   (interactive)
@@ -162,17 +175,19 @@
 (global-set-key (kbd "C-<backspace>") 'backward-kill-char-or-word) ; 前向删除
 
 
-;; Vim的一些微调
 ; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
+;; Vim的一些微调
 (define-key evil-normal-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-insert-state-map (kbd "M-u") 'evil-scroll-up)
+(define-key evil-motion-state-map (kbd "M-u") 'evil-scroll-up)
 (define-key evil-normal-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-visual-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-insert-state-map (kbd "M-U") (lambda () (interactive) (evil-scroll-line-up 3))) ;; 向上滚屏
 (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-visual-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-insert-state-map (kbd "M-d") 'evil-scroll-down)
+(define-key evil-motion-state-map (kbd "M-d") 'evil-scroll-down)
 (define-key evil-normal-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-visual-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-insert-state-map (kbd "M-D") (lambda () (interactive) (evil-scroll-line-down 3))) ;; 向下滚屏，大写D其实包含Shift+d
@@ -181,6 +196,19 @@
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "<return>") 'dired-find-file)
   ) ; 链接跳转
+(with-eval-after-load 'help
+  (evil-make-overriding-map help-mode-map 'normal t)
+  (evil-define-key 'normal help-mode-map
+    (kbd "H") 'help-go-back
+    (kbd "L") 'help-go-forward
+    (kbd "h") 'evil-backward-char
+    (kbd "l") 'evil-forward-char
+    (kbd "j") 'evil-next-line
+    (kbd "k") 'evil-previous-line
+    (kbd "gg") 'evil-goto-first-line
+    (kbd "G") 'evil-goto-line
+    )
+  ) ; Help buffer下的快捷键 ref: https://github.com/syl20bnr/spacemacs/issues/2490#issuecomment-131660583
 (evil-define-key 'normal emacs-lisp-mode-map
   (kbd "<return>") 'find-function-at-point
   ) ; 函数跳转
@@ -213,13 +241,16 @@
   (kbd "L") 'magit-log
   (kbd "q") 'magit-mode-bury-buffer
   (kbd "<return>") 'magit-visit-thing
-  (kbd "M-d") 'magit-section-forward
-  (kbd "M-u") 'magit-section-backward
+  (kbd "<down>") 'magit-section-forward
+  (kbd "<up>") 'magit-section-backward
   ) ; magit status下的快捷键
 (evil-define-key 'normal outline-mode-map
-  (kbd "<down>") 'org-forward-heading-same-level
-  (kbd "<up>") 'org-backward-heading-same-level
+  (kbd "<down>") 'org-next-visible-heading
+  ;; (kbd "<down>") 'org-forward-heading-same-level
+  (kbd "<up>") 'org-previous-visible-heading
+  ;; (kbd "<up>") 'org-backward-heading-same-level
   (kbd "<left>") 'outline-up-heading
+  (kbd "<right>") 'org-next-visible-heading
   ) ; heading间移动
 (evil-define-key 'normal bookmark-bmenu-mode-map
   (kbd "r") 'bookmark-bmenu-rename
@@ -251,9 +282,7 @@
   (interactive)
   (if (not (org-at-table-p))
       (tab-to-tab-stop)
-    (org-cycle)
-    )
-  )
+    (org-cycle)))
 (define-key evil-insert-state-map (kbd "<tab>") 'zeit/tab) ; 插入模式下恢复tab
 (define-key evil-insert-state-map (kbd "C-v") 'org-yank) ; 插入模式下恢复C-v
 (define-key evil-insert-state-map (kbd "C-c") 'evil-yank) ; 插入模式下恢复C-c
@@ -301,16 +330,23 @@
 (define-key evil-normal-state-map (kbd "M-o") 'org-mark-ring-goto) ; 回到上次操作的地方
 (define-key evil-insert-state-map (kbd "M-o") 'evil-open-below) ; 添加新行在下方
 (define-key evil-insert-state-map (kbd "M-O") 'evil-open-above) ; 添加新行在上方
-(define-key evil-insert-state-map (kbd "M-E") 'org-emphasize) ; markup
+(define-key evil-insert-state-map (kbd "M-~") 'org-emphasize) ; markup
 (define-key evil-insert-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-normal-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-motion-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
-(define-key evil-normal-state-map (kbd "m") 'bookmark-set) ; 添加书签
-(define-key evil-motion-state-map (kbd "m") 'bookmark-set) ; 添加书签
-(define-key evil-normal-state-map (kbd "'") 'bookmark-jump) ; 跳转书签
-(define-key evil-motion-state-map (kbd "'") 'bookmark-jump) ; 跳转书签
-(define-key evil-normal-state-map (kbd "M") 'bookmark-bmenu-list) ; 显示所有书签
-(define-key evil-motion-state-map (kbd "M") 'bookmark-bmenu-list) ; 显示所有书签
+(define-key evil-normal-state-map (kbd "M") 'bookmark-set) ; 添加书签
+(define-key evil-motion-state-map (kbd "M") 'bookmark-set) ; 添加书签
+(define-key evil-normal-state-map (kbd "M-m") 'bookmark-bmenu-list) ; 显示所有书签
+(define-key evil-motion-state-map (kbd "M-m") 'bookmark-bmenu-list) ; 显示所有书签
+(defun zeit/set-mark(CHAR &optional POS ADVANCE)
+  "Set mark in both evil and bookmark."
+  (interactive (list (read-char)))
+  (let ((schar (single-key-description CHAR)))
+    (bookmark-set schar)
+    (evil-set-marker CHAR POS ADVANCE)
+    (message "Mark set and saved as \"%s\"" schar)))
+(define-key evil-normal-state-map (kbd "m") 'zeit/set-mark) ; 添加书签
+(define-key evil-motion-state-map (kbd "m") 'zeit/set-mark) ; 添加书签
 
 ;; 使用key-chord快捷键
 ; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
@@ -331,7 +367,6 @@
 (key-seq-define evil-normal-state-map ";a" 'org-agenda) ; 打开Agenda
 (key-seq-define evil-normal-state-map ";r" 'counsel-recentf) ; 打开最近文件
 (key-seq-define evil-motion-state-map ";r" 'counsel-recentf) ; 打开最近文件
-(key-seq-define evil-normal-state-map ";e" 'org-emphasize) ; markup
 (key-seq-define evil-normal-state-map ";f" 'find-file) ; 查找文件
 (key-seq-define evil-motion-state-map ";f" 'find-file) ; 查找文件
 (key-seq-define evil-normal-state-map ";t" 'org-todo) ; 切换TODO
@@ -427,6 +462,11 @@
 ;; 打开最近文件
 (recentf-mode t)
 
+;; 保存最近浏览位置
+(require 'saveplace)
+(setq save-place-file "~/.emacs.d/forOrgs/saveplace")
+(save-place-mode 1)
+
 ;; 自动更新buffer
 (global-auto-revert-mode t)
 
@@ -462,18 +502,20 @@
          "DONE√(d@/!)"
          "CANC.(c@/!)"
          "FAIL.(f@/!)"
-         ))
-      )
+         )))
 (setq org-todo-keyword-faces
-      '(
-        ("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
+      '(("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
         ("DOING"    . (:background "#4c4c4c" :foreground "#d5cb6d" :weight bold))
         ("STUCK"    . (:background "#4c4c4c" :foreground "#800000" :weight bold))
         ("CANC." . (:background "gray" :foreground "black" :weight bold))
         ("FAIL."   . (:background "gray" :foreground "#793e12" :weight bold))
-        ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))
-        )
-      )
+        ("DONE√"     . (:background "#4c4c4c" :foreground "#86dc2f" :weight bold))))
+
+;; 添加创建日期
+(defun zeit/insert-created-date(&rest ignore)
+  "Borrowed from https://emacs.stackexchange.com/a/72148/38412"
+  (org-set-property "CREATED" (format-time-string "%Y-%m-%d %T")))
+(advice-add 'org-insert-todo-heading :after #'zeit/insert-created-date)
 
 ;; 自动DONE
 (defun org-summary-todo (n-done n-not-done)
@@ -483,11 +525,7 @@
      (if (= n-not-done 0) "DONE√"       ; all done
        (if (= n-done 0) "TODO°"         ; all not done
          "DOING"                        ; some done
-         )
-       )
-     )
-    )
-  )
+         )))))
 (add-hook 'org-after-todo-statistics-hook #'org-summary-todo)
 
 ;; 时间线
@@ -497,8 +535,7 @@
         (daily today require-timed)
         (300 600 900 1200 1500 1800 2100 2400)
         "-....." "---------------------------------------"
-        )
-      )
+        ))
 (setq org-agenda-current-time-string
       "--------------¯\\_(ツ)_/¯---------------"
       )
