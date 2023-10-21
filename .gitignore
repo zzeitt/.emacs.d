@@ -6,6 +6,7 @@ server/
 transient/
 forOrgs/
 org-persist/
+elpa/
 
 # Files
 *~
