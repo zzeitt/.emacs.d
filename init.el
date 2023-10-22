@@ -457,8 +457,8 @@
       )
 (package-initialize)
 
-;; 关闭自动备份
-(setq make-backup-files nil)
+;; 开启自动备份
+(setq make-backup-files t)
 
 ;; 打开最近文件
 (recentf-mode t)
