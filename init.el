@@ -351,9 +351,13 @@
 
 ;; 使用key-chord快捷键
 ; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
+(add-to-list 'load-path "~/.emacs.d/myscripts/key-chord")
+(add-to-list 'load-path "~/.emacs.d/myscripts/key-seq")
 (require 'key-chord)
-(setq key-chord-two-keys-delay 0.1)
-(key-chord-mode 1) 
+(require 'key-seq)
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.05)
+(setq key-chord-safety-interval-forward 0.1)
 (key-seq-define evil-normal-state-map "vc" 'evil-visual-block) ; 块可视模式
 (key-seq-define evil-visual-state-map "vc" 'evil-visual-block) ; 块可视模式
 (key-seq-define evil-motion-state-map "vc" 'evil-visual-block) ; 块可视模式
