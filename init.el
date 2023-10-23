@@ -70,6 +70,7 @@
 
 ;; 开启shift-selection
 (setq org-support-shift-select t)
+(delete-selection-mode 1)
 
 ;; 开启行内图片
 (setq org-startup-with-inline-images t)
