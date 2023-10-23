@@ -18,7 +18,7 @@
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(valign htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
@@ -121,7 +121,6 @@
 ;; 表格自动对齐和折叠
 (setq org-startup-align-all-tables t)
 (setq org-startup-shrink-all-tables t)
-(add-hook 'org-mode-hook #'valign-mode) ; 开启表格对齐
 
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
