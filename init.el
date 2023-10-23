@@ -44,7 +44,6 @@
 (set-language-environment "UTF-8")
 (pixel-scroll-mode t)
 (setq file-name-coding-system 'gbk) ; (Maybe...?)解决中文路径乱码
-(add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1))) ; 开启zotxt-mode
 
 ;;; ------------------------ 美化相关 ---------------------------
 ;; 字体配置
@@ -85,6 +84,8 @@
 (add-hook 'org-mode-hook 'org-appear-mode) ; 开启org-appear
 
 ;;; ------------------------- 个人习惯 ---------------------------
+(add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1))) ; 开启zotxt-mode
+
 ;; 开启Evil模式
 (setq evil-want-C-i-jump nil) ; 恢复orgmode的<tab>功能
 (require 'evil)
