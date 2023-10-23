@@ -68,6 +68,9 @@
 ;; 开启自动换行
 (global-visual-line-mode 1)
 
+;; 开启shift-selection
+(setq org-support-shift-select t)
+
 ;; 开启行内图片
 (setq org-startup-with-inline-images t)
 (setq org-image-actual-width nil)
@@ -125,9 +128,6 @@
 
 ;; 在行尾换行
 (setq org-M-RET-may-split-line '((default . nil)))
-
-;; 开启shift-selection
-(setq org-support-shift-select t)
 
 ;; 开启agenda
 (require 'org-agenda) ; 否则无法重映射agenda下的快捷键
@@ -289,6 +289,10 @@
 (define-key evil-insert-state-map (kbd "C-v") 'org-yank) ; 插入模式下恢复C-v
 (define-key evil-insert-state-map (kbd "C-c") 'evil-yank) ; 插入模式下恢复C-c
 (define-key evil-insert-state-map (kbd "C-z") 'evil-undo) ; 插入模式下恢复C-z
+(define-key evil-insert-state-map (kbd "<left>") 'backward-char) ; 插入模式下恢复shift
+(define-key evil-insert-state-map (kbd "<right>") 'forward-char) ; 插入模式下恢复shift
+(define-key evil-insert-state-map (kbd "S-<left>") nil) ; 插入模式下恢复shift
+(define-key evil-insert-state-map (kbd "S-<right>") nil) ; 插入模式下恢复shift
 (define-key minibuffer-local-map (kbd "C-v") 'org-yank) ; minibuffer中恢复C-v
 (define-key minibuffer-local-map (kbd "C-c") 'evil-yank) ; minibuffer中恢复C-c
 (define-key minibuffer-local-map (kbd "C-z") 'evil-undo) ; minibuffer中恢复C-z
