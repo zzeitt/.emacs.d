@@ -429,10 +429,10 @@
 (defun zeit/toggle ()
   "Toggle link/inline-image/force-cycle."
   (interactive)
+  (org-latex-preview)
   (org-toggle-link-display)
   (org-toggle-inline-images)
-  (org-force-cycle-archived)
-  (org-latex-preview)
+  (org-cycle-force-archived)
   )
 (key-seq-define evil-normal-state-map ";;" 'zeit/toggle) ; 切换显示
 (key-seq-define evil-motion-state-map ";;" 'zeit/toggle) ; 切换显示
