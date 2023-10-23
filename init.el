@@ -356,7 +356,7 @@
 (require 'key-chord)
 (require 'key-seq)
 (key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.05)
+(setq key-chord-two-keys-delay 0.1)
 (setq key-chord-safety-interval-forward 0.1)
 (key-seq-define evil-normal-state-map "vc" 'evil-visual-block) ; 块可视模式
 (key-seq-define evil-visual-state-map "vc" 'evil-visual-block) ; 块可视模式
