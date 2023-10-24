@@ -341,6 +341,11 @@
 (define-key evil-insert-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-normal-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-motion-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
+(define-key evil-visual-state-map (kbd "*") (lambda () (interactive) (org-emphasize ?\*))) ; markup "*"
+(define-key evil-visual-state-map (kbd "=") (lambda () (interactive) (org-emphasize ?\*))) ; markup "="
+(define-key evil-visual-state-map (kbd "/") (lambda () (interactive) (org-emphasize ?\/))) ; markup "/"
+(define-key evil-visual-state-map (kbd "+") (lambda () (interactive) (org-emphasize ?\+))) ; markup "+"
+(define-key evil-visual-state-map (kbd "_") (lambda () (interactive) (org-emphasize ?\_))) ; markup "_"
 (define-key evil-normal-state-map (kbd "M") 'bookmark-set) ; 添加书签
 (define-key evil-motion-state-map (kbd "M") 'bookmark-set) ; 添加书签
 (define-key evil-normal-state-map (kbd "M-m") 'bookmark-bmenu-list) ; 显示所有书签
