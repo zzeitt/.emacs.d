@@ -342,7 +342,7 @@
 (define-key evil-normal-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-motion-state-map (kbd "M-`") (lambda () (interactive) (org-emphasize ?\~))) ; markup "~"
 (define-key evil-visual-state-map (kbd "*") (lambda () (interactive) (org-emphasize ?\*))) ; markup "*"
-(define-key evil-visual-state-map (kbd "=") (lambda () (interactive) (org-emphasize ?\*))) ; markup "="
+(define-key evil-visual-state-map (kbd "=") (lambda () (interactive) (org-emphasize ?\=))) ; markup "="
 (define-key evil-visual-state-map (kbd "/") (lambda () (interactive) (org-emphasize ?\/))) ; markup "/"
 (define-key evil-visual-state-map (kbd "+") (lambda () (interactive) (org-emphasize ?\+))) ; markup "+"
 (define-key evil-visual-state-map (kbd "_") (lambda () (interactive) (org-emphasize ?\_))) ; markup "_"
