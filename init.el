@@ -253,7 +253,7 @@
   (kbd "<up>") 'org-previous-visible-heading
   ;; (kbd "<up>") 'org-backward-heading-same-level
   (kbd "<left>") 'outline-up-heading
-  (kbd "<right>") 'org-next-visible-heading
+  (kbd "<right>") 'org-forward-heading-same-level
   ) ; heading间移动
 (evil-define-key 'normal bookmark-bmenu-mode-map
   (kbd "r") 'bookmark-bmenu-rename
