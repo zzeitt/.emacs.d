@@ -12,13 +12,14 @@
  '(inhibit-startup-screen t)
  '(org-agenda-breadcrumbs-separator " > ")
  '(org-agenda-tags-column -60)
+ '(org-babel-load-languages '((python . t) (shell . t)))
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
