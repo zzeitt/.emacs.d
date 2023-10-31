@@ -11,8 +11,6 @@
    '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "ab2cbf30ab758c5e936b527377d543ce4927001742f79519b62c45ba9dd9f55e" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "3263bd17a7299449e6ffe118f0a14b92373763c4ccb140f4a30c182a85516d7f" default))
  '(inhibit-startup-screen t)
  '(org-agenda-breadcrumbs-separator " > ")
- '(org-agenda-files
-   '("~/.emacs.d/forOrgs/forNotes/forTech/vml/vml.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/habbit.org" "c:/Users/zhongtao/.emacs.d/forOrgs/hello.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/stuff.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
  '(org-agenda-tags-column -60)
  '(org-babel-load-languages '((python . t) (shell . t)))
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
@@ -570,7 +568,7 @@
         "~/.emacs.d/forOrgs/film.org"
         "~/.emacs.d/forOrgs/game.org"
         "~/.emacs.d/forOrgs/geek.org"
-        "~/.emacs.d/forOrgs/habbit.org"
+        "~/.emacs.d/forOrgs/habit.org"
         "~/.emacs.d/forOrgs/init.org"
         "~/.emacs.d/forOrgs/learn.org"
         "~/.emacs.d/forOrgs/life.org"
