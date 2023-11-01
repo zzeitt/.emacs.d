@@ -118,6 +118,10 @@
 (with-eval-after-load 'evil-maps
   (define-key evil-normal-state-map (kbd "q") 'zeit/evil-record-macro))
 
+;; evil visual 模式下替换
+; Ref: https://stackoverflow.com/questions/27125661/emacs-evil-mode-replace-only-in-visual-selection-visual-block#comment42803881_27135843
+(setq evil-ex-visual-char-range t) ; visual模式下自动打开`<,`>
+
 ;; 自动半最大化
 (setq default-frame-alist
   '((fullscreen . fullheight)
