@@ -77,6 +77,10 @@
 (setq org-startup-with-inline-images t)
 (setq org-image-actual-width nil)
 
+;; 运行src block后自动刷新行内图片
+(eval-after-load 'org
+  (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images))
+
 ;; 显示列号、文件大小、时间
 (setq column-number-mode t)
 (setq size-indication-mode t)
