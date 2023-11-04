@@ -19,7 +19,7 @@
  '(org-startup-folded 'show2levels)
  '(org-tags-column -60)
  '(package-selected-packages
-   '(powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(org-super-agenda powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
@@ -230,7 +230,7 @@
   (kbd "v") 'org-agenda-view-mode-dispatch
   (kbd "q") 'org-agenda-quit
   ) ; agenda模式下的快捷键
-(evil-define-key 'normal magit-mode-map
+(evil-define-key '(normal visual) magit-mode-map
   (kbd "d") 'magit-discard
   (kbd "u") 'magit-unstage
   (kbd "U") 'magit-unstage-all
@@ -560,6 +560,12 @@
       )
 
 ;; Agenda
+; 开启org-super-agenda
+(org-super-agenda-mode t)
+(setq org-super-agenda-header-map (make-sparse-keymap)) ; 取消默认按键映射
+(setq org-super-agenda-groups
+      '((:auto-category t)))
+
 (setq org-agenda-files 
       '(
         "~/.emacs.d/forOrgs/book.org"
