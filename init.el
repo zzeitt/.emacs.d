@@ -539,10 +539,10 @@
         ("DONE√"     . (:background "#59aa00" :foreground "#e4e4e4" :weight bold))))
 
 ;; 添加创建日期
-(defun zeit/insert-created-date(&rest ignore)
-  "Borrowed from https://emacs.stackexchange.com/a/72148/38412"
-  (org-set-property "CREATED" (format-time-string "%Y-%m-%d %T")))
-(advice-add 'org-insert-todo-heading :after #'zeit/insert-created-date)
+;; (defun zeit/insert-created-date(&rest ignore)
+;;   "Borrowed from https://emacs.stackexchange.com/a/72148/38412"
+;;   (org-set-property "CREATED" (format-time-string "%Y-%m-%d %T")))
+;; (advice-add 'org-insert-todo-heading :after #'zeit/insert-created-date)
 
 ;; 自动DONE
 (defun org-summary-todo (n-done n-not-done)
