@@ -12,7 +12,12 @@
  '(inhibit-startup-screen t)
  '(org-agenda-breadcrumbs-separator " > ")
  '(org-agenda-tags-column -60)
- '(org-babel-load-languages '((python . t) (shell . t)))
+ '(org-babel-load-languages
+   '((python . t)
+     (shell . t)
+     (C . t)
+     (emacs-lisp . t)
+     (latex . t)))
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
