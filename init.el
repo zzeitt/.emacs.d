@@ -254,6 +254,7 @@
   (kbd "i") 'magit-gitignore
   (kbd "I") 'magit-init
   (kbd "c") 'magit-commit
+  (kbd "p") 'magit-pull
   (kbd "P") 'magit-push
   (kbd "L") 'magit-log
   (kbd "q") 'magit-mode-bury-buffer
