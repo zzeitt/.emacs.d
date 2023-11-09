@@ -528,8 +528,8 @@
 ;; 关键字（配置完计得输入`M-x org-mode-restart`）
 (setq org-todo-keywords
       '((sequence
-         "TODO°(t)"
          "DOING(i)"
+         "TODO°(t)"
          "STUCK(s)"
          "AWAIT(a)"
          "|"
@@ -538,8 +538,9 @@
          "FAIL.(f@/!)"
          )))
 (setq org-todo-keyword-faces
-      '(("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
+      '(
         ("DOING"    . (:background "#4c4c4c" :foreground "#d5cb6d" :weight bold))
+        ("TODO°"     . (:background "#4c4c4c" :foreground "#dc752e" :weight bold))
         ("STUCK"    . (:background "#4c4c4c" :foreground "#800000" :weight bold))
         ("AWAIT" . (:background "#073642" :foreground "gray" :weight bold))
         ("CANC." . (:background "gray" :foreground "black" :weight bold))
