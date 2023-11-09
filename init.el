@@ -180,10 +180,17 @@
                                         ; Ref: https://stackoverflow.com/questions/27125661/emacs-evil-mode-replace-only-in-visual-selection-visual-block#comment42803881_27135843
 
 ;; 自动半最大化
-(setq default-frame-alist
-      '((fullscreen . fullheight)
-        (left . 0)
-        (top . 0)))
+(if
+    (> (length (display-monitor-attributes-list)) 1)
+    (setq default-frame-alist
+          '((fullscreen . maximized)
+            (left . -2800)
+            (top . -1296)))
+  (setq default-frame-alist
+        '((fullscreen . fullheight)
+          (left . 0)
+          (top . 0))))
+
 ;; 表格自动对齐和折叠
 (setq org-startup-align-all-tables t)
 (setq org-startup-shrink-all-tables t)
