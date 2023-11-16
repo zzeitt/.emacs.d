@@ -77,6 +77,11 @@
 (setq-default indent-tabs-mode nil)
 ;; 开启自动换行
 (global-visual-line-mode 1)
+(add-hook 'Buffer-menu-mode-hook
+          (lambda
+            ()
+            (visual-line-mode -1)
+            (toggle-truncate-lines 1)))
 ;; 开启shift-selection
 (setq org-support-shift-select t)
 (delete-selection-mode 1)
