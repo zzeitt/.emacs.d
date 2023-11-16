@@ -6,12 +6,13 @@
  ;; If there is more than one, they won't work right.
  '(bookmark-default-file "~/.emacs.d/forOrgs/bookmarks")
  '(bookmark-sort-flag 'last-modified)
- '(custom-enabled-themes
-   '(spacemacs-dark))
+ '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
    '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "ab2cbf30ab758c5e936b527377d543ce4927001742f79519b62c45ba9dd9f55e" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "3263bd17a7299449e6ffe118f0a14b92373763c4ccb140f4a30c182a85516d7f" default))
  '(inhibit-startup-screen t)
  '(org-agenda-breadcrumbs-separator " > ")
+ '(org-agenda-files
+   '("~/.emacs.d/forOrgs/forNotes/forTech/float/float.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/habit.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/stuff.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
  '(org-agenda-tags-column -60)
  '(org-babel-load-languages
    '((python . t)
@@ -19,10 +20,7 @@
      (C . t)
      (emacs-lisp . t)
      (latex . t)))
- '(org-priority-faces
-   '((65 . "#ff6361")
-     (66 . "#bc5090")
-     (67 . "#494ca2")))
+ '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
  '(org-startup-folded 'show2levels)
@@ -38,42 +36,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default
-   ((t
-     (:family "Sarasa Fixed SC" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))
- '(bold
-   ((t
-     (:weight bold :foundry "outline" :family "Sarasa Fixed SC"))))
- '(italic
-   ((t
-     (:slant italic :weight light :foundry "outline" :family "Sarasa Fixed SC"))))
- '(org-agenda-done
-   ((t
-     (:foreground "dark green" :height 1.0))))
- '(org-code
-   ((t
-     (:foreground "#28def0" :box
-                  (:line-width
-                   (1 . 1)
-                   :color "grey75" :style released-button)))))
- '(org-habit-alert-face
-   ((t
-     (:background "gold" :foreground "black"))))
- '(org-habit-alert-future-face
-   ((t
-     (:background "darkgoldenrod" :foreground "black"))))
- '(org-scheduled-previously
-   ((t
-     (:foreground "MediumOrchid4" :slant italic))))
- '(org-upcoming-distant-deadline
-   ((t
-     (:inherit org-priority :foreground "gold"))))
- '(org-verbatim
-   ((t
-     (:foreground "#4f97d7" :box
-                  (:line-width
-                   (1 . 1)
-                   :color "grey75" :style released-button))))))
+ '(default ((t (:family "Sarasa Fixed SC" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))
+ '(bold ((t (:weight bold :foundry "outline" :family "Sarasa Fixed SC"))))
+ '(italic ((t (:slant italic :weight light :foundry "outline" :family "Sarasa Fixed SC"))))
+ '(org-agenda-done ((t (:foreground "dark green" :height 1.0))))
+ '(org-code ((t (:foreground "#28def0" :box (:line-width (1 . 1) :color "grey75" :style released-button)))))
+ '(org-habit-alert-face ((t (:background "gold" :foreground "black"))))
+ '(org-habit-alert-future-face ((t (:background "darkgoldenrod" :foreground "black"))))
+ '(org-scheduled-previously ((t (:foreground "MediumOrchid4" :slant italic))))
+ '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold"))))
+ '(org-verbatim ((t (:foreground "#4f97d7" :box (:line-width (1 . 1) :color "grey75" :style released-button))))))
 
 ;;; ------------------------ 必要配置 ---------------------------
 (set-language-environment "UTF-8")
