@@ -1234,3 +1234,4 @@
 ;; 自动刷新
 (with-eval-after-load 'magit-mode
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
+(put 'narrow-to-region 'disabled nil)
