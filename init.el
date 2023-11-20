@@ -1235,3 +1235,11 @@
 (with-eval-after-load 'magit-mode
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 (put 'narrow-to-region 'disabled nil)
+
+;;; -------------------------- 模板 ------------------------------
+(define-skeleton ske-article
+  "Quick insert an article's preamble."
+  nil
+  "#+TITLE: " (skeleton-read "Name this article: ") \n
+  "#+AUTHOR: " (skeleton-read "Who are you? : ") \n
+  "#+DATE: " (format-time-string "<%Y-%m-%d %a %H:%M>"))
