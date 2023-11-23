@@ -87,6 +87,11 @@
             ()
             (visual-line-mode -1)
             (toggle-truncate-lines 1)))
+(add-hook 'bookmark-bmenu-mode-hook
+          (lambda
+            ()
+            (visual-line-mode -1)
+            (toggle-truncate-lines 1)))
 ;; 开启shift-selection
 (setq org-support-shift-select t)
 (delete-selection-mode 1)
