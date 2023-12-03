@@ -297,10 +297,6 @@
  'backward-kill-char-or-word)
                                         ; 前向删除
 (global-set-key
- (kbd "M-M")
- 'completion-at-point)
-                                        ; 补全命令
-
 
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Vim的一些微调
