@@ -1267,12 +1267,23 @@ SCHEDULED: %^{Scheudle}t
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :immediate-finish t :kill-buffer t)
-        ("g" "geek • Ideas" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "Ideas")
+        ("g" "geek")
+        ("gi" "geek • Ideas" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "Ideas")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("t" "geek • ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "ToRead")
+        ("gr" "geek • ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "ToRead")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("go" "geek • Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "Configuration" "OrgMode")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("ge" "geek • Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "Configuration" "Emacs")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
