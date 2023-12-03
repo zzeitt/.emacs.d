@@ -1059,6 +1059,9 @@
   )
 (key-seq-define evil-visual-state-map "[i" 'zeit/addlink)
                                         ; 添加链接
+(key-seq-define evil-normal-state-map ";n" 'org-capture) ; org capture
+(key-seq-define evil-visual-state-map ";n" 'org-capture) ; org capture
+(key-seq-define evil-motion-state-map ";n" 'org-capture) ; org capture
 
 
 ;;; ----------------------- 系统设置 ----------------------------
@@ -1260,6 +1263,7 @@
       '(("s" "stuff • 尽快做完" entry (file+headline "~/.emacs.d/forOrgs/stuff.org" "尽快做完")
          "* TODO° %^{Stuff}
 SCHEDULED: %^{Scheudle}t
+- State \"TODO°\"      from \"\"      %U
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :immediate-finish t :kill-buffer t)
