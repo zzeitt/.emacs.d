@@ -1244,6 +1244,7 @@
 (with-eval-after-load 'magit-mode
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 (put 'narrow-to-region 'disabled nil)
+(add-hook 'git-commit-setup-hook 'evil-insert-state)
 
 ;;; -------------------------- 模板 ------------------------------
 (define-skeleton ske-article
