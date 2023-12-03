@@ -170,14 +170,14 @@
 ;; 自动半最大化
 (if
     (> (length (display-monitor-attributes-list)) 1)
-    (setq default-frame-alist
+    (setq default-frame-alist ; 在第三屏打开
           '((fullscreen . maximized)
             (left . -2800)
             (top . -1296)))
-  (setq default-frame-alist
-        '((fullscreen . fullheight)
-          (left . 0)
-          (top . 0))))
+  (setq default-frame-alist ; 在主屏打开
+        '((fullscreen . maximized))))
+          ;; (left . 0)
+          ;; (top . 0))))
 
 ;; 表格自动对齐和折叠
 (setq org-startup-align-all-tables t)
