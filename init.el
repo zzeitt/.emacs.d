@@ -297,6 +297,8 @@
  'backward-kill-char-or-word)
                                         ; 前向删除
 (global-set-key
+ (kbd "C-c c")
+ 'org-capture)                          ; org-capture
 
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Vim的一些微调
@@ -1250,3 +1252,55 @@
   "#+TITLE: " (skeleton-read "Name this article: ") \n
   "#+AUTHOR: " (skeleton-read "Who are you? : ") \n
   "#+DATE: " (format-time-string "<%Y-%m-%d %a %H:%M>"))
+
+;;; ------------------------ Capture -----------------------------
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
+(setq org-capture-templates
+      '(("s" "stuff • 尽快做完" entry (file+headline "~/.emacs.d/forOrgs/stuff.org" "尽快做完")
+         "* TODO° %^{Stuff}
+SCHEDULED: %^{Scheudle}t
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :immediate-finish t :kill-buffer t)
+        ("g" "geek • Ideas" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "Ideas")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("t" "geek • ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "ToRead")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("f" "film")
+        ("ff" "film • 真人电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "真人电影")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("fa" "film • 动漫" entry (file+headline "~/.emacs.d/forOrgs/film.org" "动漫")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("fA" "film • 动画电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "动画电影")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("fs" "film • 电视剧" entry (file+headline "~/.emacs.d/forOrgs/film.org" "电视剧")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("fs" "film • 电视剧" entry (file+headline "~/.emacs.d/forOrgs/film.org" "电视剧")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("fj" "film • 纪录片" entry (file+headline "~/.emacs.d/forOrgs/film.org" "纪录片")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ))
