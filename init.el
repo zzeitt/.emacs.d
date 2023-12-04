@@ -1268,6 +1268,10 @@ SCHEDULED: %^{Scheudle}t
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :immediate-finish t :kill-buffer t)
+        ("w" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
+         "* TODO° %?
+- State \"TODO°\"      from \"\"      %U"
+:kill-buffer t)
         ("g" "geek")
         ("gi" "geek • Ideas" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "Ideas")
          "* %?
