@@ -597,6 +597,9 @@
 (define-key minibuffer-local-map
             (kbd "C-v")
             'org-yank)
+(define-key isearch-mode-map
+            (kbd "C-v")
+            'isearch-yank-kill)         ; isearch中恢复C-v
                                         ; minibuffer中恢复C-v
 (define-key minibuffer-local-map
             (kbd "C-c")
