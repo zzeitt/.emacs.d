@@ -44,7 +44,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Sarasa Fixed SC" :foundry "outline" :slant normal :weight regular :height 110 :width normal))))
+ '(default ((t (:family "Sarasa Fixed SC" :foundry "outline" :slant normal :weight regular :height 112 :width normal))))
  '(bold ((t (:weight bold :foundry "outline" :family "Sarasa Fixed SC"))))
  '(italic ((t (:slant italic :weight light :foundry "outline" :family "Sarasa Fixed SC"))))
  '(org-agenda-done ((t (:foreground "dark green" :height 1.0))))
