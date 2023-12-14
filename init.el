@@ -1278,7 +1278,7 @@ SCHEDULED: %^{Scheudle}t
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("gr" "geek • ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "ToRead")
+        ("gt" "geek • ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "ToRead")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
