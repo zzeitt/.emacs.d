@@ -57,7 +57,7 @@
 
 ;;; ------------------------ 必要配置 ---------------------------
 (set-language-environment "UTF-8")
-(pixel-scroll-mode t)
+;; (pixel-scroll-mode t)
 (setq file-name-coding-system 'gbk)
                                         ; (Maybe...?)解决中文路径乱码
 
@@ -298,6 +298,20 @@
  (kbd "C-c c")
  'org-capture)                          ; org-capture
 
+(global-set-key
+ (kbd "<wheel-up>")
+ (lambda
+   ()
+   (interactive)
+   (evil-scroll-line-up 1)))
+                                        ; 向上滚轮
+(global-set-key
+ (kbd "<wheel-down>")
+ (lambda
+   ()
+   (interactive)
+   (evil-scroll-line-down 1)))
+                                        ; 向下滚轮
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Vim的一些微调
 (define-key evil-normal-state-map
