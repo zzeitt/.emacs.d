@@ -52,6 +52,7 @@
  '(org-habit-alert-face ((t (:background "gold" :foreground "black"))))
  '(org-habit-alert-future-face ((t (:background "darkgoldenrod" :foreground "black"))))
  '(org-scheduled-previously ((t (:foreground "MediumOrchid4" :slant italic))))
+ '(org-tag ((t (:foreground "#9f8766" :inverse-video t :box (:line-width (2 . 2) :color "grey75" :style flat-button) :height 0.6))))
  '(org-upcoming-distant-deadline ((t (:inherit org-priority :foreground "gold"))))
  '(org-verbatim ((t (:foreground "#4f97d7" :box (:line-width (1 . 1) :color "grey75" :style released-button))))))
 
