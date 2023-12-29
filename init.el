@@ -198,8 +198,10 @@
 ;; 鼠标相关
 (setq org-cycle-emulate-tab nil)
                                         ; 取消单击缩进
+;; 开启链接模糊搜索
+(setq org-link-search-must-match-exact-headline nil)
 
-;; 快捷键重映射
+;;; ------------------------- 快捷键重映射 ---------------------------
 ;; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
 (global-set-key
  (kbd "C-<tab>")
