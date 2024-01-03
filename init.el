@@ -148,7 +148,8 @@
                                         ; 在Completion中开启evil
 (evil-set-initial-state 'help-mode 'normal)
                                         ; 在Help中开启evil
-
+(evil-set-initial-state 'recentf-dialog-mode 'normal)
+                                        ; 在recentf list中开启evil
 ;; 重定义evil中的'q'
 (defun zeit/evil-record-macro
     ()
@@ -540,6 +541,19 @@
   'quit-window
   )
 ;; scratch buffer下的快捷键
+
+(evil-define-key 'normal recentf-dialog-mode-map
+  (kbd "j")
+  'next-line
+  (kbd "k")
+  'previous-line
+  (kbd "q")
+  'recentf-cancel-dialog
+  (kbd "<return>")
+  'widget-button-press
+  )
+;; recentf list下的快捷键
+
 (define-key evil-motion-state-map
             (kbd "K")
             nil)
@@ -938,6 +952,10 @@
                                         ; 打开最近文件
 (key-seq-define evil-motion-state-map ";r" 'counsel-recentf)
                                         ; 打开最近文件
+(key-seq-define evil-normal-state-map ";e" 'recentf-edit-list)
+                                        ; 编辑最近文件列表
+(key-seq-define evil-motion-state-map ";e" 'recentf-edit-list)
+                                        ; 编辑最近文件列表
 (key-seq-define evil-normal-state-map ";f" 'find-file)
                                         ; 查找文件
 (key-seq-define evil-motion-state-map ";f" 'find-file)
