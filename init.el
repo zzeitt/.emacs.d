@@ -417,6 +417,8 @@
     'evil-goto-first-line
     (kbd "G")
     'evil-goto-line
+    (kbd "<return>")
+    'push-button
     )
   )
                                         ; Help buffer下的快捷键 ref: https://github.com/syl20bnr/spacemacs/issues/2490#issuecomment-131660583
