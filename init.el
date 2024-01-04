@@ -1362,3 +1362,16 @@ SCHEDULED: %^{Scheudle}t
 :CAPTURED: %U
 :END:" :kill-buffer t)
         ))
+
+;;; -------------------- Self-defined Org-babel --------------------------
+;; Remote Ssh
+(add-to-list 'org-src-lang-modes '("rs" . sh))
+(defun org-babel-execute:rs (body params)
+  "Execute a block of bash command on remote host."
+  (let ((host (cdr (assq :host params)))
+        (path (cdr (assq :path params))))
+    (if path
+        (setq body (format "cd %s && %s" path body)))
+    ;; (message body)
+    (org-babel-eval
+     (format "ssh %s %S" host body) "")))
