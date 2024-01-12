@@ -916,7 +916,10 @@
             (kbd "m")
             'zeit/set-mark)
                                         ; 添加书签
-
+(define-key evil-insert-state-map
+            (kbd "M-P")
+            'org-set-property)
+                                        ; 设置属性
 ;; 使用key-chord快捷键
 ;; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
 (add-to-list 'load-path "~/.emacs.d/myscripts/key-chord")
