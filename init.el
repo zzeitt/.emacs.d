@@ -1103,6 +1103,9 @@
 (key-seq-define evil-normal-state-map ";n" 'org-capture) ; org capture
 (key-seq-define evil-visual-state-map ";n" 'org-capture) ; org capture
 (key-seq-define evil-motion-state-map ";n" 'org-capture) ; org capture
+(key-seq-define evil-normal-state-map "zc"
+                (lambda () (interactive)
+                  (org-babel-execute-src-block 1))) ; force rerun babel src-block
 
 
 ;;; ----------------------- 系统设置 ----------------------------
