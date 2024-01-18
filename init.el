@@ -393,9 +393,32 @@
             'org-open-at-point)
 ;; 链接跳转
 (with-eval-after-load 'dired
-  (define-key dired-mode-map
-              (kbd "<return>")
-              'dired-find-file)
+  (evil-define-key 'normal dired-mode-map
+    (kbd "<return>")
+    'dired-find-file
+    (kbd "K")
+    'next-buffer
+    (kbd "J")
+    'previous-buffer
+    (kbd "H")
+    'dired-up-directory
+    (kbd "L")
+    'quit-window  ;; so that works like go "forth"
+    (kbd "t")
+    'find-file
+    (kbd "o")
+    'dired-create-directory
+    (kbd "d")
+    (lambda
+      ()
+      (interactive)
+      (dired-do-flagged-delete)
+      (dired-do-delete))
+    (kbd "gg")
+    'evil-goto-first-line
+    (kbd "G")
+    'evil-goto-line
+    )
   )
 ;; 链接跳转
 (with-eval-after-load 'help
@@ -961,9 +984,9 @@
                                         ; 编辑最近文件列表
 (key-seq-define evil-motion-state-map ";e" 'recentf-edit-list)
                                         ; 编辑最近文件列表
-(key-seq-define evil-normal-state-map ";f" 'find-file)
+(key-seq-define evil-normal-state-map ";f" 'dired-jump)
                                         ; 查找文件
-(key-seq-define evil-motion-state-map ";f" 'find-file)
+(key-seq-define evil-motion-state-map ";f" 'dired-jump)
                                         ; 查找文件
 (key-seq-define evil-normal-state-map ";t" 'org-todo)
                                         ; 切换TODO
