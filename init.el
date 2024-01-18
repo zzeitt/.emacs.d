@@ -418,6 +418,8 @@
     'evil-goto-first-line
     (kbd "G")
     'evil-goto-line
+    (kbd "r")
+    'revert-buffer
     )
   )
 ;; 链接跳转
