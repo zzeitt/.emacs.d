@@ -82,7 +82,7 @@
 (setq org-startup-indented t)
 ;; Prevent Extraneous Tabs
 (setq-default indent-tabs-mode nil)
-;; 开启自动换行
+;; 自动换行开启与关闭
 (global-visual-line-mode 1)
 (add-hook 'Buffer-menu-mode-hook
           (lambda
@@ -90,6 +90,11 @@
             (visual-line-mode -1)
             (toggle-truncate-lines 1)))
 (add-hook 'bookmark-bmenu-mode-hook
+          (lambda
+            ()
+            (visual-line-mode -1)
+            (toggle-truncate-lines 1)))
+(add-hook 'dired-mode-hook
           (lambda
             ()
             (visual-line-mode -1)
@@ -420,6 +425,10 @@
     'evil-goto-line
     (kbd "r")
     'revert-buffer
+    (kbd "0")
+    'evil-beginning-of-line
+    (kbd "$")
+    'evil-end-of-line
     )
   )
 ;; 链接跳转
