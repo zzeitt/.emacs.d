@@ -1409,9 +1409,12 @@ SCHEDULED: %^{Scheudle}t
 (defun org-babel-execute:rs (body params)
   "Execute a block of bash command on remote host."
   (let ((host (cdr (assq :host params)))
-        (path (cdr (assq :path params))))
+        (path (cdr (assq :path params)))
+        (sraw (cdr (assq :sraw params))))
     (if path
         (setq body (format "cd %s && %s" path body)))
-    ;; (message body)
-    (org-babel-eval
-     (format "ssh %s %S" host body) "")))
+    (if sraw
+        (setq cmd (format "ssh %s \"%s\"" host body))
+      (setq cmd (format "ssh %s %S" host body)))
+    (message cmd)
+    (org-babel-eval cmd "")))
