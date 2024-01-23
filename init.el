@@ -679,38 +679,6 @@
             (kbd "$ a M-S-<return> <escape>"))
                                         ; normal模式org-insert-todo-heading
 (define-key evil-normal-state-map
-            (kbd "M-[")
-            'enlarge-window)
-                                        ; 竖向增大窗口
-(define-key evil-motion-state-map
-            (kbd "M-[")
-            'enlarge-window)
-                                        ; 竖向增大窗口
-(define-key evil-normal-state-map
-            (kbd "M-]")
-            'shrink-window)
-                                        ; 竖向压缩窗口
-(define-key evil-motion-state-map
-            (kbd "M-]")
-            'shrink-window)
-                                        ; 竖向压缩窗口
-(define-key evil-normal-state-map
-            (kbd "M-{")
-            'enlarge-window-horizontally)
-                                        ; 横向扩大窗口
-(define-key evil-motion-state-map
-            (kbd "M-{")
-            'enlarge-window-horizontally)
-                                        ; 横向扩大窗口
-(define-key evil-normal-state-map
-            (kbd "M-}")
-            'shrink-window-horizontally)
-                                        ; 横向压缩窗口
-(define-key evil-motion-state-map
-            (kbd "M-}")
-            'shrink-window-horizontally)
-                                        ; 横向压缩窗口
-(define-key evil-normal-state-map
             (kbd "M-|")
             'split-window-below)
                                         ; 横向分割
@@ -794,6 +762,62 @@
             (kbd "M-[")
             'org-metaleft)
                                         ; 将项目左移(但不影响子项目)
+(defun zeit/enlarge-or-metaleft ()
+  "Enlarge windows or do org-metaleft in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (enlarge-window 1)
+    (org-metaleft)))
+(defun zeit/shrink-or-metaright ()
+  "Shrink windows or do org-metaright in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (shrink-window 1)
+    (org-metaright)))
+(defun zeit/enlarge-or-metaup ()
+  "Enlarge windows horizontally or do org-metaup in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (enlarge-window-horizontally 1)
+    (org-metaup)))
+(defun zeit/shrink-or-metadown ()
+  "Shrink windows horizontally or do org-metadown in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (shrink-window-horizontally 1)
+    (org-metadown)))
+(define-key evil-normal-state-map
+            (kbd "M-[")
+            'zeit/enlarge-or-metaleft)
+                                        ; 竖向增大窗口or表格列左移
+(define-key evil-motion-state-map
+            (kbd "M-[")
+            'enlarge-window)
+                                        ; 竖向增大窗口
+(define-key evil-normal-state-map
+            (kbd "M-]")
+            'zeit/shrink-or-metaright)
+                                        ; 竖向压缩窗口or表格列右移
+(define-key evil-motion-state-map
+            (kbd "M-]")
+            'shrink-window)
+                                        ; 竖向压缩窗口
+(define-key evil-normal-state-map
+            (kbd "M-{")
+            'zeit/enlarge-or-metaup)
+                                        ; 横向扩大窗口or表格行上移
+(define-key evil-motion-state-map
+            (kbd "M-{")
+            'enlarge-window-horizontally)
+                                        ; 横向扩大窗口
+(define-key evil-normal-state-map
+            (kbd "M-}")
+            'zeit/shrink-or-metadown)
+                                        ; 横向压缩窗口or表格行下移
+(define-key evil-motion-state-map
+            (kbd "M-}")
+            'shrink-window-horizontally)
+                                        ; 横向压缩窗口
 (define-key evil-normal-state-map
             (kbd "M-S")
             'save-some-buffers)
