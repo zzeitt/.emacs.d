@@ -770,14 +770,14 @@
             (kbd "M-?")
             'evil-toggle-fold)
                                         ; 折叠
-(define-key evil-insert-state-map
-            (kbd "M-n")
-            'org-metadown)
-                                        ; 将项目下移
-(define-key evil-insert-state-map
-            (kbd "M-N")
-            'org-metaup)
-                                        ; 将项目上移
+;; (define-key evil-insert-state-map
+;;             (kbd "M-n")
+;;             'org-metadown)
+;;                                         ; 将项目下移
+;; (define-key evil-insert-state-map
+;;             (kbd "M-N")
+;;             'org-metaup)
+;;                                         ; 将项目上移
 (define-key evil-insert-state-map
             (kbd "M-i")
             'org-shiftmetaright)
@@ -786,6 +786,14 @@
             (kbd "M-I")
             'org-shiftmetaleft)
                                         ; 将项目左移
+(define-key evil-insert-state-map
+            (kbd "M-]")
+            'org-metaright)
+                                        ; 将项目右移(但不影响子项目)
+(define-key evil-insert-state-map
+            (kbd "M-[")
+            'org-metaleft)
+                                        ; 将项目左移(但不影响子项目)
 (define-key evil-normal-state-map
             (kbd "M-S")
             'save-some-buffers)
