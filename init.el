@@ -747,78 +747,18 @@
 ;;             (kbd "M-N")
 ;;             'org-metaup)
 ;;                                         ; 将项目上移
+;; (define-key evil-insert-state-map
+;;             (kbd "M-i")
+;;             'org-shiftmetaright)
+;;                                         ; 将项目右移
+;; (define-key evil-insert-state-map
+;;             (kbd "M-I")
+;;             'org-shiftmetaleft)
+;;                                         ; 将项目左移
 (define-key evil-insert-state-map
             (kbd "M-i")
-            'org-shiftmetaright)
-                                        ; 将项目右移
-(define-key evil-insert-state-map
-            (kbd "M-I")
-            'org-shiftmetaleft)
-                                        ; 将项目左移
-(define-key evil-insert-state-map
-            (kbd "M-]")
-            'org-metaright)
-                                        ; 将项目右移(但不影响子项目)
-(define-key evil-insert-state-map
-            (kbd "M-[")
-            'org-metaleft)
-                                        ; 将项目左移(但不影响子项目)
-(defun zeit/enlarge-or-metaleft ()
-  "Enlarge windows or do org-metaleft in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (enlarge-window 1)
-    (org-metaleft)))
-(defun zeit/shrink-or-metaright ()
-  "Shrink windows or do org-metaright in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (shrink-window 1)
-    (org-metaright)))
-(defun zeit/enlarge-or-metaup ()
-  "Enlarge windows horizontally or do org-metaup in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (enlarge-window-horizontally 1)
-    (org-metaup)))
-(defun zeit/shrink-or-metadown ()
-  "Shrink windows horizontally or do org-metadown in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (shrink-window-horizontally 1)
-    (org-metadown)))
-(define-key evil-normal-state-map
-            (kbd "M-[")
-            'zeit/enlarge-or-metaleft)
-                                        ; 竖向增大窗口or表格列左移
-(define-key evil-motion-state-map
-            (kbd "M-[")
-            'enlarge-window)
-                                        ; 竖向增大窗口
-(define-key evil-normal-state-map
-            (kbd "M-]")
-            'zeit/shrink-or-metaright)
-                                        ; 竖向压缩窗口or表格列右移
-(define-key evil-motion-state-map
-            (kbd "M-]")
-            'shrink-window)
-                                        ; 竖向压缩窗口
-(define-key evil-normal-state-map
-            (kbd "M-{")
-            'zeit/enlarge-or-metaup)
-                                        ; 横向扩大窗口or表格行上移
-(define-key evil-motion-state-map
-            (kbd "M-{")
-            'enlarge-window-horizontally)
-                                        ; 横向扩大窗口
-(define-key evil-normal-state-map
-            (kbd "M-}")
-            'zeit/shrink-or-metadown)
-                                        ; 横向压缩窗口or表格行下移
-(define-key evil-motion-state-map
-            (kbd "M-}")
-            'shrink-window-horizontally)
-                                        ; 横向压缩窗口
+            'dabbrev-expand)
+                                        ; 自动扩展词
 (define-key evil-normal-state-map
             (kbd "M-S")
             'save-some-buffers)
@@ -987,6 +927,70 @@
             (kbd "M-P")
             'org-set-property)
                                         ; 设置属性
+(define-key evil-insert-state-map
+            (kbd "M-]")
+            'org-metaright)
+                                        ; 将项目右移(但不影响子项目)
+(define-key evil-insert-state-map
+            (kbd "M-[")
+            'org-metaleft)
+                                        ; 将项目左移(但不影响子项目)
+(defun zeit/enlarge-or-shiftmetaleft ()
+  "Enlarge windows or do org-shiftmetaleft in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (enlarge-window 1)
+    (org-shiftmetaleft)))
+(defun zeit/shrink-or-shiftmetaright ()
+  "Shrink windows or do org-shiftmetaright in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (shrink-window 1)
+    (org-shiftmetaright)))
+(defun zeit/enlarge-or-shiftmetaup ()
+  "Enlarge windows horizontally or do org-shiftmetaup in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (enlarge-window-horizontally 1)
+    (org-shiftmetaup)))
+(defun zeit/shrink-or-shiftmetadown ()
+  "Shrink windows horizontally or do org-shiftmetadown in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (shrink-window-horizontally 1)
+    (org-shiftmetadown)))
+(define-key evil-normal-state-map
+            (kbd "M-[")
+            'zeit/enlarge-or-shiftmetaleft)
+                                        ; 竖向增大窗口or表格列左移
+(define-key evil-motion-state-map
+            (kbd "M-[")
+            'enlarge-window)
+                                        ; 竖向增大窗口
+(define-key evil-normal-state-map
+            (kbd "M-]")
+            'zeit/shrink-or-shiftmetaright)
+                                        ; 竖向压缩窗口or表格列右移
+(define-key evil-motion-state-map
+            (kbd "M-]")
+            'shrink-window)
+                                        ; 竖向压缩窗口
+(define-key evil-normal-state-map
+            (kbd "M-{")
+            'zeit/enlarge-or-shiftmetaup)
+                                        ; 横向扩大窗口or表格行上移
+(define-key evil-motion-state-map
+            (kbd "M-{")
+            'enlarge-window-horizontally)
+                                        ; 横向扩大窗口
+(define-key evil-normal-state-map
+            (kbd "M-}")
+            'zeit/shrink-or-shiftmetadown)
+                                        ; 横向压缩窗口or表格行下移
+(define-key evil-motion-state-map
+            (kbd "M-}")
+            'shrink-window-horizontally)
+                                        ; 横向压缩窗口
 ;; 使用key-chord快捷键
 ;; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
 (add-to-list 'load-path "~/.emacs.d/myscripts/key-chord")
@@ -1078,18 +1082,22 @@
                                         ; 将项目上移
 (key-seq-define evil-motion-state-map ";k" 'org-metaup)
                                         ; 将项目上移
-(key-seq-define evil-normal-state-map ";h" 'org-shiftmetaleft)
+(key-seq-define evil-normal-state-map ";h" 'org-metaleft)
                                         ; 将项目左移
-(key-seq-define evil-motion-state-map ";h" 'org-shiftmetaleft)
+(key-seq-define evil-motion-state-map ";h" 'org-metaleft)
                                         ; 将项目左移
-(key-seq-define evil-normal-state-map ";l" 'org-shiftmetaright)
+(key-seq-define evil-normal-state-map ";l" 'org-metaright)
                                         ; 将项目右移
-(key-seq-define evil-motion-state-map ";l" 'org-shiftmetaright)
+(key-seq-define evil-motion-state-map ";l" 'org-metaright)
                                         ; 将项目右移
-(key-seq-define evil-normal-state-map ";q" 'dabbrev-expand)
-                                        ; 自动扩展词
-(key-seq-define evil-motion-state-map ";q" 'dabbrev-expand)
-                                        ; 自动扩展词
+(key-seq-define evil-normal-state-map "zh" 'org-shiftmetaleft)
+                                        ; 将项目左移(同时移动子项)
+(key-seq-define evil-motion-state-map "zh" 'org-shiftmetaleft)
+                                        ; 将项目左移(同时移动子项)
+(key-seq-define evil-normal-state-map "zl" 'org-shiftmetaright)
+                                        ; 将项目右移(同时移动子项)
+(key-seq-define evil-motion-state-map "zl" 'org-shiftmetaright)
+                                        ; 将项目右移(同时移动子项)
 (key-seq-define evil-normal-state-map ";w" 'org-refile)
                                         ; 移动树项目
 (key-seq-define evil-motion-state-map ";w" 'org-refile)
