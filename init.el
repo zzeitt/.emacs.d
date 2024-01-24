@@ -105,6 +105,7 @@
 (delete-selection-mode 1)
 ;; 开启行内图片
 (setq org-startup-with-inline-images t)
+(setq org-cycle-inline-images-display t)
 (setq org-image-actual-width nil)
 ;; 运行src block后自动刷新行内图片
 (eval-after-load 'org
