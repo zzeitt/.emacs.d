@@ -326,6 +326,15 @@
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Vim的一些微调
 (define-key evil-normal-state-map
+            (kbd "C-a")
+            'mark-whole-buffer)         ; 全选
+(define-key evil-visual-state-map
+            (kbd "C-a")
+            'mark-whole-buffer)         ; 全选
+(define-key evil-insert-state-map
+            (kbd "C-a")
+            'mark-whole-buffer)         ; 全选
+(define-key evil-normal-state-map
             (kbd "M-u")
             'evil-scroll-up)
 (define-key evil-visual-state-map
