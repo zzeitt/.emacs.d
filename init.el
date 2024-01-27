@@ -272,10 +272,6 @@
  'save-buffer)
                                         ; 保存
 (global-set-key
- (kbd "M-I")
- 'magit-status)
-                                        ; 打开magit
-(global-set-key
  (kbd "M-q")
  'keyboard-escape-quit)
                                         ; ESC ESC ESC
@@ -765,6 +761,10 @@
 ;;             (kbd "M-I")
 ;;             'org-shiftmetaleft)
 ;;                                         ; 将项目左移
+(define-key evil-normal-state-map
+            (kbd "M-I")
+            'magit-status)
+                                        ; 打开magit
 (define-key evil-insert-state-map
             (kbd "M-i")
             'dabbrev-expand)
