@@ -272,10 +272,6 @@
  'save-buffer)
                                         ; 保存
 (global-set-key
- (kbd "M-I")
- 'magit-status)
-                                        ; 打开magit
-(global-set-key
  (kbd "M-q")
  'keyboard-escape-quit)
                                         ; ESC ESC ESC
@@ -325,6 +321,10 @@
                                         ; 向下滚轮
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Vim的一些微调
+(define-key evil-normal-state-map
+            (kbd "M-I")
+            'magit-status)
+                                        ; 打开magit
 (define-key evil-normal-state-map
             (kbd "M-u")
             'evil-scroll-up)
