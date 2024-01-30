@@ -322,9 +322,17 @@
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Vim的一些微调
 (define-key evil-normal-state-map
+            (kbd "C-a")
+            'mark-whole-buffer)         ; 全选
+(define-key evil-visual-state-map
+            (kbd "C-a")
+            'mark-whole-buffer)         ; 全选
+(define-key evil-insert-state-map
+            (kbd "C-a")
+            'mark-whole-buffer)         ; 全选
+(define-key evil-normal-state-map
             (kbd "M-I")
-            'magit-status)
-                                        ; 打开magit
+            'magit-status)              ; 打开magit
 (define-key evil-normal-state-map
             (kbd "M-u")
             'evil-scroll-up)
@@ -756,6 +764,10 @@
 ;;             (kbd "M-I")
 ;;             'org-shiftmetaleft)
 ;;                                         ; 将项目左移
+(define-key evil-normal-state-map
+            (kbd "M-I")
+            'magit-status)
+                                        ; 打开magit
 (define-key evil-insert-state-map
             (kbd "M-i")
             'dabbrev-expand)
