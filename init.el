@@ -13,6 +13,8 @@
  '(display-time-mode t)
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-screen t)
+ '(mouse-drag-and-drop-region 'control)
+ '(mouse-drag-and-drop-region-cross-program t)
  '(org-agenda-breadcrumbs-separator " > ")
  '(org-agenda-files
    '("~/.emacs.d/forOrgs/forNotes/forTech/float/float.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/habit.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/stuff.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
@@ -25,6 +27,9 @@
      (latex . t)
      (dot . t)))
  '(org-directory "~/.emacs.d/forOrgs")
+ '(org-download-heading-lvl nil)
+ '(org-download-image-dir "./_assets")
+ '(org-download-timestamp "")
  '(org-list-allow-alphabetical t)
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
  '(org-safe-remote-resources
@@ -40,7 +45,7 @@
      ("cpp" . c++)
      ("ditaa" . artist)
      ("desktop" . conf-desktop)
-     ("dot" . graphviz-dot-mode)
+     ("dot" . graphviz-dot)
      ("elisp" . emacs-lisp)
      ("ocaml" . tuareg)
      ("screen" . shell-script)
@@ -49,12 +54,13 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
  '(safe-local-variable-values
-   '((eval add-hook 'after-save-hook 'org-html-export-to-html nil 'make-it-local)
+   '((org-download-image-dir . "./_assets/hello")
+     (eval add-hook 'after-save-hook 'org-html-export-to-html nil 'make-it-local)
      (eval setq org-format-latex-options
            (plist-put org-format-latex-options :scale 1.2))
      (org-confirm-babel-evaluate)))
@@ -228,6 +234,19 @@
                                         ; 取消单击缩进
 ;; 开启链接模糊搜索
 (setq org-link-search-must-match-exact-headline nil)
+
+;; 开启图片拖拽 (Drag & Drop)
+(require 'org-download)
+(add-hook 'org-mode-hook 'org-download-enable)
+(defun zeit/org-download-annotate (link)
+  "Annotate LINK with the time of download."
+  (format "#+Z: %s @ %s\n"
+          (if (equal link org-download-screenshot-file)
+              "screenshot"
+            link)
+          (format-time-string "%Y-%m-%d %H:%M:%S")))
+(setq org-download-annotate-function #'zeit/org-download-annotate)
+
 
 ;;; ------------------------- 快捷键重映射 ---------------------------
 ;; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
@@ -1177,15 +1196,13 @@
   (message "Refresh done!")
   )
 (key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
-(defun zeit/toggle
-    ()
+(defun zeit/toggle (type)
   "Toggle link/inline-image/force-cycle."
-  (interactive)
-  (org-latex-preview)
-  (org-toggle-link-display)
-  (org-toggle-inline-images)
-  (org-cycle-force-archived)
-  )
+  (interactive "cToggle type: late(x)/(l)ink/(i)mage/(a)rchvied")
+  (cond ((char-equal type ?x) (org-latex-preview))
+        ((char-equal type ?l) (org-toggle-link-display))
+        ((char-equal type ?i) (org-toggle-inline-images))
+        ((char-equal type ?a) (org-cycle-force-archived))))
 (key-seq-define evil-normal-state-map ";;" 'zeit/toggle)
                                         ; 切换显示
 (key-seq-define evil-motion-state-map ";;" 'zeit/toggle)
