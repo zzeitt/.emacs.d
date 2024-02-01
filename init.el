@@ -22,12 +22,31 @@
      (shell . t)
      (C . t)
      (emacs-lisp . t)
-     (latex . t)))
+     (latex . t)
+     (dot . t)))
  '(org-directory "~/.emacs.d/forOrgs")
  '(org-list-allow-alphabetical t)
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
+ '(org-src-lang-modes
+   '(("rs" . sh)
+     ("C" . c)
+     ("C++" . c++)
+     ("asymptote" . asy)
+     ("bash" . sh)
+     ("beamer" . latex)
+     ("calc" . fundamental)
+     ("cpp" . c++)
+     ("ditaa" . artist)
+     ("desktop" . conf-desktop)
+     ("dot" . graphviz-dot-mode)
+     ("elisp" . emacs-lisp)
+     ("ocaml" . tuareg)
+     ("screen" . shell-script)
+     ("shell" . sh)
+     ("sqlite" . sql)
+     ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
    '(powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
@@ -1459,7 +1478,6 @@ SCHEDULED: %^{Scheudle}t
 
 ;;; -------------------- Self-defined Org-babel --------------------------
 ;; Remote Ssh
-(add-to-list 'org-src-lang-modes '("rs" . sh))
 (defun org-babel-execute:rs (body params)
   "Execute a block of bash command on remote host."
   (let ((host (cdr (assq :host params)))
