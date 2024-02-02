@@ -477,6 +477,12 @@
     'evil-beginning-of-line
     (kbd "$")
     'evil-end-of-line
+    (kbd "i")
+    'dired-toggle-read-only
+    )
+  (evil-define-key 'insert wdired-mode-map
+    (kbd "<escape>")
+    (lambda () (interactive) (wdired-finish-edit) (evil-normal-state))
     )
   )
 ;; 链接跳转
