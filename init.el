@@ -1505,7 +1505,16 @@ SCHEDULED: %^{Scheudle}t
   "Execute a block of bash command on remote host."
   (let ((host (cdr (assq :host params)))
         (path (cdr (assq :path params)))
-        (sraw (cdr (assq :sraw params))))
+        (sraw (cdr (assq :sraw params)))
+        (vars (org-babel--get-vars params)))
+    (if (not (null vars))
+        (setq body
+              (concat
+               (mapconcat
+                (lambda (pair)
+                  (format "%s=%S" (car pair) (cdr pair)))
+                vars ";")
+               ";" body)))
     (if path
         (setq body (format "cd %s && %s" path body)))
     (if sraw
