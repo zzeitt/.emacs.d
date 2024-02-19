@@ -151,6 +151,9 @@
             ()
             (org-zotxt-mode 1)))
 
+;; 自动Time Stamp
+(add-hook 'before-save-hook 'time-stamp)
+
 ;; 开启Evil模式
 (setq evil-want-C-i-jump nil)
                                         ; 恢复orgmode的<tab>功能
