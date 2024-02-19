@@ -54,7 +54,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(atomic-chrome org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
@@ -1522,3 +1522,8 @@ SCHEDULED: %^{Scheudle}t
       (setq cmd (format "ssh %s %S" host body)))
     (message cmd)
     (org-babel-eval cmd "")))
+
+;;; -------------------- Atomic Chrome --------------------------
+(require 'atomic-chrome)
+(atomic-chrome-start-server)
+
