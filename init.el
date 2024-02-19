@@ -1426,13 +1426,6 @@
 (put 'narrow-to-region 'disabled nil)
 (add-hook 'git-commit-setup-hook 'evil-insert-state)
 
-;;; -------------------------- 模板 ------------------------------
-(define-skeleton ske-article
-  "Quick insert an article's preamble."
-  nil
-  "#+TITLE: " (skeleton-read "Name this article: ") \n
-  "#+AUTHOR: " (skeleton-read "Who are you? : ") \n
-  "#+DATE: " (format-time-string "<%Y-%m-%d %a %H:%M>"))
 
 ;;; ------------------------ Capture -----------------------------
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
@@ -1530,3 +1523,20 @@ SCHEDULED: %^{Scheudle}t
 (require 'atomic-chrome)
 (atomic-chrome-start-server)
 
+
+;;; -------------------- Auto Insert ----------------------------
+(auto-insert-mode t)
+(define-skeleton ske-article
+  "Quick insert an article's preamble."
+  nil
+  "#+TITLE: " (skeleton-read "Name this article: ") \n
+  "#+AUTHOR: " (skeleton-read "Who are you? : ") \n
+  "#+DATE: " (format-time-string "<%Y-%02m-%02d %3a %02H:%02M:%02S>") \n
+  "Time-stamp: <>" \n
+  - \n
+  "* COMMENT Local Variables" \n
+  "# Local Variables:" \n
+  "# org-confirm-babel-evaluate: nil" \n
+  "# End:"
+)
+(define-auto-insert '(org-mode . "Write Article in Org-mode") 'ske-article)
