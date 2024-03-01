@@ -465,11 +465,7 @@
     (kbd "o")
     'dired-create-directory
     (kbd "d")
-    (lambda
-      ()
-      (interactive)
-      (dired-do-flagged-delete)
-      (dired-do-delete))
+    (lambda () (interactive) (dired-do-flagged-delete) (dired-do-delete))
     (kbd "gg")
     'evil-goto-first-line
     (kbd "G")
@@ -482,6 +478,8 @@
     'evil-end-of-line
     (kbd "i")
     'dired-toggle-read-only
+    (kbd "y")
+    (lambda () (interactive) (let ((current-prefix-arg '(0))) (call-interactively 'dired-copy-filename-as-kill)))
     )
   (evil-define-key 'insert wdired-mode-map
     (kbd "<escape>")
