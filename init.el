@@ -1538,3 +1538,73 @@ SCHEDULED: %^{Scheudle}t
   "# End:"
 )
 (define-auto-insert '(org-mode . "Write Article in Org-mode") 'ske-article)
+
+;;; ------------------- Functions ------------------------------
+(defun zeit/dir-to-nested-list (dir exclude-strings n-level n-depth)
+  "Traverse a given directory, store the info about files
+under the directory in the form of list.
+Arguments:
+  dir:                  the starting directory
+  exclude-string:       to ignored files' patterns
+  n-level:              current level of recursion
+  n-depth:              max depth of recursion
+"
+  (let* ((ret nil)
+         (dir (directory-file-name dir))
+         (exclude-regexp (regexp-opt exclude-strings)))
+    (catch 'dir2list
+      (when (> n-level n-depth) (throw 'dir2list ret))
+      (dolist (file (directory-files dir t directory-files-no-dot-files-regexp t))
+        (unless (string-match exclude-regexp file)
+          (if (file-directory-p file)
+              ;; Recursive entry.
+              (setq file (cons file (zeit/dir-to-nested-list file exclude-strings (1+ n-level) n-depth))))
+          (push file ret))))
+    ret))
+
+(defun zeit/nested-list-to-org (n-start nested-list)
+  "Given nested list like `(a.org (folder b.org c.org)),
+return the headline as org headlines.
+Arguments:
+  n-start:              the starting level
+  nested-list:          the list containg the files
+"
+  (let* ((ret "")
+         (fmt "%s [[%s][%s]]\n"))
+    (dolist (item nested-list)
+      (if (nlistp item)
+          (setq ret (concat ret (format fmt (make-string n-start ?*) item (file-name-nondirectory item))))
+        (setq ret (concat
+                   ret
+                   (format fmt (make-string n-start ?*) (car item) (file-name-nondirectory (car item)))
+                   (zeit/nested-list-to-org (1+ n-start) (cdr item))
+                   ))))
+    ret))
+
+(defun zeit/dir-to-org (dir exclude-strings n-start n-depth)
+  (interactive)
+  (let ((nlist (zeit/dir-to-nested-list dir exclude-strings 1 n-depth)))
+    (zeit/nested-list-to-org n-start nlist)))
+
+(defun zeit/dir-as-org-in-subtree (subtree-name dir exclude-strings n-depth)
+  "Borrowed from: https://emacs.stackexchange.com/a/41566/38412
+Arguments:
+  subtree-name:         the inserted subtree's name
+  dir:                  the directory to insert
+  exclude-strings:      excluding something
+  n-depth:              max depth
+"
+  (org-map-entries
+   (lambda ()
+     (let ((name (nth 4 (org-heading-components)))
+           (n-level (nth 0 (org-heading-components))))
+       (if (string= name subtree-name)
+           (save-restriction
+             (org-mark-subtree)
+             (forward-line)
+             (delete-region (region-beginning) (region-end))
+             (insert (zeit/dir-to-org dir exclude-strings (1+ n-level) n-depth))
+             )))))
+  (message "%s updated!" subtree-name)
+  )
+
