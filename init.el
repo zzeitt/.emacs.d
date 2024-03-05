@@ -1586,7 +1586,7 @@ Arguments:
   (let ((nlist (zeit/dir-to-nested-list dir exclude-strings 1 n-depth)))
     (zeit/nested-list-to-org n-start nlist)))
 
-(defun zeit/dir-as-org-in-subtree (subtree-name dir exclude-strings n-depth)
+(defun zeit/dir-as-org-in-subtree (subtree-tag dir exclude-strings n-depth)
   "Borrowed from: https://emacs.stackexchange.com/a/41566/38412
 Arguments:
   subtree-name:         the inserted subtree's name
@@ -1597,14 +1597,15 @@ Arguments:
   (org-map-entries
    (lambda ()
      (let ((name (nth 4 (org-heading-components)))
+           (tags (nth 5 (org-heading-components)))
            (n-level (nth 0 (org-heading-components))))
-       (if (string= name subtree-name)
+       (if (string= tags subtree-tag)
            (save-restriction
              (org-mark-subtree)
              (forward-line)
              (delete-region (region-beginning) (region-end))
              (insert (zeit/dir-to-org dir exclude-strings (1+ n-level) n-depth))
              )))))
-  (message "%s updated!" subtree-name)
+  (message "%s updated!" subtree-tag)
   )
 
