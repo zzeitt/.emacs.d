@@ -1532,7 +1532,7 @@ SCHEDULED: %^{Scheudle}t
   "#+DATE: " (format-time-string "<%Y-%02m-%02d %3a %02H:%02M:%02S>") \n
   "#+PROPERTY: HEADER-ARGS+ :eval no-export" \n
   "#+PROPERTY: HEADER-ARGS+ :cache yes" \n
-  "Time-stamp: <>" \n
+  "Updated Time-stamp: <>" \n
   - \n
   "* COMMENT Local Variables" \n
   "# Local Variables:" \n
