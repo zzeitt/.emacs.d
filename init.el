@@ -1530,10 +1530,13 @@ SCHEDULED: %^{Scheudle}t
   "#+TITLE: " (skeleton-read "Name this article: ") \n
   "#+AUTHOR: " (skeleton-read "Who are you? : ") \n
   "#+DATE: " (format-time-string "<%Y-%02m-%02d %3a %02H:%02M:%02S>") \n
+  "#+PROPERTY: HEADER-ARGS+ :eval no-export" \n
+  "#+PROPERTY: HEADER-ARGS+ :cache yes" \n
   "Time-stamp: <>" \n
   - \n
   "* COMMENT Local Variables" \n
   "# Local Variables:" \n
+  "# eval: (add-hook 'after-save-hook 'org-html-export-to-html  nil 'make-it-local)" \n
   "# org-confirm-babel-evaluate: nil" \n
   "# End:"
 )
