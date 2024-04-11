@@ -54,7 +54,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(request-deferred atomic-chrome org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
@@ -1614,3 +1614,8 @@ Arguments:
   (message "%s updated!" subtree-tag)
   )
 
+
+;; ----------------------- AsciiDoc Export Backend --------------------
+(add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
+(require 'ox-asciidoc)
+    
