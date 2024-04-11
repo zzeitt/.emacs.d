@@ -1530,8 +1530,10 @@ SCHEDULED: %^{Scheudle}t
   "#+TITLE: " (skeleton-read "Name this article: ") \n
   "#+AUTHOR: " (skeleton-read "Who are you? : ") \n
   "#+DATE: " (format-time-string "<%Y-%02m-%02d %3a %02H:%02M:%02S>") \n
+  "#+STARTUP: latexpreview show2level" \n
   "#+PROPERTY: HEADER-ARGS+ :eval no-export" \n
   "#+PROPERTY: HEADER-ARGS+ :cache yes" \n
+  "#+OPTIONS: ^:{}" \n
   "Updated Time-stamp: <>" \n
   - \n
   "* COMMENT Local Variables" \n
