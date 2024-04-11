@@ -243,11 +243,7 @@
 (add-hook 'org-mode-hook 'org-download-enable)
 (defun zeit/org-download-annotate (link)
   "Annotate LINK with the time of download."
-  (format "#+Z: %s @ %s\n"
-          (if (equal link org-download-screenshot-file)
-              "screenshot"
-            link)
-          (format-time-string "%Y-%m-%d %H:%M:%S")))
+  (format "#+attr_html: :width 80%\n#+caption: %s\n" (file-name-nondirectory link)))
 (setq org-download-annotate-function #'zeit/org-download-annotate)
 
 
