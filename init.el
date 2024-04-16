@@ -153,6 +153,7 @@
 
 ;; 自动Time Stamp
 (add-hook 'before-save-hook 'time-stamp)
+(setq time-stamp-line-limit 20)
 
 ;; 开启Evil模式
 (setq evil-want-C-i-jump nil)
