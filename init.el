@@ -1281,6 +1281,7 @@
                                         ; Refile in a single go
 (setq org-refile-use-outline-path 'file)
                                         ; 显示完整路径
+(require 'org-id) ; 使能ID
 
 
 ;;; ----------------------- 待办设置 ------------------------------
