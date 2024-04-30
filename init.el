@@ -51,6 +51,9 @@
      ("screen" . shell-script)
      ("shell" . sh)
      ("sqlite" . sql)
+     ("jira" . sql)
+     ("jirachart-pie" . sql)
+     ("jirachart-2d" . sql)
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
