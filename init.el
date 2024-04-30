@@ -1205,11 +1205,13 @@
 (key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
 (defun zeit/toggle (type)
   "Toggle link/inline-image/force-cycle."
-  (interactive "cToggle type: late(x)/(l)ink/(i)mage/(a)rchvied")
-  (cond ((char-equal type ?x) (org-latex-preview))
+  (interactive "cToggle type: l(a)tex/(l)ink/(i)mage/arch(v)ied")
+  (cond ((char-equal type ?a) (org-latex-preview))
         ((char-equal type ?l) (org-toggle-link-display))
         ((char-equal type ?i) (org-toggle-inline-images))
-        ((char-equal type ?a) (org-cycle-force-archived))))
+        ((char-equal type ?v) (org-cycle-force-archived))
+        ((char-equal type ?x) (org-cycle-force-archived)))
+  )
 (key-seq-define evil-normal-state-map ";;" 'zeit/toggle)
                                         ; 切换显示
 (key-seq-define evil-motion-state-map ";;" 'zeit/toggle)
