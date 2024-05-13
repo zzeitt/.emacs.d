@@ -62,7 +62,8 @@
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
  '(safe-local-variable-values
-   '((eval add-hook 'before-save-hook 'time-stamp)
+   '((eval org-sbe "startup-block")
+     (eval add-hook 'before-save-hook 'time-stamp)
      (eval add-hook 'after-save-hook 'org-html-export-to-html nil 'make-it-local)
      (eval setq org-format-latex-options
            (plist-put org-format-latex-options :scale 1.2))
