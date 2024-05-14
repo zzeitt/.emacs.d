@@ -479,6 +479,10 @@
     'evil-end-of-line
     (kbd "i")
     'dired-toggle-read-only
+    (kbd "n")
+    'evil-search-next
+    (kbd "N")
+    'evil-search-previous
     (kbd "y")
     (lambda () (interactive) (let ((current-prefix-arg '(0))) (call-interactively 'dired-copy-filename-as-kill)))
     )
