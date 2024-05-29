@@ -1274,6 +1274,7 @@
 (setq org-tags-exclude-from-inheritance
       (quote
        ("crypt")))
+(setq org-tags-sort-function 'org-string-collate-lessp)
 (setq org-crypt-key nil)
 (setq epa-file-cache-passphrase-for-symmetric-encryption t)
 ;; 移动项目树
