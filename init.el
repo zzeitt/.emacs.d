@@ -1344,7 +1344,7 @@
            "TODO°"         ; all not done
          "DOING"                        ; some done
          )))))
-(add-hook 'org-after-todo-statistics-hook #'org-summary-todo)
+;; (add-hook 'org-after-todo-statistics-hook #'org-summary-todo)
 ;; 时间线
 (setq org-agenda-use-time-grid t)
 (setq org-agenda-time-grid
@@ -1444,7 +1444,12 @@ SCHEDULED: %^{Scheudle}t
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :immediate-finish t :kill-buffer t)
-        ("w" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
+        ("w" "work")
+        ("wt" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
+         "* TODO° %?
+- State \"TODO°\"      from \"\"      %U"
+:kill-buffer t)
+        ("wa" "work • 活动" entry (file+headline "~/.emacs.d/forOrgs/work.org" "活动")
          "* TODO° %?
 - State \"TODO°\"      from \"\"      %U"
 :kill-buffer t)
