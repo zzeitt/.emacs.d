@@ -1538,6 +1538,13 @@ SCHEDULED: %^{Scheudle}t
 
 ;;; -------------------- Auto Insert ----------------------------
 (auto-insert-mode t)
+(define-skeleton ske-img
+  "Quick insert inline image."
+  nil
+  > "#+attr_html: :width " (skeleton-read "Width (default 80)? ") | "80" "%" \n
+  > "[[file:" (skeleton-read "Image path? ") "]]" \n
+  (org-redisplay-inline-images))
+
 (define-skeleton ske-article
   "Quick insert an article's preamble."
   nil
