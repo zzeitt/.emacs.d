@@ -212,7 +212,7 @@
     (> (length (display-monitor-attributes-list)) 1)
     (setq default-frame-alist ; 在第三屏打开
           '((fullscreen . maximized)
-            (left . -2800)
+            (left . -3800)
             (top . -1296)))
   (setq default-frame-alist ; 在主屏打开
         '((fullscreen . maximized))))
