@@ -17,7 +17,7 @@
  '(mouse-drag-and-drop-region-cross-program t)
  '(org-agenda-breadcrumbs-separator " > ")
  '(org-agenda-files
-   '("~/.emacs.d/forOrgs/forNotes/forTech/float/float.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/habit.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/stuff.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
+   '("~/.emacs.d/forOrgs/forNotes/forTech/float/float.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/habit.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/thing.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
  '(org-agenda-tags-column -60)
  '(org-babel-load-languages
    '((python . t)
@@ -1370,7 +1370,7 @@
         "~/.emacs.d/forOrgs/learn.org"
         "~/.emacs.d/forOrgs/life.org"
         "~/.emacs.d/forOrgs/research.org"
-        "~/.emacs.d/forOrgs/stuff.org"
+        "~/.emacs.d/forOrgs/thing.org"
         "~/.emacs.d/forOrgs/wish.org"
         "~/.emacs.d/forOrgs/work.org"
         "~/.emacs.d/forOrgs/yakusoku.org"
@@ -1437,8 +1437,8 @@
 ;;; ------------------------ Capture -----------------------------
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 (setq org-capture-templates
-      '(("s" "stuff • 尽快做完" entry (file+headline "~/.emacs.d/forOrgs/stuff.org" "尽快做完")
-         "* TODO° %^{Stuff}
+      '(("t" "thing • 尽快做完" entry (file+headline "~/.emacs.d/forOrgs/thing.org" "尽快做完")
+         "* TODO° %^{Thing}
 SCHEDULED: %^{Scheudle}t
 - State \"TODO°\"      from \"\"      %U
 :PRPOERTIES:
