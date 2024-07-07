@@ -361,6 +361,16 @@
    (interactive)
    (evil-scroll-line-down 1)))
                                         ; 向下滚轮
+
+; 切换至minibuffer
+(defun zeit/switch-to-minibuffer ()
+  "Switch to minibuffer window. Borrowed from: https://emacs.stackexchange.com/a/42288/38412"
+  (interactive)
+  (if (active-minibuffer-window)
+      (select-window (active-minibuffer-window))
+    (error "Minibuffer is not active")))
+(global-set-key "\C-co" 'zeit/switch-to-minibuffer)
+
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Vim的一些微调
 (define-key evil-normal-state-map
