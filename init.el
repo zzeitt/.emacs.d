@@ -1215,6 +1215,7 @@
   (fset 'zeit-align-tags
         (kbd "C-u C-c C-q"))
   (execute-kbd-macro 'zeit-align-tags)
+  (org-table-map-tables (lambda () (org-table-align) (org-table-shrink)))
   (message "Refresh done!")
   )
 (key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
