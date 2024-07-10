@@ -1465,53 +1465,48 @@ SCHEDULED: %^{Scheudle}t
 - State \"TODO°\"      from \"\"      %U"
 :kill-buffer t)
         ("g" "geek")
-        ("gi" "geek • Ideas" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "Ideas")
+        ("gi" "geek • 💡Ideas" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "💡Ideas")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("gt" "geek • ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "ToRead")
+        ("gt" "geek • 📕ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "📕ToRead")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("go" "geek • Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "Configuration" "OrgMode")
+        ("go" "geek • ⚙Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "⚙Configuration" "OrgMode")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("ge" "geek • Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "Configuration" "Emacs")
+        ("ge" "geek • ⚙Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "⚙Configuration" "Emacs")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
         ("f" "film")
-        ("ff" "film • 真人电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "真人电影")
+        ("ff" "film • 🎥真人电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "🎥真人电影")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("fa" "film • 动漫" entry (file+headline "~/.emacs.d/forOrgs/film.org" "动漫")
+        ("fa" "film • 🥸动漫" entry (file+headline "~/.emacs.d/forOrgs/film.org" "🥸动漫")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("fA" "film • 动画电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "动画电影")
+        ("fA" "film • 🤠动画电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "🤠动画电影")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("fs" "film • 电视剧" entry (file+headline "~/.emacs.d/forOrgs/film.org" "电视剧")
+        ("fs" "film • 📺电视剧" entry (file+headline "~/.emacs.d/forOrgs/film.org" "📺电视剧")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("fs" "film • 电视剧" entry (file+headline "~/.emacs.d/forOrgs/film.org" "电视剧")
-         "* %?
-:PRPOERTIES:
-:CAPTURED: %U
-:END:" :kill-buffer t)
-        ("fj" "film • 纪录片" entry (file+headline "~/.emacs.d/forOrgs/film.org" "纪录片")
+        ("fj" "film • 📹纪录片" entry (file+headline "~/.emacs.d/forOrgs/film.org" "📹纪录片")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
