@@ -1340,6 +1340,11 @@
 ;;   (org-set-property "CREATED" (format-time-string "%Y-%m-%d %T")))
 ;; (advice-add 'org-insert-todo-heading :after #'zeit/insert-created-date)
 
+;; 优先级(priority)设置
+(setq org-highest-priority ?A) 
+(setq org-lowest-priority  ?B)
+(setq org-default-priority ?C)
+
 ;; 自动DONE
 (defun org-summary-todo
     (n-done n-not-done)
