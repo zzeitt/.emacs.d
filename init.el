@@ -22,6 +22,7 @@
  '(org-babel-load-languages
    '((python . t)
      (shell . t)
+     (powershell . t)
      (C . t)
      (emacs-lisp . t)
      (latex . t)
@@ -57,7 +58,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(ob-powershell cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
