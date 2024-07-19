@@ -8,6 +8,11 @@ forOrgs/
 org-persist/
 elpa/
 request/
+eshell/
+image-dired/
+newsticker/
+straight/
+url/
 
 # Files
 *~
@@ -15,3 +20,6 @@ bookmarks
 recentf
 ido.last
 timelog
+.org-id-locations
+projects
+tramp
