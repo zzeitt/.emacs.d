@@ -19,14 +19,6 @@
  '(org-agenda-files
    '("~/.emacs.d/forOrgs/forNotes/forTech/float/float.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/habit.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/thing.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
  '(org-agenda-tags-column -60)
- '(org-babel-load-languages
-   '((python . t)
-     (shell . t)
-     (powershell . t)
-     (C . t)
-     (emacs-lisp . t)
-     (latex . t)
-     (dot . t)))
  '(org-directory "~/.emacs.d/forOrgs")
  '(org-download-heading-lvl nil)
  '(org-download-image-dir "./_assets")
@@ -58,7 +50,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(ob-powershell cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode powershell htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 100)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
@@ -1651,4 +1643,18 @@ Arguments:
 ;; ----------------------- AsciiDoc Export Backend --------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
 (require 'ox-asciidoc)
-    
+
+
+;; --------------------------- Powershell Babel -----------------------
+(add-to-list 'load-path "~/.emacs.d/myscripts/ob-powershell/")
+(require 'ob-powershell)
+
+;; --------------------------------------------------------------------
+(setq org-babel-load-languages
+  '((python . t)
+    (shell . t)
+    (powershell . t)
+    (C . t)
+    (emacs-lisp . t)
+    (latex . t)
+    (dot . t)))
