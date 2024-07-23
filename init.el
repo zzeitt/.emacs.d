@@ -80,7 +80,25 @@
  '(org-verbatim ((t (:foreground "#4f97d7" :box (:line-width (1 . 1) :color "grey75" :style released-button))))))
 
 ;;; ------------------------ 必要配置 ---------------------------
+;; use-package & straight
+(require 'use-package)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://radian-software.github.io/straight.el/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 (set-language-environment "UTF-8")
+
 ;; (pixel-scroll-mode t)
 (setq file-name-coding-system 'gbk)
                                         ; (Maybe...?)解决中文路径乱码
@@ -1473,12 +1491,12 @@ SCHEDULED: %^{Scheudle}t
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("go" "geek • ⚙Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "⚙Configuration" "OrgMode")
+        ("go" "geek • ️⚙️️Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "️ ⚙️Configuration" "OrgMode")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("ge" "geek • ⚙Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "⚙Configuration" "Emacs")
+        ("ge" "geek • ️⚙️Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "️ ⚙️Configuration" "Emacs")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
@@ -1547,6 +1565,8 @@ SCHEDULED: %^{Scheudle}t
   nil
   > "#+attr_html: :width " (skeleton-read "Width (default 80)? ") | "80" "%" \n
   > "[[file:" (skeleton-read "Image path? ") "]]" \n
+  '(setq _cap (skeleton-read "Caption? "))
+  > _cap | "" \n
   (org-redisplay-inline-images))
 
 (define-skeleton ske-article
@@ -1650,11 +1670,12 @@ Arguments:
 (require 'ob-powershell)
 
 ;; --------------------------------------------------------------------
-(setq org-babel-load-languages
-  '((python . t)
-    (shell . t)
-    (powershell . t)
-    (C . t)
-    (emacs-lisp . t)
-    (latex . t)
-    (dot . t)))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (shell . t)
+   (powershell . t)
+   (C . t)
+   (emacs-lisp . t)
+   (latex . t)
+   (dot . t)))
