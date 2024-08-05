@@ -760,20 +760,36 @@
             (kbd "$ a M-S-<return> <escape>"))
                                         ; normal模式org-insert-todo-heading
 (define-key evil-normal-state-map
-            (kbd "M-|")
-            'split-window-below)
+            (kbd "|")
+            (lambda
+              ()
+              (interactive)
+              (split-window-below)
+              (other-window 1)))
                                         ; 横向分割
 (define-key evil-motion-state-map
-            (kbd "M-|")
-            'split-window-below)
+            (kbd "|")
+            (lambda
+              ()
+              (interactive)
+              (split-window-below)
+              (other-window 1)))
                                         ; 横向分割
 (define-key evil-normal-state-map
-            (kbd "M-\\")
-            'split-window-right)
+            (kbd "\\")
+            (lambda
+              ()
+              (interactive)
+              (split-window-right)
+              (other-window 1)))
                                         ; 竖向分割
 (define-key evil-motion-state-map
-            (kbd "M-\\")
-            'split-window-right)
+            (kbd "\\")
+            (lambda
+              ()
+              (interactive)
+              (split-window-right)
+              (other-window 1)))
                                         ; 竖向分割
 (define-key evil-normal-state-map
             (kbd "M-F")
