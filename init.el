@@ -1601,6 +1601,7 @@ SCHEDULED: %^{Scheudle}t
   "# Local Variables:" \n
   "# eval: (add-hook 'after-save-hook 'org-html-export-to-html  nil 'make-it-local)" \n
   "# org-confirm-babel-evaluate: nil" \n
+  "# eval: (org-sbe \"startup-block\")" \n
   "# End:"
 )
 (define-auto-insert '(org-mode . "Write Article in Org-mode") 'ske-article)
