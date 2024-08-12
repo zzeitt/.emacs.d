@@ -1506,12 +1506,12 @@ SCHEDULED: %^{Scheudle}t
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("go" "geek • ️⚙️️Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "️ ⚙️Configuration" "OrgMode")
+        ("go" "geek • ️🧰️Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "🧰Configuration" "OrgMode")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("ge" "geek • ️⚙️Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "️ ⚙️Configuration" "Emacs")
+        ("ge" "geek • ️🧰️Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "🧰Configuration" "Emacs")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
