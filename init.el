@@ -102,6 +102,8 @@
 ;; (pixel-scroll-mode t)
 (setq file-name-coding-system 'gbk)
                                         ; (Maybe...?)解决中文路径乱码
+;; dired
+(setq dired-listing-switches "-al --group-directories-first")
 
 ;;; ------------------------ 美化相关 ---------------------------
 ;; 字体配置
