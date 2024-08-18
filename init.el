@@ -1191,6 +1191,12 @@
                                         ; 移动树项目
 (key-seq-define evil-visual-state-map ";w" 'org-refile)
                                         ; 移动树项目
+(key-seq-define evil-normal-state-map "[i" 'org-insert-link)
+                                        ; 插入（更新）链接
+(key-seq-define evil-motion-state-map "[i" 'org-insert-link)
+                                        ; 插入（更新）链接
+(key-seq-define evil-visual-state-map "[i" 'org-insert-link)
+                                        ; 插入（更新）链接
 (key-seq-define evil-normal-state-map ";g"
                 (kbd "A SPC [/] <escape>"))
                                         ; 添加进度条
@@ -1246,23 +1252,23 @@
                                         ; 切换显示
 (key-seq-define evil-motion-state-map ";;" 'zeit/toggle)
                                         ; 切换显示
-(defun zeit/addlink
-    (link)
-  "Add link (mostly URL) to selected text."
-  (interactive "sEnter link:")
-  (setq st
-        (region-beginning))
-  (setq ed
-        (region-end))
-  (goto-char ed)
-  (insert "]]")
-  (goto-char st)
-  (insert
-   (format "[[%s][" link))
-  (message "Added link: %s" link)
-  )
-(key-seq-define evil-visual-state-map "[i" 'zeit/addlink)
-                                        ; 添加链接
+;; (defun zeit/addlink
+;;     (link)
+;;   "Add link (mostly URL) to selected text."
+;;   (interactive "sEnter link:")
+;;   (setq st
+;;         (region-beginning))
+;;   (setq ed
+;;         (region-end))
+;;   (goto-char ed)
+;;   (insert "]]")
+;;   (goto-char st)
+;;   (insert
+;;    (format "[[%s][" link))
+;;   (message "Added link: %s" link)
+;;   )
+;; (key-seq-define evil-visual-state-map "[i" 'zeit/addlink)
+;;                                         ; 添加链接
 (key-seq-define evil-normal-state-map ";n" 'org-capture) ; org capture
 (key-seq-define evil-visual-state-map ";n" 'org-capture) ; org capture
 (key-seq-define evil-motion-state-map ";n" 'org-capture) ; org capture
