@@ -4,7 +4,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bookmark-default-file "~/.emacs.d/forOrgs/bookmarks")
  '(bookmark-sort-flag 'last-modified)
  '(column-number-mode t)
  '(custom-enabled-themes '(spacemacs-dark))
@@ -50,10 +49,9 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
- '(recentf-max-saved-items 100)
+   '(org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+ '(recentf-max-saved-items 8000)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
- '(recentf-save-file "~/.emacs.d/forOrgs/recentf")
  '(safe-local-variable-values
    '((eval org-sbe "startup-block")
      (eval add-hook 'before-save-hook 'time-stamp)
@@ -234,6 +232,7 @@
                                         ; 删除书签前确认
 (setq bookmark-save-flag 1)
                                         ; everytime bookmark is changed, automatically save it
+(setq bookmark-default-file "~/.emacs.d/forOrgs/.bookmarks")
 
 ;; 鼠标相关
 (setq org-cycle-emulate-tab nil)
@@ -1291,9 +1290,11 @@
 (setq make-backup-files t)
 ;; 打开最近文件
 (recentf-mode t)
+(setq recentf-save-file "~/.emacs.d/forOrgs/.recentf")
+(recentf-load-list)
 ;; 保存最近浏览位置
 (require 'saveplace)
-(setq save-place-file "~/.emacs.d/forOrgs/saveplace")
+(setq save-place-file "~/.emacs.d/forOrgs/.saveplace")
 (save-place-mode 1)
 ;; 自动更新buffer
 (global-auto-revert-mode t)
@@ -1321,6 +1322,11 @@
 (setq org-refile-use-outline-path 'file)
                                         ; 显示完整路径
 (require 'org-id) ; 使能ID
+(setq org-id-locations-file "~/.emacs.d/forOrgs/.org-id-locations")
+(setq org-id-locations-file-relative t)
+
+;; LaTeX图片路径
+(setq org-preview-latex-image-directory "_assets/")
 
 
 ;;; ----------------------- 待办设置 ------------------------------
