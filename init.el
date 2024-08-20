@@ -1326,7 +1326,7 @@
 (setq org-id-locations-file-relative t)
 
 ;; LaTeX图片路径
-(setq org-preview-latex-image-directory "_assets/")
+(setq org-preview-latex-image-directory "_assets/ltximg/")
 
 
 ;;; ----------------------- 待办设置 ------------------------------
