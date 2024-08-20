@@ -1479,12 +1479,9 @@
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 (setq org-capture-templates
       '(("t" "thing • 尽快做完" entry (file+headline "~/.emacs.d/forOrgs/thing.org" "尽快做完")
-         "* TODO° %^{Thing}
-SCHEDULED: %^{Scheudle}t
-- State \"TODO°\"      from \"\"      %U
-:PRPOERTIES:
-:CAPTURED: %U
-:END:" :immediate-finish t :kill-buffer t)
+         "* TODO° %?
+- State \"TODO°\"      from \"\"      %U"
+:kill-buffer t)
         ("w" "work")
         ("wt" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
          "* TODO° %?
