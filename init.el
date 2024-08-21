@@ -233,6 +233,7 @@
 (setq bookmark-save-flag 1)
                                         ; everytime bookmark is changed, automatically save it
 (setq bookmark-default-file "~/.emacs.d/forOrgs/.bookmarks")
+(add-hook 'bookmark-after-jump-hook (lambda () (evil-set-marker (string-to-char bookmark-current-bookmark))))
 
 ;; 鼠标相关
 (setq org-cycle-emulate-tab nil)
