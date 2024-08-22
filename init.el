@@ -1694,6 +1694,16 @@ Arguments:
   (message "Tasks (%s) sorted!" _task-headline)
   )
 
+(defun zeit/exe-named-babel (_babel-name)
+  "Given babel name, execute it."
+  (interactive "sBabel name:")
+  (save-excursion
+    (org-babel-goto-named-result _babel-name)
+    (org-narrow-to-subtree)
+    (org-babel-execute-subtree 1)
+    (widen))
+  (message "Babel \"%s\" executed!" _babel-name))
+
 ;; ----------------------- AsciiDoc Export Backend --------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
 (require 'ox-asciidoc)
