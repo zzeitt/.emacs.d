@@ -1672,6 +1672,27 @@ Arguments:
   (message "%s updated!" subtree-tag)
   )
 
+(defun zeit/sort-tasks--one-headline (&optional _task)
+  "Sort only one headline. Called by zeit/sort-tasks()."
+  (interactive "sHeadline to sort:")
+  (if _task (goto-char (org-find-exact-headline-in-buffer _task)))
+  (message "Sorting %s ..." (org-entry-get nil "ITEM"))
+  (org-sort-entries nil ?a)
+  (org-sort-entries nil ?o)
+  (org-sort-entries nil ?p)
+  )
+
+(defun zeit/sort-tasks (_task-headline)
+  "Given headline string, sorts it in a>o>p order."
+  (interactive "sHeadline to sort (e.g. all):")
+  (if (string= _task-headline "all")
+      ;; If input is "all", sort all lv1 headlines.
+      (org-map-entries 'zeit/sort-tasks--one-headline "LEVEL=1-noexport" 'file 'archive 'comment)
+    (zeit/sort-tasks--one-headline _task-headline))
+  (outline-show-only-headings)
+  (save-buffer)
+  (message "Tasks (%s) sorted!" _task-headline)
+  )
 
 ;; ----------------------- AsciiDoc Export Backend --------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
