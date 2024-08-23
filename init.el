@@ -1592,6 +1592,10 @@
   "#+PROPERTY: HEADER-ARGS+ :cache yes" \n
   "#+OPTIONS: ^:{}" \n
   "Updated Time-stamp: <>" \n
+  "* _Startup Block_                                                    :noexport:" \n
+  "#+name: startup-block" \n
+  "#+begin_src elisp" \n
+  "#+end_src" \n
   - \n
   "* COMMENT Local Variables" \n
   "# Local Variables:" \n
