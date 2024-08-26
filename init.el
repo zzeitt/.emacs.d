@@ -1706,7 +1706,7 @@ Arguments:
     (org-narrow-to-subtree)
     (org-babel-execute-subtree 1)
     (widen))
-  (message "Babel \"%s\" executed!" _babel-name))
+  (message "Babel <%s> executed!" _babel-name))
 
 ;; ----------------------- AsciiDoc Export Backend --------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
