@@ -496,6 +496,8 @@
     )
   (evil-define-key 'insert wdired-mode-map
     (kbd "<escape>")
+    (lambda () (interactive) (wdired-abort-changes) (evil-normal-state))
+    (kbd "<return>")
     (lambda () (interactive) (wdired-finish-edit) (evil-normal-state))
     )
   )
