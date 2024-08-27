@@ -501,6 +501,13 @@
     (lambda () (interactive) (wdired-finish-edit) (evil-normal-state))
     )
   )
+
+;; Markdown
+(with-eval-after-load 'markdown-mode
+  (key-seq-define evil-normal-state-map ";;" 'markdown-toggle-markup-hiding)
+  (key-seq-define evil-motion-state-map ";;" 'markdown-toggle-markup-hiding)
+  )
+
 ;; 链接跳转
 (with-eval-after-load 'help
   (evil-make-overriding-map help-mode-map 'normal t)
@@ -1125,14 +1132,6 @@
                                         ; 查找文件
 (key-seq-define evil-motion-state-map ";f" 'dired-jump)
                                         ; 查找文件
-(key-seq-define evil-normal-state-map ";t" 'org-todo)
-                                        ; 切换TODO
-(key-seq-define evil-normal-state-map ";s" 'org-schedule)
-                                        ; 设定Schedule
-(key-seq-define evil-normal-state-map ";z" 'org-deadline)
-                                        ; 设定Deadline
-(key-seq-define evil-normal-state-map "zp" 'org-set-property)
-                                        ; 设定Property
 (key-seq-define evil-normal-state-map ";b"
                 (lambda
                   ()
@@ -1147,58 +1146,12 @@
                   (select-window
                    (list-buffers))))
                                         ; 展示buffers
-(key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c)
-                                        ; 替换C-c C-c
-(key-seq-define evil-normal-state-map "zz" 'org-kill-note-or-show-branches)
-                                        ; note页取消，相当于替换C-c C-k
-(key-seq-define evil-normal-state-map "zz"  'org-edit-src-abort)
-                                        ; 替换C-c C-k
-(key-seq-define evil-normal-state-map ";v" 'org-archive-subtree-default)
-                                        ; 归档
-(key-seq-define evil-normal-state-map ";x" 'org-toggle-archive-tag)
-                                        ; 添加归档标签
 (key-seq-define evil-normal-state-map "[["
                 (kbd "o <escape> P"))
                                         ; 在下一行粘贴
 (key-seq-define evil-motion-state-map "[["
                 (kbd "o <escape> P"))
                                         ; 在下一行粘贴
-(key-seq-define evil-normal-state-map ";j" 'org-metadown)
-                                        ; 将项目下移
-(key-seq-define evil-motion-state-map ";j" 'org-metadown)
-                                        ; 将项目下移
-(key-seq-define evil-normal-state-map ";k" 'org-metaup)
-                                        ; 将项目上移
-(key-seq-define evil-motion-state-map ";k" 'org-metaup)
-                                        ; 将项目上移
-(key-seq-define evil-normal-state-map ";h" 'org-metaleft)
-                                        ; 将项目左移
-(key-seq-define evil-motion-state-map ";h" 'org-metaleft)
-                                        ; 将项目左移
-(key-seq-define evil-normal-state-map ";l" 'org-metaright)
-                                        ; 将项目右移
-(key-seq-define evil-motion-state-map ";l" 'org-metaright)
-                                        ; 将项目右移
-(key-seq-define evil-normal-state-map "zh" 'org-shiftmetaleft)
-                                        ; 将项目左移(同时移动子项)
-(key-seq-define evil-motion-state-map "zh" 'org-shiftmetaleft)
-                                        ; 将项目左移(同时移动子项)
-(key-seq-define evil-normal-state-map "zl" 'org-shiftmetaright)
-                                        ; 将项目右移(同时移动子项)
-(key-seq-define evil-motion-state-map "zl" 'org-shiftmetaright)
-                                        ; 将项目右移(同时移动子项)
-(key-seq-define evil-normal-state-map ";w" 'org-refile)
-                                        ; 移动树项目
-(key-seq-define evil-motion-state-map ";w" 'org-refile)
-                                        ; 移动树项目
-(key-seq-define evil-visual-state-map ";w" 'org-refile)
-                                        ; 移动树项目
-(key-seq-define evil-normal-state-map "[i" 'org-insert-link)
-                                        ; 插入（更新）链接
-(key-seq-define evil-motion-state-map "[i" 'org-insert-link)
-                                        ; 插入（更新）链接
-(key-seq-define evil-visual-state-map "[i" 'org-insert-link)
-                                        ; 插入（更新）链接
 (key-seq-define evil-normal-state-map ";g"
                 (kbd "A SPC [/] <escape>"))
                                         ; 添加进度条
@@ -1208,12 +1161,13 @@
 (key-seq-define evil-visual-state-map ";g"
                 (kbd "A SPC [/] <escape>"))
                                         ; 添加进度条
-(key-seq-define evil-normal-state-map "zs" 'org-sort)
-                                        ; 排序
-(key-seq-define evil-motion-state-map "zs" 'org-sort)
-                                        ; 排序
-(key-seq-define evil-visual-state-map "zs" 'org-sort)
-                                        ; 排序
+(key-seq-define evil-visual-state-map "zn" 'narrow-to-region)
+                                        ; C-x n n
+(key-seq-define evil-normal-state-map "zw" 'widen)
+                                        ; C-x n w
+(key-seq-define evil-normal-state-map ";n" 'org-capture) ; org capture
+(key-seq-define evil-visual-state-map ";n" 'org-capture) ; org capture
+(key-seq-define evil-motion-state-map ";n" 'org-capture) ; org capture
 (key-seq-define evil-normal-state-map "zt" 'org-time-stamp)
                                         ; 插入时间戳
 (key-seq-define evil-motion-state-map "zt" 'org-time-stamp)
@@ -1222,65 +1176,84 @@
                                         ; 插入时间戳
 (key-seq-define evil-normal-state-map "zu" 'org-export-dispatch)
                                         ; org导出
-(key-seq-define evil-normal-state-map "z," 'org-insert-structure-template)
+
+;; OrgMode specific keychords.
+(with-eval-after-load 'org-mode
+  (key-seq-define evil-normal-state-map ";t" 'org-todo)
+                                        ; 切换TODO
+  (key-seq-define evil-normal-state-map ";s" 'org-schedule)
+                                        ; 设定Schedule
+  (key-seq-define evil-normal-state-map ";z" 'org-deadline)
+                                        ; 设定Deadline
+  (key-seq-define evil-normal-state-map "zp" 'org-set-property)
+                                        ; 设定Property
+  (key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c)
+                                        ; 替换C-c C-c
+  (key-seq-define evil-normal-state-map "zz" 'org-kill-note-or-show-branches)
+                                        ; note页取消，相当于替换C-c C-k
+  (key-seq-define evil-normal-state-map "zz"  'org-edit-src-abort)
+                                        ; 替换C-c C-k
+  (key-seq-define evil-normal-state-map ";v" 'org-archive-subtree-default)
+                                        ; 归档
+  (key-seq-define evil-normal-state-map ";x" 'org-toggle-archive-tag)
+                                        ; 添加归档标签
+  (key-seq-define evil-normal-state-map ";j" 'org-metadown)
+                                        ; 将项目下移
+  (key-seq-define evil-motion-state-map ";j" 'org-metadown)
+                                        ; 将项目下移
+  (key-seq-define evil-normal-state-map ";k" 'org-metaup)
+                                        ; 将项目上移
+  (key-seq-define evil-motion-state-map ";k" 'org-metaup)
+                                        ; 将项目上移
+  (key-seq-define evil-normal-state-map ";h" 'org-metaleft)
+                                        ; 将项目左移
+  (key-seq-define evil-motion-state-map ";h" 'org-metaleft)
+                                        ; 将项目左移
+  (key-seq-define evil-normal-state-map ";l" 'org-metaright)
+                                        ; 将项目右移
+  (key-seq-define evil-motion-state-map ";l" 'org-metaright)
+                                        ; 将项目右移
+  (key-seq-define evil-normal-state-map "zh" 'org-shiftmetaleft)
+                                        ; 将项目左移(同时移动子项)
+  (key-seq-define evil-motion-state-map "zh" 'org-shiftmetaleft)
+                                        ; 将项目左移(同时移动子项)
+  (key-seq-define evil-normal-state-map "zl" 'org-shiftmetaright)
+                                        ; 将项目右移(同时移动子项)
+  (key-seq-define evil-motion-state-map "zl" 'org-shiftmetaright)
+                                        ; 将项目右移(同时移动子项)
+  (key-seq-define evil-normal-state-map ";w" 'org-refile)
+                                        ; 移动树项目
+  (key-seq-define evil-motion-state-map ";w" 'org-refile)
+                                        ; 移动树项目
+  (key-seq-define evil-visual-state-map ";w" 'org-refile)
+                                        ; 移动树项目
+  (key-seq-define evil-normal-state-map "[i" 'org-insert-link)
+                                        ; 插入（更新）链接
+  (key-seq-define evil-motion-state-map "[i" 'org-insert-link)
+                                        ; 插入（更新）链接
+  (key-seq-define evil-visual-state-map "[i" 'org-insert-link)
+                                        ; 插入（更新）链接
+  (key-seq-define evil-normal-state-map "zs" 'org-sort)
+                                        ; 排序
+  (key-seq-define evil-motion-state-map "zs" 'org-sort)
+                                        ; 排序
+  (key-seq-define evil-visual-state-map "zs" 'org-sort)
+                                        ; 排序
+  (key-seq-define evil-normal-state-map "z," 'org-insert-structure-template)
                                         ; 插入template
-(key-seq-define evil-normal-state-map "z;" 'org-zotxt-insert-reference-link)
+  (key-seq-define evil-normal-state-map "z;" 'org-zotxt-insert-reference-link)
                                         ; 插入zotero引用
-(key-seq-define evil-normal-state-map "z'" 'org-zotxt-open-attachment)
+  (key-seq-define evil-normal-state-map "z'" 'org-zotxt-open-attachment)
                                         ; 打开zotero pdf
-(key-seq-define evil-visual-state-map "zn" 'narrow-to-region)
-                                        ; C-x n n
-(key-seq-define evil-normal-state-map "zw" 'widen)
-                                        ; C-x n w
-(defun zeit/refresh
-    ()
-  "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
-  (interactive)
-  (org-update-statistics-cookies "ALL")
-  (org-redisplay-inline-images)
-  (fset 'zeit-align-tags
-        (kbd "C-u C-c C-q"))
-  (execute-kbd-macro 'zeit-align-tags)
-  (org-table-map-tables (lambda () (org-table-align) (org-table-shrink)))
-  (message "Refresh done!")
-  )
-(key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
-(defun zeit/toggle (type)
-  "Toggle link/inline-image/force-cycle."
-  (interactive "cToggle type: l(a)tex/(l)ink/(i)mage/arch(v)ied")
-  (cond ((char-equal type ?a) (org-latex-preview))
-        ((char-equal type ?l) (org-toggle-link-display))
-        ((char-equal type ?i) (org-toggle-inline-images))
-        ((char-equal type ?v) (org-cycle-force-archived))
-        ((char-equal type ?x) (org-cycle-force-archived)))
-  )
-(key-seq-define evil-normal-state-map ";;" 'zeit/toggle)
+  (key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
+  (key-seq-define evil-normal-state-map ";;" 'zeit/toggle-display)
                                         ; 切换显示
-(key-seq-define evil-motion-state-map ";;" 'zeit/toggle)
+  (key-seq-define evil-motion-state-map ";;" 'zeit/toggle-display)
                                         ; 切换显示
-;; (defun zeit/addlink
-;;     (link)
-;;   "Add link (mostly URL) to selected text."
-;;   (interactive "sEnter link:")
-;;   (setq st
-;;         (region-beginning))
-;;   (setq ed
-;;         (region-end))
-;;   (goto-char ed)
-;;   (insert "]]")
-;;   (goto-char st)
-;;   (insert
-;;    (format "[[%s][" link))
-;;   (message "Added link: %s" link)
-;;   )
-;; (key-seq-define evil-visual-state-map "[i" 'zeit/addlink)
-;;                                         ; 添加链接
-(key-seq-define evil-normal-state-map ";n" 'org-capture) ; org capture
-(key-seq-define evil-visual-state-map ";n" 'org-capture) ; org capture
-(key-seq-define evil-motion-state-map ";n" 'org-capture) ; org capture
-(key-seq-define evil-normal-state-map "zc"
-                (lambda () (interactive)
-                  (org-babel-execute-src-block 1))) ; force rerun babel src-block
+  (key-seq-define evil-normal-state-map "zc"
+                  (lambda () (interactive)
+                    (org-babel-execute-src-block 1))) ; force rerun babel src-block
+  )
 
 
 ;;; ----------------------- 系统设置 ----------------------------
@@ -1615,6 +1588,28 @@
 (define-auto-insert '(org-mode . "Write Article in Org-mode") 'ske-article)
 
 ;;; ------------------- Functions ------------------------------
+(defun zeit/refresh ()
+  "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
+  (interactive)
+  (org-update-statistics-cookies "ALL")
+  (org-redisplay-inline-images)
+  (fset 'zeit-align-tags
+        (kbd "C-u C-c C-q"))
+  (execute-kbd-macro 'zeit-align-tags)
+  (org-table-map-tables (lambda () (org-table-align) (org-table-shrink)))
+  (message "Refresh done!")
+  )
+
+(defun zeit/toggle-display (type)
+  "Toggle link/inline-image/force-cycle, etc's display."
+  (interactive "cToggle type: l(a)tex/(l)ink/(i)mage/arch(v)ied")
+  (cond ((char-equal type ?a) (org-latex-preview))
+        ((char-equal type ?l) (org-toggle-link-display))
+        ((char-equal type ?i) (org-toggle-inline-images))
+        ((char-equal type ?v) (org-cycle-force-archived))
+        ((char-equal type ?x) (org-cycle-force-archived)))
+  )
+
 (defun zeit/dir-to-nested-list (dir exclude-strings n-level n-depth)
   "Traverse a given directory, store the info about files
 under the directory in the form of list.
