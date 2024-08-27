@@ -1226,6 +1226,10 @@
                                         ; 插入zotero引用
 (key-seq-define evil-normal-state-map "z'" 'org-zotxt-open-attachment)
                                         ; 打开zotero pdf
+(key-seq-define evil-visual-state-map "zn" 'narrow-to-region)
+                                        ; C-x n n
+(key-seq-define evil-normal-state-map "zw" 'widen)
+                                        ; C-x n w
 (defun zeit/refresh
     ()
   "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
