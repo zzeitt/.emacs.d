@@ -49,7 +49,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 8000)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(safe-local-variable-values
@@ -1334,6 +1334,8 @@
 
 ;; LaTeX图片路径
 (setq org-preview-latex-image-directory "_assets/ltximg/")
+;; org-fragtog 实时预览LaTeX
+(add-hook 'org-mode-hook 'org-fragtog-mode)
 
 
 ;;; ----------------------- 待办设置 ------------------------------
