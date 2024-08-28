@@ -49,7 +49,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(edit-indirect org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 8000)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(safe-local-variable-values
@@ -1178,7 +1178,7 @@
                                         ; org导出
 
 ;; OrgMode specific keychords.
-(with-eval-after-load 'org-mode
+(with-eval-after-load 'org
   (key-seq-define evil-normal-state-map ";t" 'org-todo)
                                         ; 切换TODO
   (key-seq-define evil-normal-state-map ";s" 'org-schedule)
