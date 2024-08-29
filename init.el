@@ -1176,6 +1176,7 @@
                                         ; 插入时间戳
 (key-seq-define evil-normal-state-map "zu" 'org-export-dispatch)
                                         ; org导出
+(key-seq-define evil-normal-state-map ";q" 'read-only-mode) ; 切换只读模式
 
 ;; OrgMode specific keychords.
 (with-eval-after-load 'org
