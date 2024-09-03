@@ -197,7 +197,10 @@
 (with-eval-after-load 'evil-maps
   (define-key evil-normal-state-map
               (kbd "q")
-              'zeit/evil-record-macro))
+              'zeit/evil-record-macro)
+  (define-key evil-normal-state-map (kbd "RET") nil) ; Cancel evil-ret
+  (define-key evil-motion-state-map (kbd "RET") nil) ; Cancel evil-ret
+  )
 
 (setq evil-ex-visual-char-range t)
                                         ; visual模式下自动打开`<,`>
@@ -248,6 +251,9 @@
   "Annotate LINK with the time of download."
   (format "#+attr_html: :width 80%\n#+caption: %s\n" (file-name-nondirectory link)))
 (setq org-download-annotate-function #'zeit/org-download-annotate)
+
+;; 开启回车跳转链接
+(setq org-return-follows-link t)
 
 
 ;;; ------------------------- 快捷键重映射 ---------------------------
@@ -451,10 +457,6 @@
 ;; 向下滚屏，大写D其实包含Shift+d
 (define-key evil-normal-state-map
             (kbd "gx")
-            'org-open-at-point)
-;; 链接跳转
-(define-key evil-normal-state-map
-            (kbd "<return>")
             'org-open-at-point)
 ;; 链接跳转
 (with-eval-after-load 'dired
