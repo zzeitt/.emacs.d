@@ -1182,6 +1182,10 @@
 
 ;; OrgMode specific keychords.
 (with-eval-after-load 'org
+  (evil-define-key 'normal org-mode-map
+    (kbd "RET")
+    'org-open-at-point
+    )
   (key-seq-define evil-normal-state-map ";t" 'org-todo)
                                         ; 切换TODO
   (key-seq-define evil-normal-state-map ";s" 'org-schedule)
