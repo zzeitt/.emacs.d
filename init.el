@@ -1154,15 +1154,6 @@
 (key-seq-define evil-motion-state-map "[["
                 (kbd "o <escape> P"))
                                         ; 在下一行粘贴
-(key-seq-define evil-normal-state-map ";g"
-                (kbd "A SPC [/] <escape>"))
-                                        ; 添加进度条
-(key-seq-define evil-motion-state-map ";g"
-                (kbd "A SPC [/] <escape>"))
-                                        ; 添加进度条
-(key-seq-define evil-visual-state-map ";g"
-                (kbd "A SPC [/] <escape>"))
-                                        ; 添加进度条
 (key-seq-define evil-visual-state-map "zn" 'narrow-to-region)
                                         ; C-x n n
 (key-seq-define evil-normal-state-map "zw" 'widen)
@@ -1262,6 +1253,9 @@
   (key-seq-define evil-normal-state-map "zc"
                   (lambda () (interactive)
                     (org-babel-execute-src-block 1))) ; force rerun babel src-block
+  (key-seq-define evil-normal-state-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
+  (key-seq-define evil-motion-state-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
+  (key-seq-define evil-visual-state-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
   )
 
 
@@ -1719,6 +1713,19 @@ Arguments:
     (org-babel-execute-subtree 1)
     (widen))
   (message "Babel <%s> executed!" _babel-name))
+
+(defun zeit/add-statistics-cookies (_type)
+  "Given a statistics cookies type ('%%' or '\/'),
+append the cookies to the end of current headline."
+  (interactive "cType(input '%%' or '\/'):")
+  (message "%s" (org-get-heading t))
+  (let ((orig-headline (org-get-heading t t t)) ; NO-TAGS, NO-TODO, NO-PRIORITY enabled
+        (stat-type (char-to-string _type))
+        ) 
+    (org-edit-headline
+     (format "%s [%s]" orig-headline stat-type))
+    )
+  )
 
 ;; ----------------------- AsciiDoc Export Backend --------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
