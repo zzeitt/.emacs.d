@@ -49,7 +49,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(edit-indirect org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(nginx-mode edit-indirect org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 8000)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(safe-local-variable-values
@@ -1726,6 +1726,9 @@ Arguments:
 ;; --------------------------- Powershell Babel -----------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/ob-powershell/")
 (require 'ob-powershell)
+
+;; ------------------------ Nginx Configuration -----------------------
+(require 'nginx-mode)
 
 ;; --------------------------------------------------------------------
 (org-babel-do-load-languages
