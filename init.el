@@ -27,8 +27,7 @@
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
  '(org-src-lang-modes
-   '(("rs" . sh)
-     ("C" . c)
+   '(("C" . c)
      ("C++" . c++)
      ("asymptote" . asy)
      ("bash" . sh)
@@ -1525,30 +1524,6 @@
 :END:" :kill-buffer t)
         ))
 
-;;; -------------------- Self-defined Org-babel --------------------------
-;; Remote Ssh
-(defun org-babel-execute:rs (body params)
-  "Execute a block of bash command on remote host."
-  (let ((host (cdr (assq :host params)))
-        (path (cdr (assq :path params)))
-        (sraw (cdr (assq :sraw params)))
-        (vars (org-babel--get-vars params)))
-    (if (not (null vars))
-        (setq body
-              (concat
-               (mapconcat
-                (lambda (pair)
-                  (format "%s=%S" (car pair) (cdr pair)))
-                vars ";")
-               ";" body)))
-    (if path
-        (setq body (format "cd %s && %s" path body)))
-    (if sraw
-        (setq cmd (format "ssh %s \"%s\"" host body))
-      (setq cmd (format "ssh %s %S" host body)))
-    (message cmd)
-    (org-babel-eval cmd "")))
-
 ;;; -------------------- Atomic Chrome --------------------------
 (require 'atomic-chrome)
 (atomic-chrome-start-server)
@@ -1735,6 +1710,10 @@ append the cookies to the end of current headline."
 ;; --------------------------- Powershell Babel -----------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/ob-powershell/")
 (require 'ob-powershell)
+
+;;; -------------------- Self-defined Org-babel --------------------------
+(add-to-list 'load-path "~/.emacs.d/myscripts/ob-remotessh/")
+(require 'ob-remotessh)
 
 ;; ------------------------ Nginx Configuration -----------------------
 (require 'nginx-mode)
