@@ -49,7 +49,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(nginx-mode edit-indirect org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(ahk-mode nginx-mode edit-indirect org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 8000)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(safe-local-variable-values
@@ -1738,6 +1738,10 @@ append the cookies to the end of current headline."
 
 ;; ------------------------ Nginx Configuration -----------------------
 (require 'nginx-mode)
+
+;; ------------------------------ AutoHotKey --------------------------
+(require 'ahk-mode)
+(setq ahk-indentation 4)
 
 ;; --------------------------------------------------------------------
 (org-babel-do-load-languages
