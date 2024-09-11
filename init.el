@@ -1712,7 +1712,7 @@ append the cookies to the end of current headline."
 (require 'ob-powershell)
 
 ;;; -------------------- Self-defined Org-babel --------------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts/ob-remotessh/")
+(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-remotessh/")
 (require 'ob-remotessh)
 
 ;; ------------------------ Nginx Configuration -----------------------
