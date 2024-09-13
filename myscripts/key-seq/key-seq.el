@@ -63,6 +63,8 @@
 ;;; Code:
 
 ;;;###autoload
+(require 'evil)
+
 (defun key-seq-define-global (keys command)
   "Define a key sequence of the two keys in KEYS starting a COMMAND.
 \nKEYS can be a string or a vector of two elements. Currently only elements
@@ -100,6 +102,22 @@ If COMMAND is nil, the key-chord is removed."
     (if (eq key1 key2)
         (define-key keymap (vector 'key-chord key1 key2) command)
       (define-key keymap (vector 'key-chord key1 key2) command))))
+
+(defun key-seq-define-evil (state keymap keys command)
+  "Define in KEYMAP, a key sequence of the two keys in KEYS starting a COMMAND.
+\nKEYS can be a string or a vector of two elements. Currently only elements
+that corresponds to ascii codes in the range 32 to 126 can be used.
+\nCOMMAND can be an interactive function, a string, or nil.
+If COMMAND is nil, the key-chord is removed."
+  (if (/= 2 (length keys))
+      (error "Key-chord keys must have two elements"))
+  ;; Exotic chars in a string are >255 but define-key wants 128..255 for those
+  (let ((key1 (logand 255 (aref keys 0)))
+        (key2 (logand 255 (aref keys 1))))
+    ;; (define-key keymap (vector 'key-chord key1 key2) command)
+    (evil-define-key state keymap (vector 'key-chord key1 key2) command)
+    )
+  )
 
 (defun key-seq-unset-global (keys)
   "Remove global key sequence of the two keys in KEYS."

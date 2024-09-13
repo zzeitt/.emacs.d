@@ -185,6 +185,8 @@
                                         ; 在Help中开启evil
 (evil-set-initial-state 'recentf-dialog-mode 'normal)
                                         ; 在recentf list中开启evil
+(evil-set-initial-state 'markdown-mode 'normal)
+                                        ; 在recentf list中开启evil
 ;; 重定义evil中的'q'
 (defun zeit/evil-record-macro
     ()
@@ -505,8 +507,7 @@
 
 ;; Markdown
 (with-eval-after-load 'markdown-mode
-  (key-seq-define evil-normal-state-map ";;" 'markdown-toggle-markup-hiding)
-  (key-seq-define evil-motion-state-map ";;" 'markdown-toggle-markup-hiding)
+  (key-seq-define-evil '(normal visual motion) markdown-mode-map ";;" 'markdown-toggle-markup-hiding)
   )
 
 ;; 链接跳转
@@ -1178,83 +1179,55 @@
     (kbd "RET")
     'org-open-at-point
     )
-  (key-seq-define evil-normal-state-map ";t" 'org-todo)
+  (key-seq-define-evil 'normal org-mode-map ";t" 'org-todo)
                                         ; 切换TODO
-  (key-seq-define evil-normal-state-map ";s" 'org-schedule)
+  (key-seq-define-evil 'normal org-mode-map ";s" 'org-schedule)
                                         ; 设定Schedule
-  (key-seq-define evil-normal-state-map ";z" 'org-deadline)
+  (key-seq-define-evil 'normal org-mode-map ";z" 'org-deadline)
                                         ; 设定Deadline
-  (key-seq-define evil-normal-state-map "zp" 'org-set-property)
+  (key-seq-define-evil 'normal org-mode-map "zp" 'org-set-property)
                                         ; 设定Property
-  (key-seq-define evil-normal-state-map ";c" 'org-ctrl-c-ctrl-c)
+  (key-seq-define-evil 'normal org-mode-map ";c" 'org-ctrl-c-ctrl-c)
                                         ; 替换C-c C-c
-  (key-seq-define evil-normal-state-map "zz" 'org-kill-note-or-show-branches)
+  (key-seq-define-evil 'normal org-mode-map "zz" 'org-kill-note-or-show-branches)
                                         ; note页取消，相当于替换C-c C-k
-  (key-seq-define evil-normal-state-map "zz"  'org-edit-src-abort)
+  (key-seq-define-evil 'normal org-mode-map "zz"  'org-edit-src-abort)
                                         ; 替换C-c C-k
-  (key-seq-define evil-normal-state-map ";v" 'org-archive-subtree-default)
+  (key-seq-define-evil 'normal org-mode-map ";v" 'org-archive-subtree-default)
                                         ; 归档
-  (key-seq-define evil-normal-state-map ";x" 'org-toggle-archive-tag)
+  (key-seq-define-evil 'normal org-mode-map ";x" 'org-toggle-archive-tag)
                                         ; 添加归档标签
-  (key-seq-define evil-normal-state-map ";j" 'org-metadown)
+  (key-seq-define-evil '(normal motion) org-mode-map ";j" 'org-metadown)
                                         ; 将项目下移
-  (key-seq-define evil-motion-state-map ";j" 'org-metadown)
-                                        ; 将项目下移
-  (key-seq-define evil-normal-state-map ";k" 'org-metaup)
+  (key-seq-define-evil '(normal motion) org-mode-map ";k" 'org-metaup)
                                         ; 将项目上移
-  (key-seq-define evil-motion-state-map ";k" 'org-metaup)
-                                        ; 将项目上移
-  (key-seq-define evil-normal-state-map ";h" 'org-metaleft)
+  (key-seq-define-evil '(normal motion) org-mode-map ";h" 'org-metaleft)
                                         ; 将项目左移
-  (key-seq-define evil-motion-state-map ";h" 'org-metaleft)
-                                        ; 将项目左移
-  (key-seq-define evil-normal-state-map ";l" 'org-metaright)
+  (key-seq-define-evil '(normal motion) org-mode-map ";l" 'org-metaright)
                                         ; 将项目右移
-  (key-seq-define evil-motion-state-map ";l" 'org-metaright)
-                                        ; 将项目右移
-  (key-seq-define evil-normal-state-map "zh" 'org-shiftmetaleft)
+  (key-seq-define-evil '(normal motion) org-mode-map "zh" 'org-shiftmetaleft)
                                         ; 将项目左移(同时移动子项)
-  (key-seq-define evil-motion-state-map "zh" 'org-shiftmetaleft)
-                                        ; 将项目左移(同时移动子项)
-  (key-seq-define evil-normal-state-map "zl" 'org-shiftmetaright)
+  (key-seq-define-evil '(normal motion) org-mode-map "zl" 'org-shiftmetaright)
                                         ; 将项目右移(同时移动子项)
-  (key-seq-define evil-motion-state-map "zl" 'org-shiftmetaright)
-                                        ; 将项目右移(同时移动子项)
-  (key-seq-define evil-normal-state-map ";w" 'org-refile)
+  (key-seq-define-evil '(normal motion visual) org-mode-map ";w" 'org-refile)
                                         ; 移动树项目
-  (key-seq-define evil-motion-state-map ";w" 'org-refile)
-                                        ; 移动树项目
-  (key-seq-define evil-visual-state-map ";w" 'org-refile)
-                                        ; 移动树项目
-  (key-seq-define evil-normal-state-map "[i" 'org-insert-link)
+  (key-seq-define-evil '(normal motion visual) org-mode-map "[i" 'org-insert-link)
                                         ; 插入（更新）链接
-  (key-seq-define evil-motion-state-map "[i" 'org-insert-link)
-                                        ; 插入（更新）链接
-  (key-seq-define evil-visual-state-map "[i" 'org-insert-link)
-                                        ; 插入（更新）链接
-  (key-seq-define evil-normal-state-map "zs" 'org-sort)
+  (key-seq-define-evil '(normal motion visual) org-mode-map "zs" 'org-sort)
                                         ; 排序
-  (key-seq-define evil-motion-state-map "zs" 'org-sort)
-                                        ; 排序
-  (key-seq-define evil-visual-state-map "zs" 'org-sort)
-                                        ; 排序
-  (key-seq-define evil-normal-state-map "z," 'org-insert-structure-template)
+  (key-seq-define-evil 'normal org-mode-map "z," 'org-insert-structure-template)
                                         ; 插入template
-  (key-seq-define evil-normal-state-map "z;" 'org-zotxt-insert-reference-link)
+  (key-seq-define-evil 'normal org-mode-map "z;" 'org-zotxt-insert-reference-link)
                                         ; 插入zotero引用
-  (key-seq-define evil-normal-state-map "z'" 'org-zotxt-open-attachment)
+  (key-seq-define-evil 'normal org-mode-map "z'" 'org-zotxt-open-attachment)
                                         ; 打开zotero pdf
-  (key-seq-define evil-normal-state-map "zr" 'zeit/refresh)
-  (key-seq-define evil-normal-state-map ";;" 'zeit/toggle-display)
+  (key-seq-define-evil 'normal org-mode-map "zr" 'zeit/refresh)
+  (key-seq-define-evil '(normal motion) org-mode-map ";;" 'zeit/toggle-display)
                                         ; 切换显示
-  (key-seq-define evil-motion-state-map ";;" 'zeit/toggle-display)
-                                        ; 切换显示
-  (key-seq-define evil-normal-state-map "zc"
+  (key-seq-define-evil 'normal org-mode-map "zc"
                   (lambda () (interactive)
                     (org-babel-execute-src-block 1))) ; force rerun babel src-block
-  (key-seq-define evil-normal-state-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
-  (key-seq-define evil-motion-state-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
-  (key-seq-define evil-visual-state-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
+  (key-seq-define-evil '(normal motion visual) org-mode-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
   )
 
 
