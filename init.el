@@ -1675,6 +1675,19 @@ append the cookies to the end of current headline."
     )
   )
 
+(defun zeit/get-file-contents-between-lines (file n-line-beg n-line-end)
+  "Given a FILE name, return the text between the line N-LINE-BEG and the N-LINE-END."
+  (interactive "fFile: \nnBegin line: \nnEnd line: ")
+  (let ((_ret nil))
+    (with-temp-buffer
+      (insert-file-contents file)
+      (setq _ret
+            (buffer-substring
+             (line-beginning-position n-line-beg)
+             (line-end-position n-line-end))))
+    (format "%s" _ret))
+  )
+
 ;; ----------------------- AsciiDoc Export Backend --------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
 (require 'ox-asciidoc)
