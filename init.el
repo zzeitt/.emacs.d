@@ -1092,7 +1092,7 @@
 ;; 使用key-chord快捷键
 ;; >>>>>>>>>>>>>>> key-seq-define <<<<<<<<<<<<<<<<<<<<<<<
 (add-to-list 'load-path "~/.emacs.d/myscripts/key-chord")
-(add-to-list 'load-path "~/.emacs.d/myscripts/key-seq")
+(add-to-list 'load-path "~/.emacs.d/myscripts-dev/key-seq")
 (require 'key-chord)
 (require 'key-seq)
 (key-chord-mode 1)
@@ -1689,12 +1689,11 @@ append the cookies to the end of current headline."
   )
 
 ;; ----------------------- AsciiDoc Export Backend --------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts/org-asciidoc/")
+(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
 (require 'ox-asciidoc)
 
-
 ;; --------------------------- Powershell Babel -----------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts/ob-powershell/")
+(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-powershell/")
 (require 'ob-powershell)
 
 ;;; -------------------- Self-defined Org-babel --------------------------
