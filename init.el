@@ -163,6 +163,8 @@
                                         ; 启用redo
 (setq evil-want-fine-undo t)
                                         ; 启发式undo，避免一下全部撤销
+(setq evil-kill-on-visual-paste nil)    ; 取消将覆盖文本复制到剪贴板
+
 (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
                                         ; 在bookmark menu中开启evil
 (evil-set-initial-state 'Buffer-menu-mode 'normal)
@@ -259,6 +261,8 @@
 
 ;;; ------------------------- 快捷键重映射 ---------------------------
 ;; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
+(define-key key-translation-map (kbd "M-q") (kbd "C-g")) ; Map 'M-q' -> 'C-g'
+
 (global-set-key
  (kbd "C-<tab>")
  'next-buffer)
@@ -377,7 +381,10 @@
 (global-set-key "\C-co" 'zeit/switch-to-minibuffer)
 
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
-;; Vim的一些微调
+;; Isearch
+(define-key isearch-mode-map (kbd "M-i") 'isearch-edit-string)
+
+;; Evil: Vim的一些微调
 (define-key evil-normal-state-map
             (kbd "C-a")
             'mark-whole-buffer)         ; 全选
@@ -490,6 +497,8 @@
     'evil-end-of-line
     (kbd "i")
     'dired-toggle-read-only
+    (kbd "A")
+    (lambda () (interactive) (dired-toggle-read-only) (move-end-of-line nil))
     (kbd "n")
     'evil-search-next
     (kbd "N")
