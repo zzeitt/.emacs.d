@@ -1230,7 +1230,6 @@
   (key-seq-define-evil '(normal motion visual) org-mode-map ";g" 'zeit/add-statistics-cookies) ; 添加进度条
   )
 
-
 ;;; ----------------------- 系统设置 ----------------------------
 ;; 镜像
 (require 'package)
@@ -1439,6 +1438,21 @@
          "* TODO° %?
 - State \"TODO°\"      from \"\"      %U"
 :kill-buffer t)
+        ("b" "book • ToRead" entry (file "~/.emacs.d/forOrgs/book.org")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
+        ("i" "wish")
+        ("ib" "wish • ToBuy" entry (file+headline "~/.emacs.d/forOrgs/wish.org" "🛒想买")
+         "* TODO° %?
+- State \"TODO°\"      from \"\"      %U"
+:kill-buffer t)
+        ("it" "wish • ToTravel" entry (file+headline "~/.emacs.d/forOrgs/wish.org" "🧳想去")
+         "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:" :kill-buffer t)
         ("w" "work")
         ("wt" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
          "* TODO° %?
