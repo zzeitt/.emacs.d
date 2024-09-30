@@ -16,12 +16,11 @@
  '(mouse-drag-and-drop-region-cross-program t)
  '(org-agenda-breadcrumbs-separator " > ")
  '(org-agenda-files
-   '("~/.emacs.d/forOrgs/forNotes/forTech/float/float.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/thing.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
+   '("c:/Users/zhongtao/.emacs.d/forOrgs/cheatsheet.org" "c:/Users/zhongtao/.emacs.d/forOrgs/book.org" "c:/Users/zhongtao/.emacs.d/forOrgs/diary.org" "c:/Users/zhongtao/.emacs.d/forOrgs/film.org" "c:/Users/zhongtao/.emacs.d/forOrgs/game.org" "c:/Users/zhongtao/.emacs.d/forOrgs/geek.org" "c:/Users/zhongtao/.emacs.d/forOrgs/init.org" "c:/Users/zhongtao/.emacs.d/forOrgs/learn.org" "c:/Users/zhongtao/.emacs.d/forOrgs/life.org" "c:/Users/zhongtao/.emacs.d/forOrgs/research.org" "c:/Users/zhongtao/.emacs.d/forOrgs/thing.org" "c:/Users/zhongtao/.emacs.d/forOrgs/wish.org" "c:/Users/zhongtao/.emacs.d/forOrgs/work.org" "c:/Users/zhongtao/.emacs.d/forOrgs/yakusoku.org"))
  '(org-agenda-tags-column -60)
  '(org-directory "~/.emacs.d/forOrgs")
  '(org-download-heading-lvl nil)
- '(org-download-image-dir "./_assets")
- '(org-download-timestamp "")
+ '(org-download-image-dir "./_assets/screenshots")
  '(org-list-allow-alphabetical t)
  '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
  '(org-safe-remote-resources
@@ -249,6 +248,10 @@
 
 ;; 开启图片拖拽 (Drag & Drop)
 (require 'org-download)
+;; (setq org-download-heading-lvl nil)
+;; (setq org-download-image-dir "./_assets")
+(setq org-download-timestamp "")
+
 (add-hook 'org-mode-hook 'org-download-enable)
 (defun zeit/org-download-annotate (link)
   "Annotate LINK with the time of download."
@@ -1532,10 +1535,8 @@
 (define-skeleton ske-img
   "Quick insert inline image."
   nil
-  > "#+attr_html: :width " (skeleton-read "Width (default 80)? ") | "80" "%" \n
-  > "[[file:" (skeleton-read "Image path? ") "]]" \n
-  '(setq _cap (skeleton-read "Caption? "))
-  > _cap | "" \n
+  "#+attr_html: :width " (skeleton-read "Width (default 80)? ") | "80" "%" \n
+  "[["(org-link-complete-file)"]]" \n
   (org-redisplay-inline-images))
 
 (define-skeleton ske-article
