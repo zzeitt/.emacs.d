@@ -262,6 +262,8 @@
 ;;; ------------------------- 快捷键重映射 ---------------------------
 ;; >>>>>>>>>>>>>>> global <<<<<<<<<<<<<<<<<<<<<<<
 (define-key key-translation-map (kbd "M-q") (kbd "C-g")) ; Map 'M-q' -> 'C-g'
+(keymap-global-set "<f3>" nil) ; Unmap F3
+(keymap-global-set "<f2>" nil) ; Unmap F2
 
 (global-set-key
  (kbd "C-<tab>")
