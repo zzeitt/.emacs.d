@@ -652,7 +652,7 @@
   (kbd "r")
   'revert-buffer
   (kbd "<return>")
-  'Buffer-menu-1-window
+  'Buffer-menu-switch-other-window
   (kbd "M-<return>")
   'Buffer-menu-this-window
   (kbd "o")
