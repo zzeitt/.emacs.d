@@ -1457,6 +1457,12 @@
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
+        ("c" "cheatsheet")
+        ("cc" "cheatsheet • Programming Q&A" entry (file+headline "~/.emacs.d/forOrgs/cheatsheet.org" "Programming Q&A(编程问题集)")
+        "* %?
+:PRPOERTIES:
+:CAPTURED: %U
+:END:")
         ("i" "wish")
         ("ib" "wish • ToBuy" entry (file+headline "~/.emacs.d/forOrgs/wish.org" "🛒想买")
          "* TODO° %?
@@ -1476,27 +1482,27 @@
          "* TODO° %?
 - State \"TODO°\"      from \"\"      %U"
 :kill-buffer t)
+        ("wl" "work • Logs" item (file+olp+datetree "~/.emacs.d/forOrgs/forNotes/forWorkLog/worklog.org" )
+         "- %?"
+         :unnarrowed t
+         :time-prompt t)
         ("g" "geek")
-        ("gi" "geek • 💡Ideas" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "💡Ideas")
+        ("gd" "geek • 💡ToDream" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "💡Ideas")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("gt" "geek • 📕ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "📕ToRead")
+        ("gr" "geek • 📕ToRead" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "📕ToRead")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
-        ("go" "geek • ️🧰️Configuration>OrgMode" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "🧰Configuration" "OrgMode")
-         "* %?
+        ("gt" "geek • ️🕸️ToDo" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "🕸️ToDo")
+         "* TODO° %?
 :PRPOERTIES:
 :CAPTURED: %U
-:END:" :kill-buffer t)
-        ("ge" "geek • ️🧰️Configuration>Emacs" entry (file+olp "~/.emacs.d/forOrgs/geek.org" "🧰Configuration" "Emacs")
-         "* %?
-:PRPOERTIES:
-:CAPTURED: %U
-:END:" :kill-buffer t)
+:END:
+- State \"TODO°\"      from \"\"      %U" :kill-buffer t)
         ("f" "film")
         ("ff" "film • 🎥真人电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "🎥真人电影")
          "* %?
@@ -1713,6 +1719,43 @@ append the cookies to the end of current headline."
              (line-end-position n-line-end))))
     (format "%s" _ret))
   )
+
+(defun zeit/line-extractor (buffer regex &optional whole-line)
+  "Borrowed from https://www.reddit.com/r/emacs/comments/jka4nm/comment/gahvvq2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button."
+  (interactive "Bbuffer: \nMregex: ")
+  (let* (
+         ;; Split lines.
+         (lines
+          (with-current-buffer buffer
+            (string-lines (buffer-substring-no-properties
+                           (point-min)
+                           (point-max)
+                           )
+                          t)))
+         ;; Filter lines.
+         (lines-that-match (seq-filter
+                            (lambda (line) (string-match-p regex line))
+                            lines))
+         (rejoined-lines)
+         (_filter-line)
+         )
+    ;; Join lines.
+    (if (not whole-line)
+        (setq rejoined-lines
+              (mapconcat
+               (lambda (line)
+                 (save-match-data
+                   (string-match regex line)
+                   (setq _filter-line (match-string 1 line))
+                   _filter-line
+                   ))
+               lines-that-match
+               "\n"))
+      (setq rejoined-lines (string-join lines-that-match "\n")))
+
+    (current-buffer)
+    (format "%s" rejoined-lines)
+    ))
 
 ;; ----------------------- AsciiDoc Export Backend --------------------
 (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
