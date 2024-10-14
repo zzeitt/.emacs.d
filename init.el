@@ -1769,6 +1769,34 @@ append the cookies to the end of current headline."
 (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-remotessh/")
 (require 'ob-remotessh)
 
+;;; ---------------- Org Export Backend for Confluence ------------------
+(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-conf/")
+(require 'ox-conf)
+
+;; ------------------------------ Jira --------------------------------
+(add-to-list 'load-path "~/.emacs.d/myscripts-dev/org-jira/")
+(require 'org-jira)
+(setq org-jira-working-dir "~/.emacs.d/forOrgs/.org-jira")
+(setq jiralib-url "https://jira.hygon.cn")
+(setq org-jira-use-status-as-todo nil)
+(setq org-jira-jira-status-to-org-keyword-alist
+      '(("To Do" . "TODO°")
+        ("开放" . "TODO°")
+        ("In Progress" . "DOING")
+        ("处理中" . "DOING")
+        ("In Review" . "DOING")
+        ("审核中" . "DOING")
+        ("Cancelled" . "CANC.")
+        ("已取消" . "CANC.")
+        ("Resolved" . "DONE√")
+        ("已解决" . "DONE√")
+        ("Closed" . "DONE√")
+        ("关闭" . "DONE√")
+        ("Done" . "DONE√")
+        ("完成" . "DONE√"))
+      )
+(setq request-log-level 'debug)
+
 ;; ------------------------ Nginx Configuration -----------------------
 (require 'nginx-mode)
 
@@ -1786,3 +1814,5 @@ append the cookies to the end of current headline."
    (emacs-lisp . t)
    (latex . t)
    (dot . t)))
+
+
