@@ -1451,6 +1451,7 @@
 (setq org-capture-templates
       '(("t" "thing • 尽快做完" entry (file+headline "~/.emacs.d/forOrgs/thing.org" "尽快做完")
          "* TODO° %?
+SCHEDULED: %^{Schedule: }t
 - State \"TODO°\"      from \"\"      %U"
 :kill-buffer t)
         ("b" "book • ToRead" entry (file "~/.emacs.d/forOrgs/book.org")
