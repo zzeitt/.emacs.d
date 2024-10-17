@@ -1186,6 +1186,7 @@
 (key-seq-define evil-normal-state-map ";q" 'read-only-mode) ; 切换只读模式
 (key-seq-define evil-normal-state-map "zb" 'transpose-sexps) ; Transpose(调换字符串顺序)
 (key-seq-define evil-visual-state-map "zb" 'transpose-sexps) ; Transpose(调换字符串顺序)
+(key-seq-define evil-normal-state-map ";d" 'load-file) ; load-file
 
 ;; OrgMode specific keychords.
 (with-eval-after-load 'org
