@@ -47,7 +47,7 @@
      ("toml" . conf-toml)))
  '(org-startup-folded 'show2levels)
  '(package-selected-packages
-   '(powershell ahk-mode nginx-mode edit-indirect org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
+   '(elfeed powershell ahk-mode nginx-mode edit-indirect org-fragtog markdown-preview-mode markdown-mode org-id-cleanup cmake-mode adoc-mode request-deferred atomic-chrome org-download graphviz-dot-mode htmlize key-seq zotxt org-appear tabspaces magit key-chord counsel ivy spacemacs-theme exotica-theme evil zenburn-theme))
  '(recentf-max-saved-items 8000)
  '(recentf-menu-filter 'recentf-arrange-by-dir)
  '(safe-local-variable-values
@@ -98,10 +98,8 @@
 ;; 子弹缩进
 (add-to-list 'load-path "~/.emacs.d/myscripts/org-bullets")
 (require 'org-bullets)
-(add-hook 'org-mode-hook
-          (lambda
-            ()
-            (org-bullets-mode 1)))
+(add-hook 'org-mode-hook 'org-bullets-mode)
+
 ;; 开启文本缩进
 (setq org-startup-indented t)
 ;; Prevent Extraneous Tabs
@@ -388,6 +386,7 @@
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Isearch
 (define-key isearch-mode-map (kbd "M-i") 'isearch-edit-string)
+(define-key isearch-mode-map (kbd "<up>") 'isearch-edit-string)
 
 ;; Evil: Vim的一些微调
 (define-key evil-normal-state-map
@@ -1489,7 +1488,7 @@ SCHEDULED: %^{Schedule: }t
          :unnarrowed t
          :time-prompt t)
         ("g" "geek")
-        ("gd" "geek • 💡ToDream" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "💡Ideas")
+        ("gd" "geek • 💡ToDream" entry (file+headline "~/.emacs.d/forOrgs/geek.org" "💡ToDream")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
