@@ -1681,8 +1681,6 @@ Arguments:
   (let* ((_task-regex (if (string= _task-regex "") "all" _task-regex))
          (regex (if (string= _task-regex "all") ".*" _task-regex))
          (n-max (or maxlevel 1)))
-    (message "===> _task-regex: %s" _task-regex)
-    (message "===> regex: %s" regex)
     (org-map-entries
      (lambda ()                                         ;;; FUNC
        (let ((name (nth 4 (org-heading-components)))
@@ -1691,7 +1689,7 @@ Arguments:
          (if (string-match regex name)
              (save-restriction
                (org-mark-subtree)
-               (message "Sorting %s ..." (org-entry-get nil "ITEM"))
+               (message "===> Sorting %s ..." (org-entry-get nil "ITEM"))
                (org-sort-entries nil ?a)
                (org-sort-entries nil ?o)
                (org-sort-entries nil ?p)
