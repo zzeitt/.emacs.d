@@ -1449,36 +1449,48 @@
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 (setq org-capture-templates
       '(("t" "thing • 尽快做完" entry (file+headline "~/.emacs.d/forOrgs/thing.org" "尽快做完")
-         "* TODO° %?
-SCHEDULED: %^{Schedule: }t
+         "* TODO° %^{什么事?}
+SCHEDULED: %^{时间?: }t
 - State \"TODO°\"      from \"\"      %U"
-:kill-buffer t)
+         :immediate-finish t
+         :kill-buffer t)
         ("b" "book • ToRead" entry (file "~/.emacs.d/forOrgs/book.org")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
-:END:" :kill-buffer t)
+:END:"
+         :kill-buffer t)
         ("c" "cheatsheet")
+        ("cn" "cheatsheet • Word • 双拼难打的词语" entry (file+olp "~/.emacs.d/forOrgs/cheatsheet.org" "Word(词汇)" "双拼难打的词语")
+         "* \"%^{难打的是...}\"
+%^{其拼音是...}
+"
+         :immediate-finish t)
         ("cc" "cheatsheet • Programming Q&A" entry (file+headline "~/.emacs.d/forOrgs/cheatsheet.org" "Programming Q&A(编程问题集)")
-        "* %?
+        "* %^{问题(Q)} %^g
 :PRPOERTIES:
 :CAPTURED: %U
-:END:")
+:END:
+** A: %^{回答(A)}
+** R: %^{参考链接(R)}
+"
+        :immediate-finish t)
         ("i" "wish")
         ("ib" "wish • ToBuy" entry (file+headline "~/.emacs.d/forOrgs/wish.org" "🛒想买")
          "* TODO° %?
 - State \"TODO°\"      from \"\"      %U"
-:kill-buffer t)
+         :kill-buffer t)
         ("it" "wish • ToTravel" entry (file+headline "~/.emacs.d/forOrgs/wish.org" "🧳想去")
          "* %?
 :PRPOERTIES:
 :CAPTURED: %U
-:END:" :kill-buffer t)
+:END:"
+         :kill-buffer t)
         ("w" "work")
         ("wt" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
          "* TODO° %?
 - State \"TODO°\"      from \"\"      %U"
-:kill-buffer t)
+         :kill-buffer t)
         ("wa" "work • 活动" entry (file+headline "~/.emacs.d/forOrgs/work.org" "活动")
          "* TODO° %?
 - State \"TODO°\"      from \"\"      %U"
@@ -1605,7 +1617,7 @@ Arguments:
 "
   (let* ((ret nil)
          (dir (directory-file-name dir))
-         (exclude-regexp (regexp-opt exclude-strings)))
+         (exclude-regexp exclude-strings))
     (catch 'dir2list
       (when (> n-level n-depth) (throw 'dir2list ret))
       (dolist (file (directory-files dir t directory-files-no-dot-files-regexp t))
@@ -1663,27 +1675,33 @@ Arguments:
   (message "%s updated!" subtree-tag)
   )
 
-(defun zeit/sort-tasks--one-headline (&optional _task)
-  "Sort only one headline. Called by zeit/sort-tasks()."
-  (interactive "sHeadline to sort:")
-  (if _task (goto-char (org-find-exact-headline-in-buffer _task)))
-  (message "Sorting %s ..." (org-entry-get nil "ITEM"))
-  (org-sort-entries nil ?a)
-  (org-sort-entries nil ?o)
-  (org-sort-entries nil ?p)
-  )
-
-(defun zeit/sort-tasks (_task-headline)
+(defun zeit/sort-tasks (_task-regex &optional maxlevel)
   "Given headline string, sorts it in a>o>p order."
   (interactive "sHeadline to sort (e.g. all):")
-  (if (string= _task-headline "all")
-      ;; If input is "all", sort all lv1 headlines.
-      (org-map-entries 'zeit/sort-tasks--one-headline "LEVEL=1-noexport" 'file 'archive 'comment)
-    (zeit/sort-tasks--one-headline _task-headline))
-  (outline-show-only-headings)
-  (save-buffer)
-  (message "Tasks (%s) sorted!" _task-headline)
-  )
+  (let* ((_task-regex (if (string= _task-regex "") "all" _task-regex))
+         (regex (if (string= _task-regex "all") ".*" _task-regex))
+         (n-max (or maxlevel 1)))
+    (message "===> _task-regex: %s" _task-regex)
+    (message "===> regex: %s" regex)
+    (org-map-entries
+     (lambda ()                                         ;;; FUNC
+       (let ((name (nth 4 (org-heading-components)))
+             (tags (nth 5 (org-heading-components)))
+             (n-level (nth 0 (org-heading-components))))
+         (if (string-match regex name)
+             (save-restriction
+               (org-mark-subtree)
+               (message "Sorting %s ..." (org-entry-get nil "ITEM"))
+               (org-sort-entries nil ?a)
+               (org-sort-entries nil ?o)
+               (org-sort-entries nil ?p)
+               ))))
+     (format "LEVEL=%s-noexport" n-max)                 ;;; MATCH
+     'file 'archive 'comment)
+    (outline-show-only-headings)
+    (save-buffer)
+    (message "Tasks (%s) sorted!" _task-regex)
+    ))
 
 (defun zeit/exe-named-babel (_babel-name)
   "Given babel name, execute it."
