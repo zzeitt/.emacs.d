@@ -383,6 +383,13 @@
     (error "Minibuffer is not active")))
 (global-set-key "\C-co" 'zeit/switch-to-minibuffer)
 
+;; icomplete minibuffer
+(icomplete-mode t)
+(define-key icomplete-minibuffer-map (kbd "<tab>") #'icomplete-force-complete)
+(define-key icomplete-minibuffer-map (kbd "<return>") #'icomplete-force-complete-and-exit)
+(define-key icomplete-minibuffer-map (kbd "<right>") #'icomplete-forward-completions)
+(define-key icomplete-minibuffer-map (kbd "<left>") #'icomplete-backward-completions)
+
 ;; >>>>>>>>>>>>>>> define-key <<<<<<<<<<<<<<<<<<<<<<<
 ;; Isearch
 (define-key isearch-mode-map (kbd "M-i") 'isearch-edit-string)
