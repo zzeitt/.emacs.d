@@ -1482,6 +1482,14 @@ SCHEDULED: %^{时间?: }t
 ** R: %^{参考链接(R)}
 "
         :immediate-finish t)
+        ("cw" "cheatsheet • Word" entry (file+olp "~/.emacs.d/forOrgs/cheatsheet.org" "Word(词汇)")
+         "* /%^{English word...}/
+%^{中文含义...}
+"
+         :immediate-finish t)
+        ("ce" "cheatsheet • Else" item (file+function "~/.emacs.d/forOrgs/cheatsheet.org" org-goto)
+         "%?"
+         :unnarrowed t)
         ("i" "wish")
         ("ib" "wish • ToBuy" entry (file+headline "~/.emacs.d/forOrgs/wish.org" "🛒想买")
          "* TODO° %?
@@ -1523,6 +1531,10 @@ SCHEDULED: %^{时间?: }t
 :CAPTURED: %U
 :END:
 - State \"TODO°\"      from \"\"      %U" :kill-buffer t)
+        ("h" "hello")
+        ("he" "hello • Emacs" entry (file "~/.emacs.d/forOrgs/hello.org")
+         "* %?"
+         :unnarrowed t)
         ("f" "film")
         ("ff" "film • 🎥真人电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "🎥真人电影")
          "* %?
