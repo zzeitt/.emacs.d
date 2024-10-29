@@ -1629,6 +1629,7 @@ SCHEDULED: %^{时间?: }t
 (define-skeleton ske-article
   "Quick insert an article's preamble."
   nil
+  "# -*- eval: (add-hook 'after-save-hook 'org-html-export-to-html nil 'make-it-local); org-confirm-babel-evaluate: nil; eval: (org-sbe \"startup-block\"); -*-" \n
   "#+TITLE: " (skeleton-read "Name this article: ") \n
   "#+AUTHOR: " (skeleton-read "Who are you? : ") \n
   "#+DATE: " (format-time-string "<%Y-%02m-%02d %3a %02H:%02M:%02S>") \n
@@ -1642,12 +1643,6 @@ SCHEDULED: %^{时间?: }t
   "#+begin_src elisp" \n
   "#+end_src" \n
   - \n
-  "* COMMENT Local Variables" \n
-  "# Local Variables:" \n
-  "# eval: (add-hook 'after-save-hook 'org-html-export-to-html  nil 'make-it-local)" \n
-  "# org-confirm-babel-evaluate: nil" \n
-  "# eval: (org-sbe \"startup-block\")" \n
-  "# End:"
 )
 (define-auto-insert '(org-mode . "Write Article in Org-mode") 'ske-article)
 
