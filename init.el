@@ -90,11 +90,13 @@
 ;;; ------------------------ 美化相关 ---------------------------
 ;; tabline mode
 (global-tab-line-mode 1)
+;; Prevent some modes from not showing up.
+;; https://emacs.stackexchange.com/a/76797/38412
 (setq tab-line-exclude-modes nil)
 
 (defun zeit/buffer-skip-p (window buffer bury-or-kill)
   ;; Adapted from https://emacs.stackexchange.com/a/72778/38412
-  "Return t if BUFFER name matches `zeit/buffer-skip-regexp'."
+  "Return t if BUFFER name matches some regexps."
   (if (string-match-p (rx bos (or (or "*Backtrace*" "*Compile-Log*" "*Completions*"
                                       "*Messages*" "*package*" "*Warnings*"
                                       "*Async-native-compile-log*")
