@@ -94,22 +94,54 @@
 (global-tab-line-mode 1)
 ;; Prevent some modes from not showing up.
 ;; https://emacs.stackexchange.com/a/76797/38412
-(setq tab-line-exclude-modes nil)
+(setq tab-line-exclude-modes '(completion-list-mode ibuffer-mode messages-buffer-mode))
 
-(defun zeit/buffer-skip-p (window buffer bury-or-kill)
+(defun zeit/buffer-skip-p (buffer)
   ;; Adapted from https://emacs.stackexchange.com/a/72778/38412
   "Return t if BUFFER name matches some regexps."
-  (if (string-match-p (rx bos (or (or "*Backtrace*" "*Compile-Log*" "*Completions*"
-                                      "*Messages*" "*package*" "*Warnings*"
-                                      "*Async-native-compile-log*")
-                                  (seq "magit-diff" (zero-or-more anything))
-                                  (seq "magit-process" (zero-or-more anything))
-                                  (seq "magit-revision" (zero-or-more anything))
-                                  (seq "magit-stash" (zero-or-more anything)))
-                          eos)
-                      (buffer-name buffer))
-      t))
-(setq switch-to-prev-buffer-skip 'zeit/buffer-skip-p)
+  (or
+   ;; Regexp to ignore buffers.
+   (string-match-p (rx bos (or (or "*Backtrace*" "*Compile-Log*" "*Completions*"
+                                   "*Messages*" "*package*" "*Warnings*"
+                                   "*Async-native-compile-log*" "*Ibuffer*")
+                               (seq "magit-diff" (zero-or-more anything))
+                               (seq "magit-process" (zero-or-more anything))
+                               (seq "magit-revision" (zero-or-more anything))
+                               (seq "magit-stash" (zero-or-more anything)))
+                       eos)
+                   (buffer-name buffer))
+   ))
+
+(defun zeit/tab-line-tabs-window-buffers ()
+  "Return a list of tabs that should be displayed in the tab line.
+By default returns a list of window buffers, i.e. buffers previously
+shown in the same window where the tab line is displayed.
+This list can be overridden by changing the default value of the
+variable `tab-line-tabs-function'."
+  (let* ((window (selected-window))
+         (buffer (window-buffer window))
+         (next-buffers (seq-remove (lambda (b) (eq b buffer))
+                                   (window-next-buffers window)))
+         (next-buffers (seq-filter #'buffer-live-p next-buffers))
+         (prev-buffers (seq-remove (lambda (b) (eq b buffer))
+                                   (mapcar #'car (window-prev-buffers window))))
+         (prev-buffers (seq-filter #'buffer-live-p prev-buffers))
+         ;; Remove next-buffers from prev-buffers
+         (prev-buffers (seq-difference prev-buffers next-buffers))
+         (ret-buffers (append (reverse prev-buffers)
+                              (list buffer)
+                              next-buffers))
+         (ret-buffers (seq-remove (lambda (b) (zeit/buffer-skip-p b))
+                                  ret-buffers))
+         )
+    ret-buffers
+    ))
+
+(setq tab-line-tabs-function #'zeit/tab-line-tabs-window-buffers)
+(defun zeit/buffer--window-skip-p (window buffer bury-or-kill)
+  "Return t if BUFFER name matches some regexps."
+  (zeit/buffer-skip-p buffer))
+(setq switch-to-prev-buffer-skip #'zeit/buffer--window-skip-p)
 
 ;; 字体配置
 (when
