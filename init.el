@@ -81,6 +81,7 @@
 (set-language-environment "UTF-8")
 
 ;; (pixel-scroll-mode t)
+;; (pixel-scroll-precision-mode t)
 (setq file-name-coding-system 'gbk)
                                         ; (Maybe...?)解决中文路径乱码
 ;; dired
@@ -171,14 +172,11 @@
 (setq time-stamp-line-limit 20)
 
 ;; 开启Evil模式
-(setq evil-want-C-i-jump nil)
-                                        ; 恢复orgmode的<tab>功能
+(setq evil-want-C-i-jump nil)           ; 恢复orgmode的<tab>功能
 (require 'evil)
 (evil-mode 1)
-(evil-set-undo-system 'undo-redo)
-                                        ; 启用redo
-(setq evil-want-fine-undo t)
-                                        ; 启发式undo，避免一下全部撤销
+(evil-set-undo-system 'undo-redo)       ; 启用redo
+(setq evil-want-fine-undo t)            ; 启发式undo，避免一下全部撤销
 (setq evil-kill-on-visual-paste nil)    ; 取消将覆盖文本复制到剪贴板
 
 (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
@@ -571,6 +569,12 @@
     'evil-goto-line
     (kbd "<return>")
     'push-button
+    (kbd "<")
+    'help-goto-previous-page
+    (kbd ">")
+    'help-goto-next-page
+    (kbd "n")
+    'evil-search-next
     )
   )
                                         ; Help buffer下的快捷键 ref: https://github.com/syl20bnr/spacemacs/issues/2490#issuecomment-131660583
@@ -926,6 +930,10 @@
             (kbd "M-i")
             'dabbrev-expand)
                                         ; 自动扩展词
+(define-key evil-insert-state-map
+            (kbd "M-I")
+            (lambda () (interactive) (dabbrev-expand -1)))
+                                        ; 自动扩展词(向前)
 (define-key evil-normal-state-map
             (kbd "M-S")
             'save-some-buffers)
@@ -1322,6 +1330,7 @@
 (save-place-mode 1)
 ;; 自动更新buffer
 (global-auto-revert-mode t)
+(setq global-auto-revert-non-file-buffers t)
 ;; 加密
 (require 'org-crypt)
 (require 'epa-file)
@@ -1581,8 +1590,8 @@ SCHEDULED: %^{时间?: }t
 :END:
 - State \"TODO°\"      from \"\"      %U" :kill-buffer t)
         ("h" "hello")
-        ("he" "hello • Emacs" entry (file "~/.emacs.d/forOrgs/hello.org")
-         "* %?"
+        ("he" "hello • Emacs" plain (file "~/.emacs.d/forOrgs/hello.org")
+         "%?"
          :unnarrowed t)
         ("f" "film")
         ("ff" "film • 🎥真人电影" entry (file+headline "~/.emacs.d/forOrgs/film.org" "🎥真人电影")
