@@ -708,6 +708,36 @@
   )
 ;; recentf list下的快捷键
 
+;; Image mode快捷键
+
+(with-eval-after-load 'image-mode
+  (evil-make-overriding-map image-mode-map 'normal t)
+  (evil-define-key 'normal image-mode-map
+    (kbd "<left>")
+    'image-previous-file
+    (kbd "<up>")
+    'image-previous-file
+    (kbd "<right>")
+    'image-next-file
+    (kbd "<down>")
+    'image-next-file
+    (kbd "=")
+    'image-increase-size
+    (kbd "-")
+    'image-decrease-size
+    (kbd "j")
+    'image-scroll-down
+    (kbd "k")
+    'image-scroll-up
+    ;; @fixme
+    (kbd "h")
+    'image-scroll-left
+    (kbd "l")
+    'image-scroll-right
+    )
+  )
+
+
 (define-key evil-motion-state-map
             (kbd "K")
             nil)
