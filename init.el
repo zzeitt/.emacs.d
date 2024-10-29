@@ -87,6 +87,25 @@
 (setq dired-listing-switches "-al --group-directories-first")
 
 ;;; ------------------------ 美化相关 ---------------------------
+;; tabline mode
+(global-tab-line-mode 1)
+(setq tab-line-exclude-modes nil)
+
+(defun zeit/buffer-skip-p (window buffer bury-or-kill)
+  ;; Adapted from https://emacs.stackexchange.com/a/72778/38412
+  "Return t if BUFFER name matches `zeit/buffer-skip-regexp'."
+  (if (string-match-p (rx bos (or (or "*Backtrace*" "*Compile-Log*" "*Completions*"
+                                      "*Messages*" "*package*" "*Warnings*"
+                                      "*Async-native-compile-log*")
+                                  (seq "magit-diff" (zero-or-more anything))
+                                  (seq "magit-process" (zero-or-more anything))
+                                  (seq "magit-revision" (zero-or-more anything))
+                                  (seq "magit-stash" (zero-or-more anything)))
+                          eos)
+                      (buffer-name buffer))
+      t))
+(setq switch-to-prev-buffer-skip 'zeit/buffer-skip-p)
+
 ;; 字体配置
 (when
     (member "Segoe UI Emoji"
