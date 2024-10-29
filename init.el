@@ -128,7 +128,7 @@
 (setq-default indent-tabs-mode nil)
 ;; 自动换行开启与关闭
 (global-visual-line-mode 1)
-(add-hook 'Buffer-menu-mode-hook
+(add-hook 'ibuffer-mode-hook
           (lambda
             ()
             (visual-line-mode -1)
@@ -183,8 +183,8 @@
 
 (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
                                         ; 在bookmark menu中开启evil
-(evil-set-initial-state 'Buffer-menu-mode 'normal)
-                                        ; 在Buffer中开启evil
+(evil-set-initial-state 'ibuffer-mode 'normal)
+                                        ; 在ibuffer中开启evil
 (evil-set-initial-state 'org-agenda-mode 'normal)
                                         ; 在agenda中开启evil
 (evil-set-initial-state 'magit-status-mode 'normal)
@@ -679,23 +679,24 @@
     (bookmark-bmenu-execute-deletions))
   )
 ;; bookmark bmenu下的快捷键
-(evil-define-key 'normal Buffer-menu-mode-map
+(evil-define-key 'normal ibuffer-mode-map
   (kbd "r")
-  'revert-buffer
+  'ibuffer-redisplay
+  (kbd "l")
+  'evil-forward-char
+  (kbd "h")
+  'evil-backward-char
   (kbd "<return>")
-  'Buffer-menu-switch-other-window
-  (kbd "M-<return>")
-  'Buffer-menu-this-window
+  'ibuffer-visit-buffer-1-window
+  (kbd "<RET>")
+  'ibuffer-visit-buffer-1-window
   (kbd "o")
-  'Buffer-menu-other-window
+  'ibuffer-visit-buffer-other-window
   (kbd "d")
-  (lambda
-    ()
-    (interactive)
-    (Buffer-menu-delete)
-    (Buffer-menu-execute))
+  (lambda () (interactive)
+    (call-interactively 'ibuffer-mark-for-delete) (ibuffer-do-kill-on-deletion-marks))
   )
-;; Buffer menu下的快捷键
+;; ibuffer下的快捷键
 (evil-define-key 'normal lisp-interaction-mode-map
   (kbd "q")
   'quit-window
@@ -1213,12 +1214,9 @@
                                         ; 查找文件
 (key-seq-define evil-motion-state-map ";f" 'dired-jump)
                                         ; 查找文件
-(key-seq-define evil-normal-state-map ";b"
-                (lambda
-                  ()
-                  (interactive)
-                  (select-window
-                   (list-buffers))))
+(key-seq-define evil-normal-state-map ";b" (lambda ()
+                                             (interactive)
+                                             (ibuffer t)))
                                         ; 展示buffers
 (key-seq-define evil-motion-state-map ";b"
                 (lambda
