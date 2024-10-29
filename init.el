@@ -86,6 +86,8 @@
                                         ; (Maybe...?)解决中文路径乱码
 ;; dired
 (setq dired-listing-switches "-al --group-directories-first")
+;; Enable dired-find-alternate-file.
+(put 'dired-find-alternate-file 'disabled nil)
 
 ;;; ------------------------ 美化相关 ---------------------------
 ;; tabline mode
@@ -500,7 +502,9 @@
 (with-eval-after-load 'dired
   (evil-define-key 'normal dired-mode-map
     (kbd "<return>")
-    'dired-find-file
+    (lambda () (interactive) (dired-find-alternate-file) (zeit/kill-dired-buffers t))
+    (kbd "q")
+    (lambda () (interactive) (zeit/kill-dired-buffers t))
     (kbd "K")
     'next-buffer
     (kbd "J")
@@ -508,7 +512,7 @@
     (kbd "H")
     'dired-up-directory
     (kbd "L")
-    'quit-window  ;; so that works like go "forth"
+    'kill-buffer-and-window  ;; so that works like go "forth"
     (kbd "t")
     'find-file
     (kbd "o")
@@ -1656,6 +1660,15 @@ SCHEDULED: %^{时间?: }t
 (define-auto-insert '(org-mode . "Write Article in Org-mode") 'ske-article)
 
 ;;; ------------------- Functions ------------------------------
+(defun zeit/kill-dired-buffers (&optional no-ask)
+  "Kill all dired buffers. Borrowed from files.el."
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (let ((name (buffer-name buffer)))
+      (when (with-current-buffer buffer
+              (derived-mode-p 'dired-mode))
+        (funcall (if no-ask 'kill-buffer 'kill-buffer-ask) buffer)))))
+
 (defun zeit/refresh ()
   "Refresh the percentage of checkbox/TODOs & redisplay inline images & align tags."
   (interactive)
