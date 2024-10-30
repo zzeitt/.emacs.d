@@ -534,7 +534,12 @@ variable `tab-line-tabs-function'."
 (with-eval-after-load 'dired
   (evil-define-key 'normal dired-mode-map
     (kbd "<return>")
-    (lambda () (interactive) (dired-find-alternate-file) (zeit/kill-dired-buffers t))
+    (lambda () (interactive)
+      (dired-find-file)
+      (unless (with-current-buffer (current-buffer)
+                (derived-mode-p 'dired-mode))
+        ;; Kill dired buffers if enter a file.
+        (zeit/kill-dired-buffers t)))
     (kbd "q")
     (lambda () (interactive) (zeit/kill-dired-buffers t))
     (kbd "K")
@@ -550,7 +555,7 @@ variable `tab-line-tabs-function'."
     (kbd "o")
     'dired-create-directory
     (kbd "d")
-    (lambda () (interactive) (dired-do-flagged-delete) (dired-do-delete))
+    'dired-do-delete
     (kbd "gg")
     'evil-goto-first-line
     (kbd "G")
@@ -729,8 +734,7 @@ variable `tab-line-tabs-function'."
   (kbd "o")
   'ibuffer-visit-buffer-other-window
   (kbd "d")
-  (lambda () (interactive)
-    (call-interactively 'ibuffer-mark-for-delete) (ibuffer-do-kill-on-deletion-marks))
+  'ibuffer-do-delete
   )
 ;; ibuffer下的快捷键
 (evil-define-key 'normal lisp-interaction-mode-map
