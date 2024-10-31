@@ -1803,20 +1803,27 @@ Arguments:
          (regex (if (string= _task-regex "all") ".*" _task-regex))
          (n-max (or maxlevel 1)))
     (org-map-entries
-     (lambda ()                                         ;;; FUNC
-       (let ((name (nth 4 (org-heading-components)))
-             (tags (nth 5 (org-heading-components)))
-             (n-level (nth 0 (org-heading-components))))
-         (if (string-match regex name)
-             (save-restriction
-               (org-mark-subtree)
-               (message "===> Sorting %s ..." (org-entry-get nil "ITEM"))
-               (org-sort-entries nil ?a)
-               (org-sort-entries nil ?o)
-               (org-sort-entries nil ?p)
-               ))))
-     (format "LEVEL=%s-noexport" n-max)                 ;;; MATCH
-     'file 'archive 'comment)
+     ; ------------------------------------------------- FUNC
+     (lambda ()
+       (let ((name (org-entry-get nil "ITEM")))
+         (save-restriction
+           ;; (message "---> Headline: %s" name)
+           (if (string-match regex name)
+               (progn
+                 (message "===> Sorting %s ... ↧" name)
+                 (org-sort-entries nil ?a)
+                 (org-sort-entries nil ?o)
+                 (org-sort-entries nil ?p)
+                 (message "===> Sorted %s      ↥" name)
+                 )
+             )
+           )
+         )
+       )
+     ; ------------------------------------------------- MATHC
+     (format "LEVEL=%s-noexport" n-max)
+     'file 'archive 'comment
+     )
     (outline-show-only-headings)
     (save-buffer)
     (message "Tasks (%s) sorted!" _task-regex)
