@@ -106,7 +106,7 @@
   (or
    ;; Regexp to ignore buffers.
    (string-match-p (rx bos (or (or "*Backtrace*" "*Compile-Log*" "*Completions*"
-                                   "*Messages*" "*package*" "*Warnings*"
+                                   "*Messages*" "*package*" "*Warnings*" "*Calendar*"
                                    "*Async-native-compile-log*" "*Ibuffer*")
                                (seq "magit-diff" (zero-or-more anything))
                                (seq "magit-process" (zero-or-more anything))
