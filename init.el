@@ -1659,6 +1659,20 @@ SCHEDULED: %^{时间?: }t
 :PRPOERTIES:
 :CAPTURED: %U
 :END:" :kill-buffer t)
+        ("n" "notes")
+        ("nf" "forNotes • float.org" plain
+         (file+function
+          "~/.emacs.d/forOrgs/forNotes/forTech/float/float.org"
+          (lambda ()
+            (org-babel-goto-named-src-block "special-float")
+            (org-babel-goto-src-block-head)
+            ;; (org-fold--hide-wrapper-toggle (org-element-at-point) 'block t nil)
+            (forward-line -2)
+            (delete-line)
+            )
+          )
+        "#+header: :var fp_hex=\"%?\""
+        :unnarrowed t)
         ))
 
 ;;; -------------------- Atomic Chrome --------------------------
