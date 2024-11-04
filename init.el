@@ -156,9 +156,10 @@ variable `tab-line-tabs-function'."
    (font-spec :family "Segoe UI Emoji")
    nil 'prepend))
 ;; 子弹缩进
-(add-to-list 'load-path "~/.emacs.d/myscripts/org-bullets")
-(require 'org-bullets)
-(add-hook 'org-mode-hook 'org-bullets-mode)
+(use-package org-bullets
+  :defer t
+  :hook org-mode
+  :load-path "~/.emacs.d/myscripts/org-bullets")
 
 ;; 开启文本缩进
 (setq org-startup-indented t)
@@ -188,24 +189,26 @@ variable `tab-line-tabs-function'."
 (setq org-startup-with-inline-images t)
 (setq org-cycle-inline-images-display t)
 (setq org-image-actual-width nil)
-;; 运行src block后自动刷新行内图片
-(eval-after-load 'org
-  (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images))
 ;; 显示文件大小
 (setq size-indication-mode t)
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 ;; markup相关
 (setq org-hide-emphasis-markers t)
-(add-hook 'org-mode-hook 'org-appear-mode)
-                                        ; 开启org-appear
+;; (add-hook 'org-mode-hook 'org-appear-mode) ; 开启org-appear
+(use-package org-appear
+  :defer t
+  :hook org-mode)
 
 ;;; ------------------------- 个人习惯 ---------------------------
 ;; 开启zotxt-mode
-(add-hook 'org-mode-hook
-          (lambda
-            ()
-            (org-zotxt-mode 1)))
+(use-package org-zotxt
+  :defer t
+  :hook org-mode)
+;; (add-hook 'org-mode-hook
+;;           (lambda
+;;             ()
+;;             (org-zotxt-mode 1)))
 
 ;; 自动Time Stamp
 (add-hook 'before-save-hook 'time-stamp)
@@ -302,16 +305,20 @@ variable `tab-line-tabs-function'."
 (setq org-link-search-must-match-exact-headline nil)
 
 ;; 开启图片拖拽 (Drag & Drop)
-(require 'org-download)
-;; (setq org-download-heading-lvl nil)
-;; (setq org-download-image-dir "./_assets")
-(setq org-download-timestamp "")
-
-(add-hook 'org-mode-hook 'org-download-enable)
+;; (require 'org-download)
+;; (setq org-download-timestamp "")
+;; (add-hook 'org-mode-hook 'org-download-enable)
 (defun zeit/org-download-annotate (link)
   "Annotate LINK with the time of download."
   (format "#+attr_html: :width 80%\n#+caption: %s\n" (file-name-nondirectory link)))
-(setq org-download-annotate-function #'zeit/org-download-annotate)
+;; (setq org-download-annotate-function #'zeit/org-download-annotate)
+(use-package org-download
+  :defer t
+  :config
+  (add-hook 'org-mode-hook 'org-download-enable)
+  (setq org-download-timestamp "")
+  (setq org-download-annotate-function #'zeit/org-download-annotate)
+  )
 
 ;; 开启回车跳转链接
 (setq org-return-follows-link t)
@@ -1297,6 +1304,7 @@ variable `tab-line-tabs-function'."
 
 ;; OrgMode specific keychords.
 (with-eval-after-load 'org
+  (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images) ; 运行src block后自动刷新行内图片
   (evil-define-key 'normal org-mode-map
     (kbd "RET")
     'org-open-at-point
@@ -1548,10 +1556,19 @@ variable `tab-line-tabs-function'."
 ;;; ----------------------- git设置 ------------------------------
 
 ;; 自动刷新
-(with-eval-after-load 'magit-mode
-  (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
-(put 'narrow-to-region 'disabled nil)
-(add-hook 'git-commit-setup-hook 'evil-insert-state)
+(use-package magit
+  :defer t
+  :after (dash transient with-editor)
+  :config
+  ;; (require 'magit)
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
+  (add-hook 'git-commit-setup-hook 'evil-insert-state)
+  (put 'narrow-to-region 'disabled nil)
+  )
+;; (with-eval-after-load 'magit-mode
+;;   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
+;; (put 'narrow-to-region 'disabled nil)
+;; (add-hook 'git-commit-setup-hook 'evil-insert-state)
 
 
 ;;; ------------------------ Capture -----------------------------
@@ -1680,8 +1697,12 @@ SCHEDULED: %^{时间?: }t
         ))
 
 ;;; -------------------- Atomic Chrome --------------------------
-(require 'atomic-chrome)
-(atomic-chrome-start-server)
+;; (require 'atomic-chrome)
+;; (atomic-chrome-start-server)
+(use-package atomic-chrome
+  :config
+  (atomic-chrome-start-server)
+  )
 
 
 ;;; -------------------- Auto Insert ----------------------------
@@ -1921,51 +1942,75 @@ append the cookies to the end of current headline."
     ))
 
 ;; ----------------------- AsciiDoc Export Backend --------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
-(require 'ox-asciidoc)
+;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
+;; (require 'ox-asciidoc)
+(use-package ox-asciidoc
+  :defer t
+  :load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
 
 ;; --------------------------- Powershell Babel -----------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-powershell/")
-(require 'ob-powershell)
+;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-powershell/")
+;; (require 'ob-powershell)
+(use-package ob-powershell
+  :defer t
+  :load-path "~/.emacs.d/myscripts-dev/ob-powershell/")
 
 ;;; -------------------- Self-defined Org-babel --------------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-remotessh/")
-(require 'ob-remotessh)
+;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-remotessh/")
+;; (require 'ob-remotessh)
+(use-package ob-remotessh
+  :defer t
+  :load-path "~/.emacs.d/myscripts-dev/ob-remotessh/")
 
 ;;; ---------------- Org Export Backend for Confluence ------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-conf/")
-(require 'ox-conf)
+;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-conf/")
+;; (require 'ox-conf)
+(use-package ox-conf
+  :defer 3
+  :load-path "~/.emacs.d/myscripts-dev/ox-conf/")
 
 ;; ------------------------------ Jira --------------------------------
-(add-to-list 'load-path "~/.emacs.d/myscripts-dev/org-jira/")
-(require 'org-jira)
-(setq org-jira-working-dir "~/.emacs.d/forOrgs/.org-jira")
-(setq jiralib-url "https://jira.hygon.cn")
-(setq org-jira-use-status-as-todo nil)
-(setq org-jira-jira-status-to-org-keyword-alist
-      '(("To Do" . "TODO°")
-        ("开放" . "TODO°")
-        ("In Progress" . "DOING")
-        ("处理中" . "DOING")
-        ("In Review" . "DOING")
-        ("审核中" . "DOING")
-        ("Cancelled" . "CANC.")
-        ("已取消" . "CANC.")
-        ("Resolved" . "DONE√")
-        ("已解决" . "DONE√")
-        ("Closed" . "DONE√")
-        ("关闭" . "DONE√")
-        ("Done" . "DONE√")
-        ("完成" . "DONE√"))
-      )
-(setq request-log-level 'debug)
+;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/org-jira/")
+;; (require 'org-jira)
+(use-package org-jira
+  :defer 3
+  :load-path "~/.emacs.d/myscripts-dev/org-jira/"
+  :config
+  (setq org-jira-working-dir "~/.emacs.d/forOrgs/.org-jira")
+  (setq jiralib-url "https://jira.hygon.cn")
+  (setq org-jira-use-status-as-todo nil)
+  (setq org-jira-jira-status-to-org-keyword-alist
+        '(("To Do" . "TODO°")
+          ("开放" . "TODO°")
+          ("In Progress" . "DOING")
+          ("处理中" . "DOING")
+          ("In Review" . "DOING")
+          ("审核中" . "DOING")
+          ("Cancelled" . "CANC.")
+          ("已取消" . "CANC.")
+          ("Resolved" . "DONE√")
+          ("已解决" . "DONE√")
+          ("Closed" . "DONE√")
+          ("关闭" . "DONE√")
+          ("Done" . "DONE√")
+          ("完成" . "DONE√"))
+        )
+  (setq request-log-level 'debug)
+  )
 
 ;; ------------------------ Nginx Configuration -----------------------
-(require 'nginx-mode)
+;; (require 'nginx-mode)
+(use-package nginx-mode
+  :defer t)
 
 ;; ------------------------------ AutoHotKey --------------------------
-(require 'ahk-mode)
-(setq ahk-indentation 4)
+;; (require 'ahk-mode)
+;; (setq ahk-indentation 4)
+(use-package ahk-mode
+  :defer t
+  :config
+  (setq ahk-indentation 4)
+  )
 
 ;; --------------------------------------------------------------------
 (org-babel-do-load-languages
