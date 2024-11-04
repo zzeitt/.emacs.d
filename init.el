@@ -89,6 +89,10 @@
 ;; Enable dired-find-alternate-file.
 (put 'dired-find-alternate-file 'disabled nil)
 
+;; 鼠标滚动
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
+
 ;;; ------------------------ 美化相关 ---------------------------
 ;; tabline mode
 (global-tab-line-mode 1)
