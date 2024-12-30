@@ -339,6 +339,9 @@ variable `tab-line-tabs-function'."
 (keymap-global-set "<f3>" nil) ; Unmap F3
 (keymap-global-set "<f2>" nil) ; Unmap F2
 
+(global-set-key (kbd "C-c m") 'compose-mail) ; 写邮件
+(global-set-key (kbd "C-c z") 'calendar) ; 日历
+(global-set-key (kbd "C-c r") 'project-find-regexp) ; 在项目中搜索
 (global-set-key
  (kbd "C-<tab>")
  'next-buffer)
@@ -680,6 +683,8 @@ variable `tab-line-tabs-function'."
   'magit-unstage
   (kbd "U")
   'magit-unstage-all
+  (kbd "m")
+  'magit-merge
   (kbd "s")
   'magit-stage-file
   (kbd "S")
@@ -1618,6 +1623,10 @@ SCHEDULED: %^{时间?: }t
         ("ce" "cheatsheet • Else" item (file+function "~/.emacs.d/forOrgs/cheatsheet.org" org-goto)
          "%?"
          :unnarrowed t)
+        ("d" "diary" plain (file+olp+datetree "~/.emacs.d/forOrgs/diary.org" )
+         "%?"
+         :unnarrowed t
+         :time-prompt t)
         ("i" "wish")
         ("ib" "wish • ToBuy" entry (file+headline "~/.emacs.d/forOrgs/wish.org" "🛒想买")
          "* TODO° %?
@@ -1659,6 +1668,9 @@ SCHEDULED: %^{时间?: }t
 :CAPTURED: %U
 :END:
 - State \"TODO°\"      from \"\"      %U" :kill-buffer t)
+        ("m" "math" entry (file "~/.emacs.d/forOrgs/forNotes/forTech/math/math.org")
+         "* 关于 /%?/"
+         :unnarrowed t)
         ("h" "hello")
         ("he" "hello • Emacs" plain (file "~/.emacs.d/forOrgs/hello.org")
          "%?"
@@ -2032,4 +2044,12 @@ append the cookies to the end of current headline."
    (latex . t)
    (dot . t)))
 
+;; -------------------------------- Email ------------------------------
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq user-mail-address "zei.t@qq.com")
+(setq user-full-name "zeit")
+(setq smtpmail-smtp-user "zei.t@qq.com"
+      smtpmail-smtp-server "smtp.qq.com"
+      smtpmail-smtp-service 465
+      smtpmail-stream-type 'ssl)
 
