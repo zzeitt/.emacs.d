@@ -105,9 +105,13 @@
   "Return t if BUFFER name matches some regexps."
   (or
    ;; Regexp to ignore buffers.
-   (string-match-p (rx bos (or (or "*Backtrace*" "*Compile-Log*" "*Completions*"
-                                   "*Messages*" "*package*" "*Warnings*" "*Calendar*"
-                                   "*Async-native-compile-log*" "*Ibuffer*")
+   (string-match-p (rx bos (or (or "*Backtrace*" "*Compile-Log*"
+                                   "*Completions*" "*Messages*"
+                                   "*package*" "*Warnings*"
+                                   "*Calendar*"
+                                   "*Async-native-compile-log*"
+                                   "*Ibuffer*" "*Calculator*"
+                                   )
                                (seq "magit-diff" (zero-or-more anything))
                                (seq "magit-process" (zero-or-more anything))
                                (seq "magit-revision" (zero-or-more anything))
@@ -178,6 +182,11 @@ variable `tab-line-tabs-function'."
             (visual-line-mode -1)
             (toggle-truncate-lines 1)))
 (add-hook 'dired-mode-hook
+          (lambda
+            ()
+            (visual-line-mode -1)
+            (toggle-truncate-lines 1)))
+(add-hook 'sh-mode-hook
           (lambda
             ()
             (visual-line-mode -1)
@@ -313,7 +322,7 @@ variable `tab-line-tabs-function'."
   (format "#+attr_html: :width 80%\n#+caption: %s\n" (file-name-nondirectory link)))
 ;; (setq org-download-annotate-function #'zeit/org-download-annotate)
 (use-package org-download
-  :defer t
+  ;; :defer t
   :config
   (add-hook 'org-mode-hook 'org-download-enable)
   (setq org-download-timestamp "")
@@ -1945,35 +1954,35 @@ append the cookies to the end of current headline."
 ;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
 ;; (require 'ox-asciidoc)
 (use-package ox-asciidoc
-  :defer t
+  ;; :defer t
   :load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
 
 ;; --------------------------- Powershell Babel -----------------------
 ;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-powershell/")
 ;; (require 'ob-powershell)
 (use-package ob-powershell
-  :defer t
+  ;; :defer t
   :load-path "~/.emacs.d/myscripts-dev/ob-powershell/")
 
 ;;; -------------------- Self-defined Org-babel --------------------------
 ;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ob-remotessh/")
 ;; (require 'ob-remotessh)
 (use-package ob-remotessh
-  :defer t
+  ;; :defer t
   :load-path "~/.emacs.d/myscripts-dev/ob-remotessh/")
 
 ;;; ---------------- Org Export Backend for Confluence ------------------
 ;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-conf/")
 ;; (require 'ox-conf)
 (use-package ox-conf
-  :defer 3
+  ;; :defer 3
   :load-path "~/.emacs.d/myscripts-dev/ox-conf/")
 
 ;; ------------------------------ Jira --------------------------------
 ;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/org-jira/")
 ;; (require 'org-jira)
 (use-package org-jira
-  :defer 3
+  ;; :defer 3
   :load-path "~/.emacs.d/myscripts-dev/org-jira/"
   :config
   (setq org-jira-working-dir "~/.emacs.d/forOrgs/.org-jira")
