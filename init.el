@@ -1110,6 +1110,27 @@ variable `tab-line-tabs-function'."
               (interactive)
               (org-emphasize ?\=)))
                                         ; markup "="
+(define-key evil-insert-state-map
+            (kbd "C-/")
+            (lambda
+              ()
+              (interactive)
+              (org-emphasize ?\/)))
+                                        ; markup "/"
+(define-key evil-normal-state-map
+            (kbd "C-/")
+            (lambda
+              ()
+              (interactive)
+              (org-emphasize ?\/)))
+                                        ; markup "/"
+(define-key evil-motion-state-map
+            (kbd "C-/")
+            (lambda
+              ()
+              (interactive)
+              (org-emphasize ?\/)))
+                                        ; markup "/"
 (define-key evil-visual-state-map
             (kbd "/")
             (lambda
@@ -1178,30 +1199,6 @@ variable `tab-line-tabs-function'."
             (kbd "M-[")
             'org-metaleft)
                                         ; 将项目左移(但不影响子项目)
-(defun zeit/enlarge-or-shiftmetaleft ()
-  "Enlarge windows or do org-shiftmetaleft in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (enlarge-window 1)
-    (org-shiftmetaleft)))
-(defun zeit/shrink-or-shiftmetaright ()
-  "Shrink windows or do org-shiftmetaright in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (shrink-window 1)
-    (org-shiftmetaright)))
-(defun zeit/enlarge-or-shiftmetaup ()
-  "Enlarge windows horizontally or do org-shiftmetaup in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (enlarge-window-horizontally 1)
-    (org-shiftmetaup)))
-(defun zeit/shrink-or-shiftmetadown ()
-  "Shrink windows horizontally or do org-shiftmetadown in table."
-  (interactive)
-  (if (not (org-at-table-p))
-      (shrink-window-horizontally 1)
-    (org-shiftmetadown)))
 (define-key evil-normal-state-map
             (kbd "M-[")
             'zeit/enlarge-or-shiftmetaleft)
@@ -1323,6 +1320,10 @@ variable `tab-line-tabs-function'."
     (kbd "RET")
     'org-open-at-point
     )
+  (evil-define-key '(normal visual insert) org-mode-map
+    (kbd "C-c y") 'zeit/org-ctrl-c-y)
+  (evil-define-key '(normal visual insert) org-mode-map
+    (kbd "C-c p") 'zeit/org-ctrl-c-p)
   (key-seq-define-evil 'normal org-mode-map ";t" 'org-todo)
                                         ; 切换TODO
   (key-seq-define-evil 'normal org-mode-map ";s" 'org-schedule)
@@ -1787,6 +1788,34 @@ SCHEDULED: %^{时间?: }t
         ((char-equal type ?x) (org-cycle-force-archived)))
   )
 
+(defun zeit/enlarge-or-shiftmetaleft ()
+  "Enlarge windows or do org-shiftmetaleft in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (enlarge-window 1)
+    (org-shiftmetaleft)))
+
+(defun zeit/shrink-or-shiftmetaright ()
+  "Shrink windows or do org-shiftmetaright in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (shrink-window 1)
+    (org-shiftmetaright)))
+
+(defun zeit/enlarge-or-shiftmetaup ()
+  "Enlarge windows horizontally or do org-shiftmetaup in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (enlarge-window-horizontally 1)
+    (org-shiftmetaup)))
+
+(defun zeit/shrink-or-shiftmetadown ()
+  "Shrink windows horizontally or do org-shiftmetadown in table."
+  (interactive)
+  (if (not (org-at-table-p))
+      (shrink-window-horizontally 1)
+    (org-shiftmetadown)))
+
 (defun zeit/dir-to-nested-list (dir exclude-strings n-level n-depth)
   "Traverse a given directory, store the info about files
 under the directory in the form of list.
@@ -1961,6 +1990,22 @@ append the cookies to the end of current headline."
     (current-buffer)
     (format "%s" rejoined-lines)
     ))
+
+(defun zeit/org-ctrl-c-y ()
+  "Map C-c y in different occasions."
+  (interactive)
+  (when (org-at-table-p)
+    (call-interactively 'org-table-copy-region)
+    )
+  )
+
+(defun zeit/org-ctrl-c-p ()
+  "Map C-c p in different occasions."
+  (interactive)
+  (when (org-at-table-p)
+    (call-interactively 'org-table-paste-rectangle)
+    )
+  )
 
 ;; ----------------------- AsciiDoc Export Backend --------------------
 ;; (add-to-list 'load-path "~/.emacs.d/myscripts-dev/ox-asciidoc/")
