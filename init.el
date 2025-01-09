@@ -22,7 +22,6 @@
  '(org-download-heading-lvl nil)
  '(org-download-image-dir "./_assets/screenshots")
  '(org-list-allow-alphabetical t)
- '(org-priority-faces '((65 . "#ff6361") (66 . "#bc5090") (67 . "#494ca2")))
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
  '(org-src-lang-modes
@@ -1324,6 +1323,8 @@ variable `tab-line-tabs-function'."
     (kbd "C-c y") 'zeit/org-ctrl-c-y)
   (evil-define-key '(normal visual insert) org-mode-map
     (kbd "C-c p") 'zeit/org-ctrl-c-p)
+  (evil-define-key '(normal visual insert) org-mode-map
+    (kbd "C-c SPC") 'zeit/org-ctrl-c-space)
   (key-seq-define-evil 'normal org-mode-map ";t" 'org-todo)
                                         ; 切换TODO
   (key-seq-define-evil 'normal org-mode-map ";s" 'org-schedule)
@@ -1470,7 +1471,8 @@ variable `tab-line-tabs-function'."
 ;; 优先级(priority)设置
 (setq org-highest-priority ?A) 
 (setq org-lowest-priority  ?B)
-(setq org-default-priority ?C)
+(setq org-default-priority ?D)
+(setq org-priority-faces '((?A . "#f0440a") (?B . "#dcacf2") (?C . "#cef2ac") (?D . "#55d0db")))
 
 ;; 自动DONE
 (defun org-summary-todo
@@ -2004,6 +2006,14 @@ append the cookies to the end of current headline."
   (interactive)
   (when (org-at-table-p)
     (call-interactively 'org-table-paste-rectangle)
+    )
+  )
+
+(defun zeit/org-ctrl-c-space ()
+  "Map C-c SPC in different occasions."
+  (interactive)
+  (when (org-at-table-p)
+    (call-interactively 'org-table-blank-field)
     )
   )
 
