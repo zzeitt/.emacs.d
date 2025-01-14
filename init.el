@@ -338,6 +338,7 @@ variable `tab-line-tabs-function'."
 (keymap-global-set "<f3>" nil) ; Unmap F3
 (keymap-global-set "<f2>" nil) ; Unmap F2
 
+(global-set-key (kbd "C-c f") 'fill-paragraph) ; 自动换行填充
 (global-set-key (kbd "C-c m") 'compose-mail) ; 写邮件
 (global-set-key (kbd "C-c z") 'calendar) ; 日历
 (global-set-key (kbd "C-c r") 'project-find-regexp) ; 在项目中搜索
@@ -1325,6 +1326,8 @@ variable `tab-line-tabs-function'."
     (kbd "C-c p") 'zeit/org-ctrl-c-p)
   (evil-define-key '(normal visual insert) org-mode-map
     (kbd "C-c SPC") 'zeit/org-ctrl-c-space)
+  (evil-define-key '(normal) org-mode-map
+    (kbd "SPC") 'zeit/org-space)
   (key-seq-define-evil 'normal org-mode-map ";t" 'org-todo)
                                         ; 切换TODO
   (key-seq-define-evil 'normal org-mode-map ";s" 'org-schedule)
@@ -1643,14 +1646,16 @@ SCHEDULED: %^{时间?: }t
          :kill-buffer t)
         ("w" "work")
         ("wt" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
-         "* TODO° %?
+         "* TODO° %^{Task name}
+SCHEDULED: %^{Schedule at}t
 - State \"TODO°\"      from \"\"      %U"
+         :immediate-finish t
          :kill-buffer t)
         ("wa" "work • 活动" entry (file+headline "~/.emacs.d/forOrgs/work.org" "活动")
          "* TODO° %?
 - State \"TODO°\"      from \"\"      %U"
 :kill-buffer t)
-        ("wl" "work • Logs" item (file+olp+datetree "~/.emacs.d/forOrgs/forNotes/forWorkLog/worklog.org" )
+        ("wl" "work • Logs" item (file+olp+datetree "~/.emacs.d/forOrgs/worklog.org" )
          "- %?"
          :unnarrowed t
          :time-prompt t)
@@ -2011,6 +2016,14 @@ append the cookies to the end of current headline."
 
 (defun zeit/org-ctrl-c-space ()
   "Map C-c SPC in different occasions."
+  (interactive)
+  (when (org-at-table-p)
+    (call-interactively 'org-table-blank-field)
+    )
+  )
+
+(defun zeit/org-space ()
+  "Map SPC in different occasions."
   (interactive)
   (when (org-at-table-p)
     (call-interactively 'org-table-blank-field)
