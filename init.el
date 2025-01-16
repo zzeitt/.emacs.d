@@ -1644,6 +1644,11 @@ SCHEDULED: %^{时间?: }t
 :CAPTURED: %U
 :END:"
          :kill-buffer t)
+        ("l" "learn")
+        ("lc" "learn • Courses" entry (file+headline "~/.emacs.d/forOrgs/learn.org" "📖Courses")
+         "* TODO° [%?]
+- State \"TODO°\"      from \"\"      %U"
+         :unnarrowed t)
         ("w" "work")
         ("wt" "work • Tasks" entry (file+headline "~/.emacs.d/forOrgs/work.org" "Tasks")
          "* TODO° %^{Task name}
